@@ -1,0 +1,1077 @@
+% Karteikarten mit Formeln aus der Vorlesung Elektromagnetische Feldtheorie
+% bei Prof. Dr. G. Wachutka im WS 2011/12 
+% an der TU München
+
+% zusammengefasst von Sebastian Krösche
+% bearbeitet von Katharina Krusche
+% Stand: 16.02.2012 (vorläufige Final-Version)
+% Fehler bitte an sebastian.kroesche@mytum.de !!
+
+% Für dieses Dokument habe ich die Karteikarten-Vorlage für LaTeX von Ronny Bergmann verwendet
+% (Lizenz siehe unten)
+
+%
+%		* ----------------------------------------------------------------------------
+%		* "THE BEER-WARE LICENSE" (Revision 42/023):
+%		* Ronny Bergmann <mail@darkmoonwolf.de> wrote this file. As long as you retain 
+%		* this notice you can do whatever you want with this stuff. If we meet some day,
+%		* and you think  this stuff is worth it, you can buy me a beer or a coffee in return. 
+%		* ----------------------------------------------------------------------------
+
+
+\documentclass[a6paper]{kartei}
+\usepackage{scientific}
+\usepackage[utf8]{inputenc} %UTF8
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{trsym} % Fourier-Transformation-Symbole
+
+\newenvironment{psmallmatrix}{\left(\begin{smallmatrix}}{\end{smallmatrix}\right)}
+\renewenvironment{pmatrix}{\begin{psmallmatrix}}{\end{psmallmatrix}}
+\newenvironment{abc}{\begin{enumerate}[label={}]}{\end{enumerate}}
+
+
+\renewcommand{\div}{\mathrm{div}\;}
+
+\newenvironment{rcases}{% 
+  \left.\renewcommand*\lbrace.% 
+  \begin{cases}}% 
+{\end{cases}\right\rbrace}
+
+\newcommand{\fa}{\TransformHoriz}
+\newcommand{\fs}{\InversTransformHoriz}
+
+\DeclareMathOperator{\re}{Re}
+\DeclareMathOperator{\im}{Im}
+\newcommand{\dd}{\ensuremath{\text{d}}}
+
+\begin{document}
+\setlength{\parindent}{0pt} %Am Anfang einer neuen Zeile nicht einrücken
+	\begin{karte}[Grundwissen]{Potential für 1 Punktladung bei $\vec r_0$}
+		\begin{eqnarray*}
+			\varphi (\vec r ) = \frac{Q}{\epsilon_0} \frac{1}{4 \pi} \frac{1}{\abs{\vec r - \vec r_0}}
+		\end{eqnarray*}
+	\end{karte}
+	
+	
+	\begin{karte}[Grundwissen]{Potential für einen zylindrischen Leiter bei $\vec r_0$}
+		\begin{eqnarray*}
+			\varphi (r ) = - \frac{Q}{2 \pi \epsilon l} \ln \frac{r}{r_0} + C 
+		\end{eqnarray*}
+		( $r = $ Abstand von der Zylinderachse)
+	\end{karte}
+	
+	
+	\begin{karte}[Grundwissen]
+	{elektrisches Feld im stationären Fall vs. dynamischer Fall} 
+		\begin{eqnarray*}
+			\rot \vec E = 0 \rightarrow\vec E \ \text{ist wirbelfrei}\\\\
+			\div \vec B = 0 \rightarrow \vec B \ \text{quellenfrei}\\\\
+			\text{Dynamischer Fall:} \rot \vec E = - \frac{\partial B}{\partial t}
+		\end{eqnarray*}
+	\end{karte}
+	
+	\begin{karte}[Klass. Kontinuumsth.]{Maxwellgleichungen (4)}
+		$\begin{array}{|c|c|}
+			\hline &\\
+			\text{"Gaußsches Gesetz"}&\div \vec D = \rho \\&\\\hline &\\
+			\text{"Faradaysches Induktionsgesetz"}&\rot \vec E = - \frac{\partial \vec B}{\partial t} \\&\\\hline &\\
+			\text{"Quellfreiheit des magn. Feldes"}&\div B = 0 \\&\\\hline &\\
+			\text{"Ampersches Gesetz"}&\rot \vec H = \vec j + \frac{\partial \vec D}{\partial t}
+			\\&\\\hline
+		\end{array}$
+	\end{karte}
+	
+	
+	\begin{karte}[Klass. Kontinuumsth.]{Materialgleichungen (3)}
+		\begin{eqnarray*}
+			\vec D =  \epsilon \vec E \\\\
+			\vec B = \mu \vec H \\\\
+			\vec j = \sigma \vec E
+		\end{eqnarray*}
+	\end{karte}
+	
+	
+	\begin{karte}[Klass. Kontinuumsth.]
+		{elektromagnetisches Vektorpotential\\ \&\\elektromagnetisches Skalares Potential }
+		\ \\ \ \\\begin{center}überall definiertes Vektorfeld  \ $\vec A $\ mit \fbox{$\vec B = \rot \vec A$} \\ $\&$\\
+			Skalarfeld $\Phi(\vec r, t)$ \ mit \
+			$\vec E = - \nabla \Phi - \frac{\partial A}{\partial t}$
+		\end{center}
+	\end{karte}
+	\begin{karte}[Klass. Kontinuumsth.]{Energie im Elektrischen Feld\\ (bei diskreter und kontinuierlicher Ladungsverteilung)}
+	
+		diskreter Fall: \begin{eqnarray*}
+			W_{\text{el}} = \sum \limits^N_{\substack{i < k \\ i,k = 1}} \frac{1}{4 \pi \epsilon} \frac{q_k q_i}{\abs{\vec r_k - \vec r_i}}=\frac{1}{2} \frac{1}{4 \pi \epsilon}\sum \limits^N_{\substack{i \not=  k \\ i,k = 1}}  \frac{q_k q_i}{\abs{\vec r_k - \vec r_i}}
+		\end{eqnarray*}
+		kontinuierlicher Fall: \begin{eqnarray*}
+			W_{\text{el}} =\frac{1}{2} \frac{1}{4 \pi \epsilon}\int \limits_V\int \limits_V  \frac{\rho(\vec r) \rho(\vec r')}{\abs{\vec r - \vec r'}}\dd^3 r \dd^3 r'
+		\end{eqnarray*}
+		
+ 
+	\end{karte}
+	
+	\begin{karte}[Klass. Kontinuumsth.]{Energiedichten im magnetischen und Elektrischen Feld}
+	im elektrischen Feld: 
+		\begin{eqnarray*}
+			\delta_{\text{W}_{\text{el}}} = \vec E  \cdot \delta\vec D \begin{cases}\overset{\epsilon \text{ const.}}{\longrightarrow} & w_{\text{el}} = \frac 1 2 \vec E \vec D \\\text{sonst} & w_{\text{el}} = \int\limits_{0}^{\vec{D}}\vec E (\vec{D'}) \ \dd \vec D' \end{cases}\\
+		\end{eqnarray*}
+		im magnetischen Feld:
+			\begin{eqnarray*}
+			\delta_{\text{W}_{\text{mag}}} = \vec H  \cdot \delta\vec B \begin{cases}\overset{\mu \text{ const.}}{\longrightarrow} & w_{\text{mag}} = \frac 1 {2\mu}  \vec B^2 \\\text{sonst} & w_{\text{mag}} = \int\limits_{0}^{\vec{B}}\vec H (\vec{B'}) \ \dd \vec B' \end{cases}\\
+		\end{eqnarray*}
+		$\frac{\partial w_{elmag}}{\partial t}=\frac{\partial w_{el}}{\partial t}+\frac{\partial w_{mag}}{\partial t}$
+
+	\end{karte}
+	
+	\begin{karte}[Klass. Kontinuumsth.]{allgemeine Bilanzgleichung\\ (differentielle \& integrale Form)}
+		differentielle Form: 
+		\begin{eqnarray*}
+			\frac{\partial x}{\partial t} + \div \vec j_x = \Pi_x
+		\end{eqnarray*}
+		integrale Form
+		 \begin{eqnarray*}
+  \frac{dX(V)}{dt} = - \int_{\partial V} \vec{J_{X}} \ d\vec{a} + \int_{V} \Pi_{X} \ d^{3}r 
+ \end{eqnarray*}
+	\end{karte}
+	
+	\begin{karte}[Klass. Kontinuumsth.]{Poynting Vektor}
+		\begin{eqnarray*}
+			\vec S = \vec E \times \vec H
+		\end{eqnarray*}
+		$\rightarrow$ elektromagnetische Energiestromdichte
+	\end{karte}
+
+	
+	
+	\begin{karte}[Klass. Kontinuumsth.]{Eichfreiheiten von $\vec A$ (2)}
+		\begin{eqnarray*}
+			\vec A' = \vec A - \nabla \chi \\\\
+			\Phi' = \Phi + \frac{\partial \chi}{\partial t}
+		\end{eqnarray*}
+	\end{karte}
+	
+	
+	\begin{karte}[Klass. Kontinuumsth.]{Lorenz Eichung}
+		\begin{eqnarray*}
+			\div \vec A + \epsilon \mu \frac{\partial \Phi}{\partial t} = 0
+		\end{eqnarray*}
+	\end{karte}
+	
+	\begin{karte}[Klass. Kontinuumsth.]{Coulomb Eichung}
+		\begin{eqnarray*}
+			\div \vec A = 0
+		\end{eqnarray*}
+	\end{karte}
+	
+	\begin{karte}[Potentialtheorie]{Gleichungen zum Verhalten an den Materialgrenzen (4)}
+		\begin{eqnarray*}
+			\vec D_2 \vec n - \vec D_1 \vec n = \sigma_{\text{int}} \\\\
+			\vec B_2 \vec n - \vec B_1 \vec n = 0 \\\\
+			\vec E_1 \times \vec n - \vec E_2 \times \vec n = 0 \\\\
+			\vec H_2 \times \vec n - \vec H_1 \times \vec n = \vec j
+		\end{eqnarray*}
+	\end{karte}
+
+
+
+
+
+% *** BEGINN KAPITEL 1 *** %
+	%	
+%
+	\begin{karte}{Differentielle Änderung von \\$W_{el}$ \&  $W_{mag}$}
+	 \begin{eqnarray*}\\
+	  \delta W_{el} = \int_{V} \Phi(\vec{r}) \cdot \delta \rho(\vec{r}) \ d^{3}r  \int_{\mathbb{R}^{3}} \vec{E} \cdot \delta \vec{D} \ d^{3}r    \\\\
+ \delta W_{mag} = \int_{\mathbb{R}^3} \delta w_{mag} \ d^{3}r = \int_{\mathbb{R}^3} \vec{H}(\vec{r}) \cdot \delta \vec{B}(\vec{r}) \ d^{3}r
+\end{eqnarray*}
+	\end{karte}
+ 
+  
+\begin{karte}{Elektromagnetische Leistung }
+einer diskreten Ladungsverteilung auf Kurve $\vec r$ mit $v_k$:
+ \begin{eqnarray*}
+  P_{elmag} & =  - \sum_{k=1}^{N} q_{k} \vec{v_{k}} \cdot \vec{E_{k}}(\vec{r_{k}}) = - P_{mech}
+ \end{eqnarray*}
+einer kontinuierlichen Ladungsverteilung mit $\vec j = \rho \vec v$ 
+ \begin{eqnarray*}
+  P_{elmag} = - \int_{V} \vec{j}(\vec{r}) \cdot \vec{E}(\vec{r}) \ d^{3}r
+ \end{eqnarray*}
+
+\end{karte}
+
+
+\begin{karte}{Energiebilanz für das elektromagnetische Feld}
+ \begin{eqnarray*}
+  \underbrace{\vec{E} \cdot \frac{\partial \vec{D}}{\partial t}}_{\frac{\partial w_{el}}{\partial t}} + 
+  \underbrace{\vec{H} \cdot \frac{\partial \vec{B}}{\partial t}}_{\frac{\partial w_{mag}}{\partial t}}
+   + \operatorname{div} \vec{J}_{elmag} = \underbrace{-\vec{j} \cdot \vec{E}}_{\Pi_{elmag}}  
+ \end{eqnarray*}
+Statt $\vec J_{elmag}$ auch mit $\vec S$ und  $\frac{\partial w_{elmag}}{\partial t}=\frac{\partial w_{el}}{\partial t}+\frac{\partial w_{mag}}{\partial t}$: 
+ \begin{eqnarray*}
+ \frac{\partial w_{elmag}}{\partial t}    + \operatorname{div} \vec{S} =\Pi_{elmag}  
+ \end{eqnarray*}
+\end{karte}
+
+
+\begin{karte}{Elektromagnetische Leistungsflussdichte} 
+ \begin{eqnarray*}
+  \vec{J}_{elmag} = \vec{E} \times \vec{H} + \vec{S_{0}} \ \ \text{mit} \ \operatorname{div} \vec{S_{0}} = 0 
+ \end{eqnarray*}
+\end{karte}
+
+
+
+\begin{karte}{Satz von Poincaré}
+ \ \\ \ \\$\vec{U}(\vec{r})$ ist stetig differenzierbar in $\Omega$ mit $\operatorname{div} \vec{U} = 0$ in $\Omega$\\$ \Rightarrow$ es 
+existiert ein Vektorpotential $\vec{V}(\vec{r})$ auf $\Omega$ mit \fbox{$\vec{U} = \operatorname{rot} \vec{V}$} in $\Omega$ 
+\\\ \\Allgemeine Form des Vektorpotentials:
+ \begin{eqnarray*}
+  \vec{V'} = \vec{V} - \operatorname{grad} \chi(\vec{r})
+ \end{eqnarray*}
+\end{karte}
+
+
+
+
+\begin{karte}{MWG in Potentialdarstellung \\(4-komponentiges DGL-System)}
+ \begin{eqnarray*}
+  \operatorname{div}(\epsilon \nabla \Phi) + \frac{\partial}{\partial t} \operatorname{div}(\epsilon \vec{A}) = - \rho \\
+  \operatorname{rot}\left(\frac{1}{\mu} \operatorname{rot} \vec{A} \right) + \epsilon \frac{\partial^{2}\vec{A}}{\partial t^{2}} + \epsilon \nabla \left( \frac{\partial \Phi}{\partial t} \right) = \vec{j} 
+ \end{eqnarray*}
+\end{karte}
+
+
+
+
+
+\begin{karte}{Poissongleichung}
+\begin{eqnarray*}
+ \operatorname{div}(\epsilon \nabla \Phi) = - \rho(\vec{r},t)
+\end{eqnarray*}
+\end{karte}
+
+
+\begin{karte}{Volumendichte in benachbarten Gebieten }differentielle Form:
+Vektorfeld $\vec{U}(\vec{r})$ erfüllt 
+\begin{eqnarray*}
+  \div \vec{U} = \gamma
+ \end{eqnarray*}
+
+integrale Form:
+ \begin{eqnarray*}
+  \int_{\partial V} \vec{U} \cdot d\vec{a} = \int_{V} \gamma \, d^{3}r + \int_{V \cap \Sigma} \nu \, da
+ \end{eqnarray*} in benachbarten Gebieten $\Omega_{1}$ und $\Omega_{2}$ mit stetiger und beschränkter \\\emph{Volumendichte} $\gamma(\vec{r})$
+\end{karte}
+
+
+
+\begin{karte}{Flussdichte in benachbarten Gebieten }
+ differentielle Form\begin{eqnarray*}
+  \rot \vec{U} = \vec{J} + \vec{V}
+ \end{eqnarray*}
+integrale Form
+ \begin{eqnarray*}
+  \int_{\partial A} \vec{U} \, d\vec{r} = \int_{A} \vec{J} \, d\vec{a} + \int_{A} \vec{V} d\vec{a} + \int_{A \cap \Sigma} \vec{\nu} \cdot \vec{n} \, ds
+ \end{eqnarray*}
+ mit $\vec{J} = $ Flussdichte von $\vec{U}$, dem beschränkten Vektorfeld $\vec{V}(\vec{r})$ und der Grenzflächenflussdichte auf $\Sigma \ \vec{\nu}(\vec{r})$
+\end{karte}
+
+
+\begin{karte}{Grenzflächenbedingung für elektrisches Potential an Materialgrenzen}
+\begin{eqnarray*}
+ \Phi(\vec{r}) = \text{const. auf Leitern} \\
+ \Phi \ \text{ist längs Materialgrenzen stetig}
+\end{eqnarray*}
+Für Normalenableitung des Potentials gilt:
+ \begin{eqnarray*}
+  \left. \epsilon_{1} \frac{\partial \Phi}{\partial n} \right|_{1} - \left. \epsilon_{2} \frac{\partial \Phi}{\partial n} \right|_{2} = 
+  \sigma_{int} \qquad \text{auf} \ \Sigma \\
+  \text{Sonderfälle:} \nonumber \\
+  1 = \text{Leiter}, 2 = \text{Isolator} \Rightarrow \left. -\nabla \Phi \right|_{2} = \vec{E}_{2} %ToDo: senkrecht zur Leiteroberfläche 
+ \end{eqnarray*}
+\end{karte} 
+
+\begin{karte}{Brechungsgesetz für elektrische Feldlinien}
+\begin{eqnarray*}
+\frac{\operatorname{tan} \alpha_{1}}{\operatorname{tan} \alpha_{2}} = \frac{\epsilon_{1}}{\epsilon_{2}} 
+\end{eqnarray*}
+\end{karte}
+
+
+\begin{karte}{Randbedingungen\\(Dirichlet und Neumann)}
+Dirichlet-Problem:  
+\begin{eqnarray*}
+  \text{[Dir-RWP]} \quad \operatorname{div}(\epsilon \nabla \Phi) = - \rho \ \text{auf} \ \mathring{\Omega} 
+   \ \text{und} \left. \Phi\right|_{\partial \Omega} = \Phi_{D} 
+ \end{eqnarray*}
+ Bem.: $\Omega$ heißt dann \emph{Normalgebiet}
+\\\ \\Neumann-Problem:
+\begin{eqnarray*}
+ \text{[Neu-RWP]} \quad \operatorname{div}(\epsilon \nabla \Phi) = - \rho \ \text{auf} \ \mathring{\Omega} 
+   \ \text{und} \left. \frac{\partial \Phi}{\partial n}\right|_{\partial \Omega} = F_{N} 
+\end{eqnarray*}
+
+[Neu-RWP] entspricht der Vorgabe einer Oberflächenladungsdichte $\sigma(\vec{r})$
+
+\end{karte}
+
+
+
+\begin{karte}{Gemischtes Randwertproblem}
+\begin{eqnarray*}
+  \text{[M-RWP]} \quad \div(\epsilon \nabla \Phi) = - \rho \ \text{in} \ \mathring{\Omega} \nonumber 
+\end{eqnarray*}  
+\begin{eqnarray*}
+\text{mit} \ \Phi|_{\partial \Omega^{(D)}} = \Phi_{D} \ \text{und} \ \epsilon \left. \frac{\partial \Phi}{\partial n} \right|_{\partial \Omega^{(N)}} = \sigma_{N} \nonumber 
+\end{eqnarray*}
+\begin{eqnarray*} 
+\text{wobei} \ \partial \Omega = \partial \Omega^{(D)} \cup \partial \Omega^{(N)}, \ \partial \Omega^{(D)} \cap \partial \Omega^{(N)} = \emptyset, \nonumber 
+\end{eqnarray*} 
+\begin{eqnarray*}
+\partial \Omega^{(D)} \neq \emptyset 
+\end{eqnarray*} 
+\end{karte}
+
+
+\begin{karte}{Ladungserhaltungsgleichung}
+\begin{eqnarray*}
+ \div \vec{j} + \frac{\partial \rho}{\partial t} = 0
+\end{eqnarray*}
+\end{karte}
+
+\begin{karte}{Transportmodell für bewegliche Ladungsträger: Partialstromdichte}
+ \begin{eqnarray*}
+  \vec{j}_{\alpha} & = & \underbrace{\underbrace{|q_{\alpha}| n_{\alpha} \mu_{\alpha}}_{\sigma_{\alpha}} \vec{E}}_{\text{Driftstrom $\rightarrow$
+Ohmsches Gesetz}} - \underbrace{q_{\alpha} D_{\alpha} \nabla n_{\alpha}}_{\text{ Diffusionsstrom $\rightarrow$
+Ficksches Diffusionsgesetz}} \\
+ \nonumber \\
+%\end{eqnarray*}
+%\begin{eqnarray*}
+  \alpha & : &  \text{Trägersorte} \nonumber \\
+  q_{\alpha} & : &   \text{spezif. Ladung} \nonumber \\ 
+ \mu_{\alpha} & : &  \text{Beweglichkeit} \nonumber \\ 
+ n_{\alpha} & : &  \text{Teilchendichte} \nonumber \\ 
+ %\item $\vec{E}: \ $ Elektrisches Feld
+ D_{\alpha} & : &  \text{Diffusionskoeffizient} \nonumber 
+\end{eqnarray*}
+\end{karte}
+
+\begin{karte}{Gesamtstromdichte und Raumladungsdichte}
+Gesamtstromdichte:
+ \begin{eqnarray*}
+  \vec{j} = \sum \limits_{\alpha = 1}^{K} \vec{j}_{\alpha} =\sum \limits_{\alpha = 1}^{K}  -\sigma_\alpha \nabla \Phi_\alpha
+\end{eqnarray*}
+Raumladunsdichte:
+\begin{eqnarray*}
+  \rho =  \sum \limits_{\alpha = 1}^{K} q_{\alpha} n_{\alpha} 
+ \end{eqnarray*}
+\end{karte}
+
+
+
+\begin{karte}{Teilchenbilanzgleichung}
+ \begin{eqnarray*}
+  \frac{\partial n_{\alpha}}{\partial t} & = & - \frac{1}{q_{\alpha}} \div \vec{j}_{\alpha} + G_{\alpha} \quad (\alpha = 1, \dots , K) \\
+ \nonumber \\  
+G_{\alpha} & : & \text{Generations-Rekomb.rate der Spezies} \ \alpha \nonumber \\
+\frac{1}{q_{\alpha}} \vec{j}_{\alpha} & : & \text{Teilchenstromdichte der Spezies} \ \alpha \nonumber \\
+% \text{Außerdem} \ & : &  \sum \limits_{\alpha = 1}^{K} q_{\alpha} G_{\alpha} = 0
+ \end{eqnarray*}
+
+\end{karte}
+
+
+\begin{karte}{dielektrische Relaxationszeit}
+$$\tau_{R} := \frac{\epsilon}{\sigma}$$
+\end{karte}
+
+\begin{karte}{Quasistationäre Näherung (in Metallen)}
+In Metallen: $t($technisch relevante Vorgänge$) << \tau_{R}$ 
+\begin{eqnarray*}
+  \Rightarrow \frac{\partial \rho}{\partial t} \approx 0
+ \end{eqnarray*}
+\end{karte}
+
+
+\begin{karte}{Mehrpolige elektrische Bauelemente}
+ \begin{itemize}
+  \item Ladungsaustausch (Stromfluss) durch \\ Kontakte/Klemmen $A_{1} \dots A_{N} \, (N \geq 2)$
+  \item Klemmenpotentiale $\Phi_{k} = \Phi|_{A_{k}} \quad (k = 1 \dots N)$
+  \item Bauelement elektr. neutral ($Q = 0$) \\
+  $\Rightarrow \frac{dQ}{dt} = - \sum \limits_{k=1}^{N} \int \limits_{A_{k}} \vec{j} \cdot d\vec{a} = - \sum \limits_{k=1}^{N} I_{k} = 0$ \\
+  $I_{k}: \ $ Klemmenstrom
+  \item Kompaktmodell $\underline{F}(\underline{U},\underline{I},\underline{\dot{U}},\underline{\dot{I}}) = 0 
+   \\\ \\\underline{U} =  (\Phi_{1} - \Phi_{0}, \dots \Phi_{N} - \Phi_{0}) \quad \text{Klemmenspannungen} \nonumber \\
+   \Phi_{0} = \text{Bezugspotential (``Nullpunkt'')} \nonumber \\
+   \underline{I} = (I_{1}, \dots I_{N}) \quad \text{Klemmenströme} \nonumber$
+
+\end{itemize}
+\end{karte}
+
+
+
+\begin{karte}{Erforderliche Eigenschaften (physikalischer) Knoten}
+\begin{itemize}
+\item Knoten sind Äquipotentialflächen $\Rightarrow$ Zuordnung eines Potentialwertes $\Phi_{K}$, $\mathcal{K} = $ Menge aller Knoten im Netzwerk
+\item echter Knoten: Zahl der Kontakte $M  \geq 3$
+\item Knoten sind ladungsneutral: $Q_{K} = 0$, Ausnahme: speichernde Knoten (Elektroden): $\sum \limits_{K \in \mathcal{K}} Q_{K} = 0$
+\end{itemize}
+\end{karte}
+
+\begin{karte}{Erforderliche Eigenschaften von Zweigen}
+\begin{itemize}
+\item gerichter Zweigstrom $I(K_{1},K_{2})$ wird flusserhaltend zwischen $K_{1}$ und $K_{2}$ transportiert
+\item Jedem Zweig wird Zweigspannung \\ $U(K_{1},K_{2}) = \int \limits_{K_{1}}^{K_{2}} \vec{E} \cdot d\vec{r}$ zugeordnet \\ 
+mit $  \vec{E} = - \nabla \Phi - \frac{\partial}{\partial t} \vec{A}$ \\
+$\Rightarrow U(K_{1},K_{2}) = -\int \limits_{K_{1}}^{K_{2}} \nabla \Phi \cdot d\vec{r} - \int \limits_{K_{1}}^{K_{2}} \frac{\partial \vec{A}}{\partial t} \cdot d\vec{r} = \Phi_{K_{1}} - \Phi_{K_{2}} + U_{ind}(K_{1},K_{2}) $
+\end{itemize}
+\end{karte}
+
+\begin{karte}{Kirchhoffsche Knotenregel}
+\begin{itemize}
+\item allgemein: $I(K,K') = \int \limits_{A(K,K')} \vec{j} \cdot \vec{n} \, d\vec{a} $
+\item speichernde Knoten: $\sum \limits_{K' \in \mathcal{N}(K)} I(K,K') = - \frac{dQ_{K}}{dt}$
+\item nichtspeichernde $\sim$ : $\sum \limits_{K' \in \mathcal{N}(K)} I(K,K') = 0$
+\end{itemize}
+\end{karte}
+
+\begin{karte}{Kirchhoffsche Maschenregel}
+\begin{eqnarray*}
+\int \limits_{\mathcal{M}} \vec{E} \cdot d\vec{r} & = &  \sum \limits_{j=0}^{N} \int \limits_{K_{j}}^{K_{j+1}} \vec{E} \cdot d\vec{r} = \sum \limits_{j=0}^{N} U(K_{j},K_{j+1}) \nonumber \\
+& = & - \int \limits_{\mathcal{M}} \nabla \Phi \cdot d\vec{r} + \int \limits_{\mathcal{M}} \vec{E}_{ind} \cdot d\vec{r} = 0 + U_{ind}(\mathcal{M}) \nonumber \\
+& \Rightarrow & \sum \limits_{j=0}^{N} U(K_{j},K_{j+1})  =  U_{ind}(\mathcal{M})
+\end{eqnarray*}
+\end{karte}
+
+\begin{karte}{Elektrodenladungen \& Maxwellsche Kapazitätskoeffizienten}
+Elektrodenladungen
+ \begin{eqnarray*}
+Q_{k} = \sum \limits_{l=0}^{N} C_{kl} V_{l}
+\end{eqnarray*}
+mit Maxwellschen Kapazitätskoeffizienten 
+\begin{eqnarray*}
+C_{kl} & :=  & - \int \limits_{\partial \Omega_{k}} \epsilon \vec{n} \cdot \nabla \Phi_{l} \, da \quad (k,l = 0, \dots, N) \\
+& = & \int \limits_{\Omega} \nabla \Phi_{k} \epsilon \nabla \Phi_{l} \, d^3r
+\end{eqnarray*}
+\end{karte}
+
+\begin{karte}{Maxwellsche Kapazitätsmatrix}
+\begin{eqnarray*}
+\mat{C} = (C_{kl}) = \begin{bmatrix} C_{00} & \cdots & C_{0N} \\ \vdots & \ddots & \vdots \\ C_{N0} & \cdots & C_{NN} \end{bmatrix}
+\end{eqnarray*}
+Symmetrie: 
+\begin{eqnarray*}
+C_{kl} = C_{lk} \Leftrightarrow \mat{C} = \mat{C}^{T}
+\end{eqnarray*}
+Positiv semi-definit (elektr. Energie stets $\geq$ 0): 
+\begin{eqnarray*}
+ \vect{V}^{T} \mat{C}  \, \vect{V} \geq 0 \ \forall \vect{V} \in \mathbb{R}^{N+1}
+\end{eqnarray*}
+\\Alle Zeilen/Spaltensummen sind Null
+\end{karte}
+
+\begin{karte}{Darstellung der gespeicherten elektrischen Energie mit $\mat{C}$}
+$
+W_{el} =  \frac{1}{2} \sum \limits_{k, \, l = 0}^{N} V_{l} C_{lk} \ V_{k} = \frac{1}{2} \vect{V}^{T} \mat{C} \, \vect{V} $\\
+mit dem Vektor der Klemmenpotentiale: $\underline{V}:=\begin{pmatrix}V_0\\V_1\\\vdots\\V_N\end{pmatrix}$
+\\und dem Vektor der Elektrodenladungen: $\underline{Q}:=\begin{pmatrix}Q_0\\Q_1\\\vdots \\Q_N\end{pmatrix}$ gilt: $\underline{Q}= \underline{\underline{C}}\ \underline{V}$
+\end{karte}
+
+
+
+\begin{karte}{Reduzierte Kapazitätsmatrix}
+Streichung der nullten Zeile und Spalte:
+\begin{align}
+{\mat{\tilde{C}}} & = \begin{bmatrix} C_{11} & \cdots & C_{1N} \\ \vdots & \ddots & \vdots \\ C_{N1} & \cdots & C_{NN} \end{bmatrix} 
+\end{align} 
+mit 
+\begin{align}
+\vect{\tilde{Q}} & = \begin{bmatrix} Q_{1} & \cdots & Q_{N} \end{bmatrix}^{T} \nonumber \\
+\vect{U}_{0}  & = \begin{bmatrix} U_{1,0} & \cdots & U_{N,0} \end{bmatrix}^{T} =  \begin{bmatrix} V_{1}-V_{0} & \cdots & V_{N}-V_{0}  \end{bmatrix}^{T}
+\end{align} 
+\begin{align}
+\Rightarrow  \vect{\tilde{Q}} = \mat{\tilde{C}} \, \vect{U}_{0}
+\end{align}
+\end{karte}
+
+\begin{karte}{Spulenanordnungen}
+Spannung an Leiterschleife:
+\begin{align}
+u_{k}(t) = -u_{ind,k}(t) + r_{k}i_{k}(t)
+\end{align}
+Spule als Generator ($\triangleq$ Spannungsquelle mit $u_{ind}(t)$):
+\begin{align}
+u_{ind}(t) = - \frac{d}{dt} \Phi(S) = - w \frac{d}{dt} \Phi(S_{0}) = -w |S_{0}| \frac{dB}{dt}
+\end{align}
+Spule als Verbraucher:
+\begin{align}
+u(t) = -u_{ind}(t) \stackrel{B(t) = c i(t)}{\Longrightarrow} u(t) = \underbrace{w|S_{0}|c}_{:= L} \frac{di}{dt}
+\end{align}
+$w$: Windungsanzahl
+\end{karte}
+
+\begin{karte}{Induktionskoeffizienten und Transformatorgleichung}
+\begin{align}
+u_{ind,k}(t) = - \sum \limits_{l=1}^{N} \underbrace{\frac{\mu}{4\pi} \int \limits_{C_{k}} \int \limits_{C_{l}} \frac{d\vec{s} \cdot d\vec{r}}{|\vec{r}-\vec{s}|}}_{\text{Induktionskoeffizienten} \ L_{kl}}  \frac{di_{l}(t)}{dt}
+\end{align}
+$L_{kk}$ Selbstinduktions-, $L_{kl} \, (k \neq l)$ Gegeninduktionskoeffizienten \\
+Transformatorgleichung:
+\begin{align}
+u_{k}(t) = r_{k}i_{k}(t) + \sum \limits_{l=1}^{N} L_{kl} \frac{di_{l}}{dt}
+\end{align}
+$L_{kk} = L_{k} $ Selbstinduktions-, $L_{kl} = M \, (k \neq l)$ Gegeninduktionskoeffizienten \\
+\\
+Kopplungsfaktor:
+\begin{align}
+k = \frac{M}{\sqrt{L_{1}L_{2}}} 
+\end{align}
+\end{karte}
+
+\begin{karte}{Induktivitätsmatrix}
+\begin{eqnarray*}
+\mat{L} = (L_{kl}) = \begin{bmatrix} L_{11} & \cdots & L_{1N} \\ \vdots & \ddots & \vdots \\ L_{N1} & \cdots & L_{NN} \end{bmatrix}
+\end{eqnarray*}
+Symmetrie: 
+\begin{eqnarray*}
+L_{kl} = L_{lk} \Leftrightarrow \mat{L} = \mat{L}^{T}, \quad (k,l = 1, \dots, N)
+\end{eqnarray*}
+Positiv definit (magn. Energie stets positiv!): 
+\begin{eqnarray*}
+ \vect{V}^{T} \mat{L}  \, \vect{V} > 0 \ \forall \vect{V} \in \mathbb{R}^{N}
+\end{eqnarray*}
+\end{karte}
+
+\begin{karte}{Darstellung der gespeicherten magnetischen Energie mit $\mat{L}$}
+\begin{eqnarray*}
+W_{mag} & = &  \frac{1}{2} \sum \limits_{k, \, l = 1}^{N} i_{k} L_{kl} \ i_{l} = \frac{1}{2} \vect{I}^{T} \mat{L} \, \vect{I} \\
+ & = & \frac{1}{2} \int_{\mathbb{R}^{3}} \vec{j} \cdot \vec{A} \, d^{3}r \nonumber \\
+ & = & \frac{1}{2} \sum \limits_{k=1}^{N} \Phi(S_{k}) \cdot i_{k} \nonumber \\
+\text{mit} \ \vect{I} &:= & \begin{bmatrix} i_{1} & \cdots & i_{N} \end{bmatrix}^{T} \nonumber
+\end{eqnarray*}
+\end{karte}
+
+
+\begin{karte}{Wechselspannungsgenerator}
+\[ u(t) = \hat{U} \sin(\omega t + \varphi_{0}) \]
+\begin{itemize}
+\item $u(t)$: Momentanwert
+\item $\hat{U}$: Scheitelwert
+\item $\varphi(t) = \omega t + \varphi_{0}$: Momentane Phase
+\item $\varphi_{0} = \omega t_{0}$: Anfangsphase (Phase bei $t=0$)
+\item $T = \frac{1}{f} = \frac{2\pi}{\omega}$: Periodendauer
+\end{itemize}
+\end{karte}
+
+\begin{karte}{Zeigerdarstellung}
+Rotierender Zeiger
+\begin{align}
+\vect{U}(t) & =  \begin{pmatrix} \hat{U} \cos \varphi(t) \\ \hat{U} \sin \varphi(t) \end{pmatrix} = \begin{pmatrix} U_{1}(t) \\ U_{2}(t) \end{pmatrix} \\
+ \vect{U}& = U_{1}(t) + jU_{2}(t) = \hat{U} (\cos \varphi + j \sin \varphi) \\
+\text{mit }\hat{U} &= |\vect{U}| = \sqrt{U_{1}^{2} + U_{2}^{2}} \nonumber \\
+\varphi & = \arctan (U_{2}/U_{1}) = \operatorname{arg} \ \vect{U}, \, \varphi \in [0, 2\pi) \nonumber
+\end{align}
+\begin{align}
+\text{Fester Zeiger:} \quad \vect{\hat{U}} = \hat{U} \operatorname{e}^{j\varphi_{u}} \quad \quad \vect{\hat{I}}  = \hat{I} \operatorname{e}^{j\varphi_{i}}
+\end{align}
+\begin{align}
+\vect{U}(t) = \operatorname{e}^{j \omega t} \hat{U} \operatorname{e}^{j \varphi_{u}} \quad \quad \vect{I}(t) = \operatorname{e}^{j \omega t} \hat{I} \operatorname{e}^{j \varphi_{i}}
+\end{align}
+\end{karte}
+
+\begin{karte}{Zeigeroperationen}
+\[ \begin{rcases} \text{Drehung} \\ \text{Streckung} \\ \text{Drehstreckung} \end{rcases} \text{Multiplikation mit} \begin{cases} \operatorname{e}^{j\psi} \\ r \in \mathbb{R}^{+} \\ r\operatorname{e}^{j\psi} =: \vect{Z} \in \mathbb{C} \end{cases} \]
+\end{karte}
+
+\begin{karte}{Impedanz/Admittanz}
+Komplexes ohmsches Gesetz: $\vect{\hat{U}} = \vect{Z} \cdot \vect{I}$ \\ 
+\\
+$\vect{Z} = |\vect{Z}| \operatorname{e}^{j \Delta \varphi} \in \mathbb{C}$: \emph{Impedanz}, $\operatorname{arg}(\vect{Z}) = \Delta \varphi =\varphi_{u} - \varphi_{i}$ \\
+$|\vect{Z}|$: \emph{Scheinwiderstand}, $\operatorname{Im} \vect{Z}$: \emph{Blindwiderstand}
+\\
+\\
+$\vect{\hat{I}} = \frac{1}{\vect{Z}} \cdot \vect{\hat{U}} := \vect{Y} \cdot \vect{\hat{U}}$
+\\
+\\
+$\vect{Y} = \frac{1}{|\vect{Z}|} \operatorname{e}^{-j \Delta \varphi} \in \mathbb{C}$: \emph{Impedanz}, $\operatorname{arg}(\vect{Y}) = -\operatorname{arg}(\vect{Z})$ \\
+$|\vect{Y}|$: \emph{Scheinleitwert}, $\operatorname{Im} \vect{Y}$: \emph{Blindleitwert}
+\end{karte}
+
+\begin{karte}{Lineare Wechselstrombauelemente}
+\begin{table}
+\centering
+\begin{tabular}[h]{c||cc}
+Bauelement & $\vect{Z}$ & $\Delta \varphi = \varphi_{u} - \varphi{i}$ \\  
+\hline
+\hline
+Ohmscher Widerstand & $R$ & $0$ \\
+Induktivität & $j\omega L$ & $\frac{\pi}{2}$ \\
+Kapazität & $-\frac{j}{\omega C}$ & $-\frac{\pi}{2}$
+\end{tabular}
+\end{table}
+\end{karte}
+
+\begin{karte}{Kirchhoffsche Regeln für Wechselstromschaltungen}
+Knotenregel (KCL)
+\begin{align}
+\sum \limits_{k \in K} \hat{I}_{k} \operatorname{e}^{j \varphi_{i,k}} = \sum \limits_{k \in K} \vect{\hat{I}}_{k} = 0
+\end{align}
+Maschenregel (KVL)
+\begin{align}
+\sum \limits_{l \in M} \hat{U}_{l} \operatorname{e}^{j \varphi_{u,l}} = \sum \limits_{l \in M} \vect{\hat{U}}_{l} = \vect{\hat{U}}_{e} = \hat{U}_{e} \operatorname{e}^{j\varphi_{e}} 
+\end{align}
+\end{karte}
+
+
+\begin{karte}{Momentane Leistung}
+\begin{align}
+p(t) & = u(t)i(t) = \hat{U} \hat{I} \sin(\omega t + \varphi_{u}) \sin(\omega t + \varphi_{i}) \nonumber \\
+      & = \underbrace{\frac{1}{2} \hat{U} \hat{I} \cos(\varphi_{u} - \varphi_{i})}_{\text{zeitl. Mittelwert} \ P_{m}} - \underbrace{\frac{1}{2} \hat{U} \hat{I} \cos(2 \omega t + \varphi_{u} + \varphi_{i})}_{\text{zeitl. Mittelwert} \ 0} 
+\end{align}
+\end{karte}
+
+\begin{karte}{Effektivwerte für Spannung und Strom}
+\begin{align} U_{\text{eff}} = \sqrt{\frac{1}{T} \int_{0}^{T} u(t)^{2} \, dt} \quad \text{analog für} \ I \end{align}
+Spezialfall sinusförmiger Verlauf:
+\begin{align} U_{\text{eff}} = \frac{1}{\sqrt{2}} \, \hat{U} \quad \text{analog für} \ I \end{align}
+Effektivwertzeiger:
+\begin{align} \vect{U} = \frac{1}{\sqrt{2}} \, \vect{\hat{U}} \quad \text{analog für} \ I \end{align}
+\end{karte}
+
+\begin{karte}{Komplexe Leistung}
+\begin{align}
+\vect{P} &= \frac{1}{2} \vect{\hat{U}} \cdot \vect{\hat{I}}^{*} = \vect{U} \cdot \vect{I}^{*} \nonumber \\ \nonumber \\ 
+&= \frac{1}{2} \hat{U} \hat{I} \operatorname{e}^{j(\varphi_{u}-\varphi_{i})} = U_{\text{eff}} I_{\text{eff}} \operatorname{e}^{j\Delta \varphi} \nonumber \\ \nonumber \\
+& = \underbrace{U_{\text{eff}} I_{\text{eff}} (\cos \Delta \varphi}_{P_{W} = \re \vect{P}: \ \text{Wirkleistung}} + j \sin \Delta \varphi)
+\end{align}
+\end{karte}
+
+\begin{karte}{Wirk-, Blind- und Scheinleistung}
+\begin{align}
+ P_{W} & = \frac{1}{T} \int_{0}^{T} p(t) \, dt = \underbrace{\re (\vect{Z})}_{R_{W}} I_{\text{eff}}^{2} \\
+ P_{B} & = \underbrace{\im(\vect{Z})}_{R_{B}}  I_{\text{eff}}^{2} \\
+ P_{S} & = |\vect{P}| = \sqrt{P_{W}^{2}+P_{B}^{2}} 
+\end{align}
+\end{karte}
+
+\begin{karte}{Ausbreitungs-/Phasengeschwindigkeit}
+\begin{eqnarray*}
+c = \frac{1}{\sqrt{\epsilon \mu}} \\
+\nonumber \\
+\text{mit} \ c_{0} \approx 3 \cdot 10^{8} \, \frac{m}{s} \nonumber
+\end{eqnarray*}
+\end{karte}
+
+\begin{karte}{D'Alembertsche Lösung}
+\begin{eqnarray*}
+u(x,t) = f_{1}(x-ct) + f_{2}(x+ct)
+\end{eqnarray*}
+\end{karte}
+
+
+\begin{karte}{Elektromagnetische Energiedichte für ebene EM-Wellen}
+\begin{align}
+w_{el} &= w_{mag} \nonumber \\
+\nonumber \\
+w_{elmag}(\vec{r},t) & = w_{el} + w_{mag} \nonumber \\
+&= \epsilon \vec{E}_{0}(\vec{k} \cdot \vec{r} - \omega t)^2 \nonumber \\ & = \mu \vec{H}_{0}(\vec{k} \cdot \vec{r} - \omega t)^2
+\end{align}
+\end{karte}
+
+%\begin{karte}{Leistungsflussdichte für ebene EM-Wellen}
+%\begin{align}
+%\vec{S}(\vec{r},t) & = \frac{1}{Z} |\vec{E}_{0}(\vec{k}\vec{r}- \omega t)|^{2} \vec{n} \\
+%& = \frac{1}{Z} \vec{E}_{0}^{2} \cdot \vec{n} \nonumber \\
+%\nonumber \\
+%\vec{S} & = \sqrt{\frac{\epsilon}{\mu}} |\vec{E}_{0}|^{2} \vec{n} \\ & = w_{elmag} \cdot \underbrace{c \cdot \vec{n}}_{\vec{u}} \nonumber
+%\end{align}
+%\end{karte}
+
+%\begin{karte}{Allgemeine Energiebilanz für ebene EM-Wellen}
+%\begin{align}
+%\frac{\partial w_{elmag}}{\partial t} + \div \vec{S} = 0
+%\end{align}
+%\end{karte}
+
+%\begin{karte}{Linear polarisierte harmonische EM-Wellen}
+%$\vec{E}_{0} = const. \ \bot \ \vec{k} \Rightarrow \vec{k} \cdot \vec{E}_{0} = 0$
+%\begin{align}
+%\vec{E}(\vec{r},t) & = \vec{E}_{0} \cos(\vec{k} \cdot \vec{r} - \omega t - \varphi) \\
+%\vec{H}(\vec{r},t) & = \vec{H}_{0} \cos(\vec{k} \cdot \vec{r} - \omega t - \varphi) \\
+%\text{mit} \ \omega & = c |\vec{k}| = ck, \ k = |\vec{k}| = \frac{2\pi}{\lambda} \nonumber
+%\end{align}
+%Inverse Dispersionsrelation: $\vec{k}(\omega) = \frac{\omega}{c} \vec{n} = \omega \sqrt{\epsilon \mu} \vec{n}$
+%\end{karte}
+
+%\begin{karte}{Elliptisch polarisierte harmonische EM-Wellen}
+%Elliptisch polarisierte Wellen als Superposition zweier linear polarisierter Wellen:
+%\begin{align}
+%\vec{E}(\vec{r},t) & = E_{01} \vec{e}_{1} \cos(\vec{k} \cdot \vec{r} - \omega t - \varphi_{1}) \\
+%& +E_{02} \vec{e}_{2} \cos(\vec{k} \cdot \vec{r} - \omega t - \varphi_{2} \nonumber \\
+%\vec{H}(\vec{r},t) & =  \frac{1}{Z} \vec{n} \times \vec{E}(\vec{r},t)
+%\end{align}
+%Spezialfälle: 
+%\begin{itemize}
+%\item $\varphi_{1} = \varphi_{2} = \varphi$: \textbf{linear polarisierte Welle}
+%\item $\varphi_{1} = \varphi_{2} \pm \frac{\pi}{2}$: \textbf{zirkular polarisierte Welle}
+%\end{itemize}
+%\end{karte}
+
+%\fach{Komplexe Darstellung harmonischer EM-Wellen}
+%\begin{karte}{Komplexe Darstellung harmonischer EM-Wellen}
+%\begin{align}
+%\vec{E}(\vec{r},t) & = \Re \{ \hat{\vec{E}}_{0} \operatorname{e}^{j(\vec{k} \cdot \vec{r} - \omega t)} \} \\
+%\vec{H}(\vec{r},t) & = \Re \{ \hat{\vec{H}}_{0} \operatorname{e}^{j(\vec{k} \cdot \vec{r} - \omega t)} \} \\
+%\text{mit} \ \hat{\vec{E}}_{0} & = E_{01} \operatorname{e}^{-j\varphi_{1}} \vec{e}_{1} + E_{02} \operatorname{e}^{-j\varphi_{2}} \vec{e}_{2}
+%\end{align}
+%\end{karte}
+
+%\begin{karte}{Darstellung beliebiger elektromagnetischer Wellen durch harmonische ebene Wellen}
+%\begin{align}
+%\begin{bmatrix} \vec{E}(\vec{r},t) \\ \vec{H}(\vec{r},t) \end {bmatrix} = \Re \int_{\mathbb{R}^{3}} \begin{bmatrix} \hat{\vec{E}}(\vec{k}) \\ \frac{1}{Z} \vec{n} \times \hat{\vec{E}}(\vec{k}) \end{bmatrix} \operatorname{e}^{j(\vec{k} \cdot \vec{r} - \omega(\vec{k}) t)} \, d^{3}k 
+%\end{align}
+%\end{karte}
+
+%\fach{Grundgleichungen in Fourierdarstellung}
+%\begin{karte}{Fourierdarstellung für $\vec{D}$- und $\vec{B}$-Feld}
+%\begin{align}
+%\begin{bmatrix} \vec{D}(\vec{r},t) \\ \vec{B}(\vec{r},t) \end {bmatrix} & = \Re \int_{\mathbb{R}^{3}} \begin{bmatrix} \hat{\vec{D}}(\vec{k}) \\ \hat{\vec{B}}(\vec{k}) \end{bmatrix} \operatorname{e}^{j(\vec{k} \cdot \vec{r} - \omega(\vec{k}) t)} \, d^{3}k  \\
+%\nonumber \\
+%\hat{\vec{D}}(\vec{k}) & = \epsilon \hat{\vec{E}}(\vec{k}), \ \hat{\vec{B}}(\vec{k}) = \mu \hat{\vec{H}}(\vec{k})
+%\end{align}
+%\end{karte}
+
+%\begin{karte}{Erweiterung der Materialgleichungen auf dispersive Medien}
+%In vielen Materialien sind $\epsilon, \mu, \sigma$ frequenzabhängig:
+%\begin{align}
+%\hat{\vec{D}}(\vec{k}) & = \epsilon(\omega(\vec{k})) \hat{\vec{E}}(\vec{k}) \\
+%\hat{\vec{B}}(\vec{k}) & = \mu(\omega(\vec{k})) \hat{\vec{H}}(\vec{k}) \\
+%\hat{\vec{j}}(\vec{k}) & = \sigma(\omega(\vec{k})) \hat{\vec{E}}(\vec{k}) 
+%\end{align}
+%\end{karte}
+
+%\begin{karte}{FT-Korrespondenzen für Nabla-Kalkül}
+%\begin{align}
+%\rot \vec{U}(\vec{r}) & = \nabla \times \vec{U}(\vec{r}) \fa j\vec{k} \times \hat{\vec{U}}(\vec{k}) \\
+%\div \vec{U}(\vec{r}) & = \nabla \cdot \vec{U}(\vec{r}) \fa j\vec{k} \cdot \hat{\vec{U}}(\vec{k}) 
+%\end{align}
+%\end{karte}
+
+%\begin{karte}{Maxwell-Gleichungen in Fourierdarstellung}
+%\begin{align}
+%\rot \vec{E} & = -\frac{\partial \vec{B}}{\partial t} &\fa& \vec{k} \times \hat{\vec{E}}(\vec{k}) = \omega(\vec{k})  \mu(\omega(\vec{k}))  \hat{\vec{H}}(\vec{k}) \\
+%\div \vec{D} & = 0  &\fa& \vec{k} \cdot \hat{\vec{E}}(\vec{k}) = 0 \\
+%\rot \vec{H} & = \vec{j} + \frac{\partial \vec{D}}{\partial t}  &\fa& \vec{k} \times \hat{\vec{H}}(\vec{k}) = -\omega(\vec{k})  \tilde{\epsilon} (\omega(\vec{k}))  \hat{\vec{E}}(\vec{k}) \\
+%\div \vec{B} & = 0 &\fa& \vec{k} \cdot \hat{\vec{H}}(\vec{k}) = 0
+%\end{align}
+%\end{karte}
+
+%\begin{karte}{Komplexe Dilektrizitätskonstante und komplexe Dispersionsrelation}
+%\begin{align}
+%\tilde{\epsilon}(\omega) & = \epsilon(\omega) + j \frac{\sigma(\omega)}{\omega} \\
+%\nonumber \\
+%\omega(\vec{k})^{2} & = \frac{1}{\tilde{\epsilon}(\omega(\vec{k})) \mu(\omega(\vec{k}))} \vec{k}^{2} \\
+%\nonumber \\
+%\tilde{k}{\omega} &= \sqrt{\tilde{\epsilon}(\omega) \mu(\omega)} \omega
+%\end{align}
+%\end{karte}
+%\begin{karte}{Lorenzeichung: Wellengleichung für $\Phi$}
+% \begin{eqnarray*}
+% \Delta \Phi - \epsilon \mu \frac{\partial^{2}\Phi}{\partial t^{2}} = -\frac{\rho}{\epsilon}
+% \end{eqnarray*}
+%\end{karte}
+
+%\begin{karte}{Lorenzeichung: Wellengleichung für $\vec{A}$}
+% \begin{eqnarray}
+%  \Delta \vec{A} - \epsilon \mu \frac{\partial^{2}\vec{A}}{\partial t^{2}} = - \mu\vec{j}
+% \end{eqnarray}
+%\end{karte}
+
+%\begin{karte}{Lorenzeichung: Wellengleichung}
+ % \begin{eqnarray}
+  % \underbrace{(\Delta - \epsilon \mu \frac{\partial^{2}}{\partial t^{2}})}_{\textbf{Wellenoperator}} \begin{bmatrix} \Phi \\ \vec{A} \end{bmatrix} = - \begin{bmatrix} \rho/\epsilon \\ \mu\vec{j} \end{bmatrix}
+  %\end{eqnarray}
+%\end{karte}
+
+%\fach{RWP für stationäre Ohmsche Strömungsfelder}
+%\begin{karte}{Gemischtes RWP für stationäre Ohmsche Strömungsfelder}
+% \begin{eqnarray}
+%  & & \div(\sigma(\vec{r}) \nabla \Phi)  =  0 \\
+%  & & \text{mit} \  \Phi|_{\partial \Omega_{j}} = V_{j} \quad (j = 1, \dots N) \nonumber \\  & & \text{und} \  \frac{\partial \Phi}{\partial n} = 0 \quad \text{auf} \ \partial \Omega \backslash \left( \bigcup\limits_{j=1}^{N} \partial \Omega_{j}\right)
+% \end{eqnarray}\end{karte}
+
+% *** ENDE KAPITEL 1 *** %
+
+% *** BEGINN KAPTIEL 2 *** %
+
+%\fach{Modellannahmen f. Anwendbarkeit \\ von Kirchhoffschen Netwerken}
+
+%\begin{karte}{Konzentriertheitshypothese}
+% \begin{eqnarray}
+ % \text{Wellenlänge} \ \lambda >> \ \text{Abmessung d. Systems} \ d
+% \end{eqnarray}
+%\end{karte}
+
+%\fach{Feldtheoret. Beschreibung d. Quasistationarität}
+%\begin{karte}{Näherung des Verschiebungsstroms}
+% \begin{eqnarray}
+%  \frac{\partial \vec{D}}{\partial t} & = & - \epsilon \left[ \frac{\partial}{\partial t} (\nabla \Phi) + \frac{\partial^{2} \vec{A}}{\partial  t^{2}} \right] \approx - \epsilon \frac{\partial}{\partial t} (\nabla \Phi) \\
+% & \Rightarrow & \text{Vernachlässigung des magn. induzieren Anteils} \nonumber 
+% \end{eqnarray}
+%\end{karte}
+
+%\begin{karte}{Quellgrößen bei Quasistationarität}
+% $(\Phi, \vec{A}), \, (\vec{E}, \vec{B})$ nur vom momentanen zeitl. Wert d. \\ Quellgrößen $\rho(\vec{r},t)$ und $\vec{j}(\vec{r},t)$ abhängig \\
+% $\Leftrightarrow$ \textbf{alle Feldgrößen quasistationär} 
+%\end{karte}
+
+%\fach{Stat. Strömungsfelder: Ohmsches Transportmodell}
+%\begin{karte}{Dielektrische Relaxation}
+% \begin{eqnarray}
+%  \frac{\partial \rho}{\partial t} = - \frac{\sigma}{\epsilon} \rho \qquad \text{mit} \ \frac{\sigma}{\epsilon} = \text{constans}
+% \end{eqnarray}
+%\end{karte}
+
+%\begin{karte}{Störung durch lokale Ladungsfluktuation}
+% \begin{eqnarray}
+%  \Delta\rho(t,\vec{r}) =  \Delta\rho(t_{0},\vec{r}) \operatorname{exp}\left(-\frac{t-t_{0}}{\tau_{R}} \right) \\
+%  \text{mit} \underbrace{\tau_{R} := \frac{\epsilon}{\sigma}}_{\text{dielektrische Relaxationszeit}}
+% \end{eqnarray}
+%\end{karte}
+
+%\begin{karte}{Partialstromdichte mit Einsteinrelation und Quasiferminiveau}
+% \begin{eqnarray}
+%  \vec{j}_{\alpha} = -(|q_{\alpha}| n_{\alpha} \mu_{\alpha} \nabla \Phi + q_{\alpha} D_{\alpha} \nabla n_{\alpha}) \\
+%  \text{mit Einstein} \ D_{\alpha} = \frac{kT}{|q_{\alpha}|} \mu_{\alpha}  \\
+%  \text{und Quasiferminiveau} \ \Phi_{\alpha} = \Phi + \frac{kT}{q_{\alpha}} \operatorname{ln} \frac{n_{\alpha}}{n_{0}} \\
+%  \Rightarrow \vec{j}_{\alpha} = - \sigma_{\alpha} \nabla \Phi_{\alpha}
+% \end{eqnarray}
+%\end{karte}
+%\begin{karte}{1. Lösungsschritt: Aufspaltung von $\Phi$ in homogenen und inhomogenen Teil}
+%\begin{eqnarray}
+  %\text{Ansatz:} \ \Phi = \Phi^{(0)} + \varphi \nonumber \\
+ % \div(\epsilon \nabla \Phi) = - \rho - \div(\epsilon \nabla \Phi^{(0)}) =: -f \ \text{in} \ \Omega \nonumber \\
+%  \varphi|_{\partial \Omega^{(D)}} = 0, \ \left. \frac{\partial \varphi}{\partial n} \right|_{\partial \Omega^{(N)}} = 0 
+% \end{eqnarray}
+%\end{karte}
+
+%\begin{karte}{2. Lösungsschritt (I): Eigenwertproblem für $-\div (\epsilon \nabla \, . \,)$}
+ %\begin{eqnarray}
+%  -\div (\epsilon \nabla b_{\nu}) = \lambda_{\nu} b_{\nu} \quad \text{in} \ \mathring{\Omega} \nonumber \\
+ % \text{mit} \ b_{\nu}|_{\partial \Omega^{(D)}} = 0 \ \text{und} \ \left. \frac{\partial b_{\nu}}{\partial n} \right|_{\partial \Omega^{(N)}} = 0 
+% \end{eqnarray}
+%Wobei $b_{\nu}(\vec{r}) \ $ Eigenfunktionen und $\lambda_{\nu} \ $ Eigenwerte $\in \mathbb{C}$ des Differentialoperators $-\div(\epsilon \nabla \ .)$ sind. 
+%\end{karte}
+
+%\begin{karte}{2. Lösungsschritt (II): Lösung für $\varphi$}
+%\begin{eqnarray}
+ %\varphi = \sum \limits_{\nu = 1}^{\infty} \alpha_{\nu}b_{\nu} \quad \text{mit} \ \alpha_{\nu} = \langle b_{\nu} | \varphi \rangle = \int_{\Omega} b_{\nu}(\vec{r'})^{*} \varphi(\vec{r'}) \, d^{3}r' \\
+ %\Rightarrow \forall \ \varphi \in L_{2}(\Omega): \quad \varphi(\vec{r}) = \int_{\Omega} \delta(\vec{r} - \vec{r'}) \varphi(\vec{r'}) \, d^{3}r'
+%\end{eqnarray}
+%\end{karte}
+
+%\begin{karte}{Lösungsschritt 3: Lösung des RWP}
+ %\begin{eqnarray}
+  %\varphi(\vec{r}) & = & \sum \limits_{\nu = 1}^{\infty} \frac{\langle b_{v} | f \rangle}{\lambda_{\nu}} b_{\nu}(\vec{r}) \\
+  %& = & \int \limits_{\Omega} \sum \limits_{\nu = 1}^{\infty} b_{\nu}(\vec{r}) \frac{1}{\lambda_{\nu}} b_{\nu}(\vec{r'})^{*} f(\vec{r'}) \, d^{3}r' \\
+  %& = & \int \limits_{\Omega} G(\vec{r}, \vec{r'}) f(\vec{r'}) \, d^{3}r' \nonumber 
+ %\end{eqnarray}
+%\end{karte}
+
+%\begin{karte}{Greenfunktion des [M-RWP]}
+ %\begin{eqnarray}
+  %G(\vec{r}, \vec{r'}) = \sum \limits_{\nu = 1}^{\infty} b_{\nu}(\vec{r}) \frac{1}{\lambda_{\nu}} b_{\nu}(\vec{r'})^{*}
+ %\end{eqnarray}
+
+%\end{karte}
+
+
+%\begin{karte}{Vakuum-Greenfunktion $\widehat{=} \ $ Greenfunktion zur Poissongleichung im $\mathbb{R}^{3}$}
+%\begin{eqnarray}
+% G_{\text{Vac}}(\vec{r},\vec{r'}) = \frac{1}{4 \pi \epsilon_{0}} \frac{1}{|\vec{r} - \vec{r'}|}
+%\end{eqnarray}
+%\end{karte}
+
+%\begin{karte}{Greenfunktion für Halbraum über Spiegelladungsmethode}
+%\begin{eqnarray}
+ %\Phi_{H}(\vec{r}) & = & \frac{Q}{4 \pi \epsilon} \left[ \frac{1}{|\vec{r} - \vec{r}_{Q}|} - \frac{1}{|\vec{r} - \vec{r}_{Q}^{*}|} \right]  \\
+% & \text{mit} & \ Q  =  1, \, \vec{r}_{Q} = \vec{r'}, \, \vec{r}^{*} = S \vec{r} \nonumber \\
+% \Rightarrow  G_{H}(\vec{r}, \vec{r'}) & = & \frac{1}{4 \pi \epsilon} \left[ \frac{1}{|\vec{r} - \vec{r'}|} - \frac{1}{|\vec{r} - S\vec{r'}|} \right]
+%\end{eqnarray}
+%\end{karte}
+
+%\begin{karte}{Greenfunktion für Winkelraum über Spiegelladungsmethode}
+%\begin{eqnarray}
+ % \Phi_{W}(\vec{r})   & = &  \frac{Q}{4 \pi \epsilon} \left[ \frac{1}{|\vec{r} - \vec{r}_{Q}|} - \frac{1}{|\vec{r} - S_{1}\vec{r}_{Q}|} + 
+% \frac{1}{|\vec{r} - S_{2}\vec{r}_{Q}|} \right. \nonumber \\ & - & \left. \frac{1}{|\vec{r} - S_{3}\vec{r}_{Q}|}  \right] 
+%\\
+% & \text{mit} & \ Q = 1, \, \vec{r}_{Q} = \vec{r'} \nonumber \\
+% & \Rightarrow &  G_{W}(\vec{r}, \vec{r'})  =  \frac{1}{4 \pi \epsilon} \sum \limits_{n = 0}^{3} \frac{(-1)^{n}}{|\vec{r} - S_{n}\vec{r'}|}
+%\end{eqnarray}
+%\end{karte}
+%\begin{karte}{V-RWP für Mehrelektroden-Kondensatoranordung}
+ %\begin{eqnarray}
+ % \text{[V-RWP]} \quad \operatorname{div}(\epsilon \nabla \Phi) = 0 \ \text{in} \ \mathring{\Omega}
+   %\ \text{und} \left. \Phi\right|_{\partial \Omega_{l}} = V_{l} \\
+  %(l = 0, \dots , N) \nonumber
+% \end{eqnarray}
+
+%\end{karte}
+
+
+
+%\begin{karte}{Q-RWP für Mehrelektroden-Kondensatoranordung}
+ %\begin{eqnarray}
+ % \text{[Q-RWP]} \quad \operatorname{div}(\epsilon \nabla \Phi) = 0 \ \text{in} \ \Omega 
+ %  \ \text{und} \int_{\partial \Omega_{l}} \epsilon \frac{\partial \Phi}{\partial n} \,da = Q_{l} \\
+ %(l = 0, \dots , N) \nonumber
+ %\end{eqnarray}
+
+%\end{karte}
+%\begin{karte}{Allgemeine Sprungbedingung für tangentiale Feldkomponenten}
+ %\begin{eqnarray}
+  %\vec{U}_{2} \cdot \vec{t}  -   \vec{U}_{1} \cdot \vec{t} & = &  \vec{\nu} \cdot \vec{n} \quad \text{auf} \ \Sigma \\
+  %\vec{U}_{2} \cdot \vec{t} -  \vec{U}_{1} \cdot \vec{t}  & = & (\vec{\nu} \times \vec{N}) \cdot \vec{t}  \quad \forall \vec{t} \\
+  %\vec{N} \times \vec{U}_{2}  - \vec{N} \times \vec{U}_{1} & = & \vec{\nu} \quad \text{auf} \ \Sigma \\
+  %& &\vec{N} \ \text{zeigt von Material 1 nach 2} \nonumber
+ %\end{eqnarray}
+%\end{karte}
+
+%\begin{karte}{Sprungbedingung für Tangentialkomponente des $\vec{E}$-Felds}
+%\begin{eqnarray}
+ %\vec{E}_{1} \times \vec{N}  =  \vec{E}_{2} \times \vec{N} \qquad  \text{auf} \ \Sigma \\
+ %\vec{E}_{1} \cdot \vec{t}  =  \vec{E}_{2} \cdot \vec{t} \qquad \text{auf} \ \Sigma \nonumber \\
+ %\text{"Tangentialkomponente von} \ \vec{E} \ \text{ist stetig"} \nonumber 
+%\end{eqnarray}
+%\end{karte}
+
+%\begin{karte}{Sprungbedingung für Tangentialkomponente des $\vec{H}$-Felds}
+%\begin{eqnarray}
+ %\vec{H}_{2} \times \vec{N} - \vec{H}_{1} \times \vec{N} = \vec{i} \qquad \text{auf} \ \Sigma \\
+  %\vec{N} \ \text{zeigt von Material 1 nach 2} \nonumber \\
+  %\text{Für} \ \vec{i} = 0 \Rightarrow  \vec{H}_{1} \times \vec{N}  =  \vec{H}_{2} \times \vec{N} \nonumber \\
+  %\vec{H}_{1} \cdot \vec{t}  =   \vec{H}_{2} \cdot \vec{t} \nonumber \\
+  %\text{"Tangentialkomponente von} \ \vec{H} \ \text{ist stetig"} \nonumber 
+%\end{eqnarray}
+%\end{karte}
+%\begin{karte}{Allgemeine Sprungbedingung für normale Feldkomponenten}
+ %\begin{eqnarray}
+ % \vec{U}_{2} \cdot \vec{N} - \vec{U}_{1} \cdot \vec{N} = \nu \qquad \text{auf} \ \Sigma \\
+  %\vec{N} \ \text{zeigt von Material 1 nach 2} \nonumber
+ %\end{eqnarray}
+%\end{karte}
+
+%\begin{karte}{Sprungbedingung für Normalkomponente des $\vec{D}$-Felds}
+ 
+%\begin{eqnarray}
+  %\vec{D}_{2} \cdot \vec{N} - \vec{D}_{1} \cdot \vec{N} = \sigma_{int} \qquad \text{auf} \ \Sigma \\
+  %\vec{N} \ \text{zeigt von Material 1 nach 2} \nonumber \\
+  %\text{Für} \ \sigma_{int} = 0 \Rightarrow  \vec{D}_{1} \cdot \vec{N} = \vec{D}_{2} \cdot \vec{N} \nonumber \\
+  %\text{"Normalkomponente von} \ \vec{D} \ \text{ist stetig"} \nonumber 
+ %\end{eqnarray}
+%\end{karte}
+
+%\begin{karte}{Sprungbedingung für Normalkomponente des $\vec{B}$-Felds}
+%\begin{eqnarray}
+  %\vec{B}_{1} \cdot \vec{N} = \vec{B}_{2} \cdot \vec{N} \qquad \text{auf} \ \Sigma \\
+  %\text{"Normalkomponente von} \ \vec{B} \ \text{ist stetig"} \nonumber 
+%\end{eqnarray}
+%\end{karte}
+%\begin{karte}{Coulombeichung: Wellengl. für $\vec{A}$}
+% \begin{eqnarray}
+  %\Delta \vec{A} - \epsilon \mu \frac{\partial^{2} \vec{A}}{\partial t^{2}} = \underbrace{- \mu \left( \vec{j} - \epsilon \frac{\partial}{\partial t} (\nabla \Phi) \right)}_{\textbf{transversale Stromdichte} \ \vec{j}_{t}}
+ %\end{eqnarray}
+%\end{karte}
+
+%\fach{Ebene Wellen im 3-Dimensionalen}
+
+%\begin{karte}{Allgemeine transversale elektromagnetische Wellen}
+%\begin{eqnarray}
+%\vec{E}_{0} \cdot \vec{n} = 0 \Rightarrow \vec{E}_{0} \ \bot \ \vec{n}
+%\end{eqnarray}
+%E-M Welle ist also eine \textbf{transversale} ebene Welle!
+%\begin{align}
+%\vec{E}(\vec{r},t) & = \vec{E}_{0}(\vec{k} \cdot \vec{r} - \omega t) \\
+%\vec{H}(\vec{r},t) & = \vec{H}_{0}(\vec{k} \cdot \vec{r} - \omega t) \\
+%\text{mit} \ \vec{k} \cdot \vec{E}_{0} &=  0 \ \text{bzw.}  \ \vec{k} \cdot \vec{H}_{0} =  0 \nonumber 
+%\end{align}
+%$\vec{k}$ heißt Ausbreitungs- oder Wellenvektor
+%\end{karte}
+
+%\fach{Ebene elektromagnetische Wellen}
+%\begin{karte}{Ebene elektromagnetische Wellen}
+%Gleichungssystem
+%\begin{align}
+%\vec{H}_{0}(.) & = \frac{1}{\mu \omega} \vec{k} \times \vec{E}_{0}(.) \label{EMWGS1} \\
+%		 & = \frac{1}{Z} \vec{n} \times \vec{E}_{0}(.) \nonumber \\
+%\vec{E}_{0}(.) & = - \frac{1}{\epsilon \omega} \vec{k} \times \vec{H}_{0}(.) \label{EMWGS2} \\
+%		 & = - Z \vec{n} \times \vec{H}_{0}(.) \nonumber
+%\end{align}
+%mit \textbf{Wellenwiderstand} $Z = \sqrt{\frac{\mu}{\epsilon}}, \quad Z_{0} = 376,9 \, \Omega$
+%\end{karte}
+
+%\begin{karte}{Dispersionsrelation (Lösbarkeitsbedingung für \eqref{EMWGS1}/\eqref{EMWGS2}) eines homogenen linearen Mediums}
+%\begin{align}
+%\omega(\vec{k}) = \frac{1}{\sqrt{\epsilon \mu}}|\vec{k}|
+%\end{align}
+%\end{karte}
+
+%\fach{Allgemeine Wellengleichungen}
+
+%\begin{karte}{Wellengleichung für $\vec{E}-$ und $\vec{H}-$Feld}
+%Herleitung über Maxwell-Gleichungen mit Ersetzung \\ $\vec{j} = \sigma \vec{E} + \vec{j}_{0}$ und Bildung von $\rot(\rot \vec{E})$ bzw. $\rot(\rot \vec{H})$. Ergebnis: 
+
+%\begin{align}
+%\underbrace{\left[ \epsilon \mu \frac{\partial^{2}}{\partial t^{2}} + \mu \sigma \frac{\partial}{\partial t} - \Delta \right]}_{(\text{gedämpfter (} \sigma >0 \text{) Wellenoperator)}} \begin{bmatrix} \vec{E} \\ \vec{H} \end{bmatrix} = \begin{bmatrix} - \nabla \left( \frac{\rho_{0}}{\epsilon} \right) - \mu \dot{\vec{j}}_{0} \\ \rot \vec{j}_{0} \end{bmatrix}
+%\end{align}
+%\end{karte}
+
+%\begin{karte}{Inhomogene Wellengleichung für Viererpotential}
+%\begin{eqnarray}
+%\left[\epsilon \mu \frac{\partial^{2}}{\partial t^{2}} - \Delta \right] \begin{bmatrix} \Phi \\ \vec{A} \end{bmatrix} =  \begin{bmatrix} \rho/\epsilon \\ \mu\vec{j} \end{bmatrix}
+%  \end{eqnarray}
+%\end{karte}
+
+%\fach{Homogene Wellengleichung im 1-Dimensionalen}
+%\begin{karte}{Vereinfachte Wellengleichung}
+%Nur eine Raumdimension: $\vec{r} = x \vec{e}_{x}; \Delta = \frac{\partial^{2}}{\partial x^{2}}$ \\
+%$\sigma = \vec{j}_{0} = \rho_{0} = 0$
+%\begin{eqnarray}
+%\epsilon \mu \frac{\partial^{2}u}{\partial t^{2}} - \frac{\partial^{2} u}{\partial x^{2}} = 0
+%\end{eqnarray}
+%\end{karte}
+
+%\begin{karte}{Gespeicherte magnetische Energie für allg. 3-dim. Gebiete}
+%\begin{align}
+%\frac{\partial W_{mag}}{\partial i_{k}} & = \sum \limits_{l = 1}^{N} L_{kl} i_{l}   \\
+%\frac{\partial^{2} W_{mag}}{\partial i_{k}i_{l}} & = L_{kl}
+%\end{align}
+%\end{karte}
+%\begin{karte}{Grundlösungen des [V-RWP]}
+%Für [V-RWP] mit $\vect{V} = \vect{e}, \, \Phi(\vec{r}) \equiv 1$ gilt:
+%\begin{align}
+%1 = \Phi(\vec{r}) = & \sum \limits_{k=0}^{N} \underbrace{V_{k}}_{=1} \Phi_{k}(\vec{r})  =  \sum \limits_{k=0}^{N} \Phi_{k}(\vec{r}) \nonumber \\
+%\Phi_{0}(\vec{r}) = & 1 - \sum \limits_{k=0}^{N} \Phi_{k}(\vec{r}) 
+%\end{align} 
+%Für Potentialvorgabe $\vect{V} \in \mathbb{R}^{N+1}$ lautet
+%\begin{align}
+%\Phi(\vec{r}) = V_{0} + \sum \limits_{k=1}^{N} (V_{k}-V_{0}) \Phi_{k}(\vec{r})
+%\end{align}
+%\end{karte}
+
+%\fach{Kapazitive Speicherelemente}
+
+%\begin{karte}{Potential des [V-RWP] aus Grundlösungen}
+%Wdh.: \begin{eqnarray*}
+%  \text{[V-RWP]} \quad \operatorname{div}(\epsilon \nabla \Phi) = 0 \ \text{in} \ \mathring{\Omega}
+ %  \ \text{und} \left. \Phi\right|_{\partial \Omega_{l}} = V_{l} \nonumber
+% \end{eqnarray*}
+%Lösung als Linearkombination von $N+1$ Grundlösungen $\Phi_{0} \dots \Phi_{N}$:
+%\begin{eqnarray*}
+%\Phi(\vec{r}) = \sum \limits_{k=0}^{N} V_{k} \Phi_{k}(\vec{r})
+%\end{eqnarray*}
+%\end{karte}
+
+
+\end{document}

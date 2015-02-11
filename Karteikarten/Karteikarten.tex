@@ -1,0 +1,125 @@
+\documentclass[a7paper,11pt,print,grid=front]{kartei}
+\usepackage[utf8]{inputenc} %UTF8
+
+\usepackage{../../packages/scientific}
+
+\begin{document}
+
+	\begin{karte}[Grundwissen]{Nenne das Potential für 1 Punktladung bei $\vec r_0$}
+		\begin{eqnarray*}
+			\varphi (\vec r ) = \frac{Q}{\epsilon_0} \frac{1}{4 \pi} \frac{1}{\abs{\vec r - \vec r_0}}
+		\end{eqnarray*}
+	\end{karte}
+	
+	
+	\begin{karte}[Grundwissen]{Nenne das Potential für einen zylindrischen Leiter bei $\vec r_0$}
+		\begin{eqnarray*}
+			\varphi (r ) = - \frac{Q}{2 \pi \epsilon l} \ln \frac{r}{r_0} + C 
+		\end{eqnarray*}
+		( $r = $ Abstand von der Zylinderachse)
+	\end{karte}
+	
+	
+	\begin{karte}[Grundwissen]
+	{Im stationären Fall ist das elektrische Feld $\vec E$ wirbelfrei und das magnetische Feld $\vec B$ quellenfrei. Formulieren Sie dies mathematisch. Tritt eine Änderung im dynamischen Fall auf? Wenn ja welche?}
+		\begin{eqnarray*}
+			\rot \vec E = 0 \\
+			\div \vec B = 0 \\
+			\text{Dynamischer Fall:} \rot \vec E = - \frac{\partial B}{\partial t}
+		\end{eqnarray*}
+	\end{karte}
+	
+	\begin{karte}[Klass. Kontinuumsth.]{Nenne die 4 Maxwellgeleichungen}
+		\begin{eqnarray*}
+			\div \vec D = \rho \\
+			\rot \vec E = - \frac{\partial \vec B}{\partial t} \\
+			\div B = 0 \\
+			\rot \vec H = \vec j + \frac{\partial \vec D}{\partial t}
+		\end{eqnarray*}
+	\end{karte}
+	
+	
+	\begin{karte}[Klass. Kontinuumsth.]{Nenne die 3 Materialgleichungen}
+		\begin{eqnarray*}
+			\vec D =  \epsilon \vec E \\
+			\vec B = \mu \vec H \\
+			\vec j = \sigma \vec E
+		\end{eqnarray*}
+	\end{karte}
+	
+	
+	\begin{karte}[Klass. Kontinuumsth.]
+		{Drücken Sie $\vec E$ und $\vec B$ über die Potentiale $\Phi$ und $\vec A$ aus.}
+		\begin{eqnarray*}
+			\vec B = \rot \vec A \\ 
+			\vec E = - \nabla \Phi - \frac{\partial A}{\partial t}
+		\end{eqnarray*}
+	\end{karte}
+	\begin{karte}[Klass. Kontinuumsth.]{Nenne die Formel für die Energie im Elektrischen Feld}
+	
+		\begin{eqnarray*}
+			W_{\text{el}} = \sum \limits^N_{\substack{i < k \\ i,k = 1}} \frac{1}{4 \pi \epsilon} \frac{q_i q_k}{\abs{\vec r - \vec r_k}}
+		\end{eqnarray*}
+
+	\end{karte}
+	
+	\begin{karte}[Klass. Kontinuumsth.]{Nenne die Formeln für die Energiedichten im magnetischen und Elektrischen Feld}
+	
+		\begin{eqnarray*}
+			\delta_{\text{W}_{\text{el}}} = \vec E  \cdot \delta\vec D \overset{\epsilon \text{ const.}}{\longrightarrow} w_{\text{el}} = \frac 1 2 \vec E \vec D \\
+			\delta_{\text{W}_{\text{mag}}} = \vec H  \cdot \delta\vec B \overset{\mu \text{ const.}}{\longrightarrow} w_{\text{mag}} = \frac 1 2 \vec H \vec B \\
+		\end{eqnarray*}
+
+	\end{karte}
+	
+	\begin{karte}[Klass. Kontinuumsth.]{Nenne die allgemeine Bilanzgleichung}
+		\begin{eqnarray*}
+			\frac{\partial x}{\partial t} + \div \vec j_x = \pi_x
+		\end{eqnarray*}
+	\end{karte}
+	
+	\begin{karte}[Klass. Kontinuumsth.]{Nenne den Poynting Vektor}
+		\begin{eqnarray*}
+			\vec S = \vec E \times \vec H
+		\end{eqnarray*}
+	\end{karte}
+
+	\begin{karte}[Klass. Kontinuumsth.]{Nenne die Potentiale}
+		\begin{eqnarray*}
+			\vec B = \rot \vec A \\
+			\vec E = - \vec \nabla \Phi - \frac{\partial A}{\partial t}
+		\end{eqnarray*}
+	\end{karte}
+	
+	\begin{karte}[Klass. Kontinuumsth.]{Nenne die Beiden Eichfreiheiten von $\vec A$}
+		\begin{eqnarray*}
+			\vec A' = \vec A - \nabla \chi \\
+			\Phi' = \Phi + \frac{\partial \chi}{\partial t}
+		\end{eqnarray*}
+	\end{karte}
+	
+	
+	\begin{karte}[Klass. Kontinuumsth.]{Nenne die Lorenz Eichung}
+		\begin{eqnarray*}
+			\div \vec A + \epsilon \mu \frac{\partial \Phi}{\partial t} = 0
+		\end{eqnarray*}
+	\end{karte}
+	
+	\begin{karte}[Klass. Kontinuumsth.]{Nenne die Coulomb Eichung}
+		\begin{eqnarray*}
+			\div \vec A = 0
+		\end{eqnarray*}
+	\end{karte}
+	
+	\begin{karte}[Potentialtheorie]{Nenne die 4 Gleichungen zum Verhalten an den Materialgrenzen}
+		\begin{eqnarray*}
+			\vec D_2 \vec n - \vec D_1 \vec n = \sigma_{\text{int}} \\
+			\vec B_2 \vec n - \vec B_1 \vec n = 0 \\
+			\vec E_1 \times \vec n - \vec E_2 \times \vec n = 0 \\
+			\vec H_2 \times \vec n - \vec H_1 \times \vec n = \vec j
+		\end{eqnarray*}
+	\end{karte}
+	
+
+ 
+\end{document}

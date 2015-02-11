@@ -1,0 +1,536 @@
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+% 
+% FS-Vorlage											Stand: 30.01.12
+%
+% Formelsammlungsvorlage von Emanuel Regnath und Martin Zellner	
+% Bietet verschiedene Abkürzungen und Befehle	
+%
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+
+
+% Dokumenteinstellungen
+% ======================================================================
+
+% Dokumentklasse (Schriftgröße 6, DIN A4, Artikel)
+\documentclass[6pt,a4paper]{scrartcl}
+%\documentclass[5pt,a4paper]{scrartcl} %USE IN CASE OF EMERGENCY  geschafft! emergency not needed
+
+% Pakete laden
+\usepackage[utf8]{inputenc}		% Zeichenkodierung: UTF-8 (für Umlaute)   
+\usepackage[german]{babel}		% Deutsche Sprache
+\usepackage{multicol}			% ermöglicht Seitenspalten  
+\usepackage{booktabs}			% bessere Tabellenlinien
+\usepackage{enumitem}			% bessere Listen
+\usepackage{graphicx}			% Zum Bilder einfügen benötigt
+\usepackage{pbox}				%Intelligent parbox: \pbox{maximum width}{blabalbalb \\ blabal}
+\usepackage{../packages/scientific}			% Eigenes Paket
+\usepackage{scrtime}
+\usepackage{parskip} 			%Verhindert das einrücken am Zeilenanfang
+\usepackage{titlesec}
+
+
+% .:: Seitenlayout und Ränder
+% ======================================================================
+\usepackage{geometry}
+\geometry{a4paper,landscape, left=6mm,right=6mm, top=0mm, bottom=3mm,includeheadfoot} 
+
+
+% .:: Kopf- und Fußzeile
+% ======================================================================
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+
+   \fancyfoot[C]{von Emanuel Regnath und Martin Zellner-- Mail: \emph{info@latex4ei.de}}
+   \renewcommand{\headrulewidth}{0.0pt} %obere Linie ausblenden
+   \renewcommand{\footrulewidth}{0.1pt} %obere Linie ausblenden
+
+   \fancyfoot[R]{Stand: \today \ um \thistime \ Uhr \qquad \thepage}
+   \fancyfoot[L]{Homepage: www.latex4ei.de -- Fehler bitte \emph{sofort} melden.}
+	
+% Schriftart SANS für bessere Lesbarkeit bei kleiner Schrift
+\renewcommand{\familydefault}{\sfdefault} 
+% Array- und Tabellenabstände vergrößern
+\renewcommand{\arraystretch}{1.2}
+
+
+% .:: Überschriften anpassen
+% ======================================================================
+
+%\titleformat{ command }[ shape ]{ format }{ label }{ sep }{ before-code }[ after-code ]
+\titleformat{\section}{\Large \bfseries}{\thesection .}{0.5em}{}[\hrule \hrule ]
+\titleformat{\subsection}{\large \bfseries}{\thesubsection .}{0.3em}{}[ ]
+
+%\titlespacing{Überschriftart}{keine Ahnung}{Abstand oberhalb}{Abstand unterhalb}
+\titlespacing{\section}{0em}{1.0em}{0.1em}
+\titlespacing{\subsection}{0em}{0.2em}{-0.4em}
+\titlespacing{\subsubsection}{0em}{0em}{-0.5em}
+
+\let\vec\oldvec
+
+% Dokumentbeginn
+% ======================================================================
+\begin{document}
+
+
+% Aufteilung in Spalten
+\vspace{-4mm}
+\begin{multicols}{4}
+	\vspace{-20mm}{
+	\parbox{2.3cm}{
+		\includegraphics[height=1.4cm]{./img/Logo.pdf}		
+	}
+	\parbox{4cm}{
+		\emph{\huge{Elektromagnetischer Feldterror}}
+	}}
+\vspace{-4mm} % Man muss optimieren wos nur geht ;)
+% -------------------------------
+% | 		EMF					|
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%=======================================================================
+\section{Nützliches Wissen $\rot E \equiv 0$}
+Stromdichte $\vec j(\vec r) = \rho(\vec r) \vec v(\vec r)$\\
+Elektrostatik heißt $\frac{\partial \vec D}{\partial t} = 0$, $\vec j = 0$ und Magnetostatik $\frac{\partial \vec B}{\partial t} = 0$ sonst spricht man von Elektrodynamik
+
+\subsection{Konstanten}
+\begin{tabular*}{\columnwidth}{@{\extracolsep\fill}ll@{}} \trule
+	Lichtgeschwind. & $c = \frac{1}{\sqrt{\varepsilon_0 \mu_0}} = \SI{299 792 458}{\meter\per\second}$\\
+	Elektr. Feldkonst. & $\varepsilon_0 = \SI{8.854 188e-12}{\farad\per\meter}$\\
+	Magn. Feldkonst. & $\mu_0 = 4\pi \times \SI{e-7}{\henry\per\meter}$\\
+\end{tabular*}
+
+
+\subsection{Maxwellsche Gleichungen (Naturgesetze)}
+\setlength{\tabcolsep}{6pt}
+
+\framebox[\columnwidth]{\vspace{0.3em}
+	\begin{tabular*}{\columnwidth-4em}{@{\extracolsep\fill}ll@{}}
+	Gaußsches Gesetz: & Faradaysches ind. Gesetz\\
+	\large $\div \vec D = \varrho $ & \large $\rot \vec E = - \frac{\partial \vec B}{\partial t}$ \\[1em]
+	Quellfreiheit des magn. Feldes & Ampèrsches Gesetz\\
+	\large $\div \vec B = 0$ & \large $\rot \vec H = \vec j + \frac{\partial \vec D}{\partial t}$\\[0.3em]
+\end{tabular*} }\\
+\\
+Zusammen mit Materialgleichungen bildet
+$(\vec E,\vec H)$ ein 6 komponentiges Elektromagnetisches Feld
+
+
+\subsection{Bauteilgleichungen}
+\setlength{\tabcolsep}{6pt}
+\begin{tabular*}{\columnwidth}{@{\extracolsep\fill}lll@{}} \trule
+		\textbf{Resistiv} & \textbf{Kapazitiv} & \textbf{Induktiv}\\ \mrule
+		\large $\mathrm d I = G \diff U$ & \large $\mathrm d Q = C \diff U$ & \large $\mathrm d \Phi_M = L \diff I$\\[0.3em] 
+		\large $\vec j = \sigma \vec E$ & \large $\vec D = \varepsilon \vec E$ & \large $\vec B = \mu \vec H$\\ [0.3em] 
+		\large $\mathrm d I = \vec j \diff A$ & \large $\mathrm d U = \vec E \diff \vec r$ & \large $\mathrm d \Phi_M = \vec B \diff A$\\[0.3em]  
+		\large $\vec j = q n \vec v$ & \large $Q(V) \equiv \oiint\limits_{\partial V}\! \vec D \diff \vec A\;$ & \large $I(A) \equiv \oint\limits_{\partial A}\! \vec H \diff\vec r$\\ \noalign{\vspace{2pt}}\mrule
+		Widerst. $R = \rho \frac{l}{A}$ & Kondensator $C=\varepsilon \frac{A}{d}$ & Spule $L=\mu A \frac{N^2}{l}$\\
+		\pbox{3cm}{\includegraphics{./img/resistor.pdf}} & \pbox{3cm}{\includegraphics{./img/capacitor.pdf}} & \pbox{3cm}{\includegraphics{./img/inductor.pdf}}\\ 
+\end{tabular*}
+\setlength{\tabcolsep}{4pt}
+
+\everymath{\displaystyle} % Formeln ab hier groß Schreiben
+\begin{tabular}{l|l|l}
+	 & D-Feld & H-Feld \\ \hline
+	Durchflutung & $\oiint_{\partial V} \vec D \cdot \mathrm d\vec a \equiv Q(V)$ & $\oint_{\partial A} \vec H \cdot \mathrm d\vec r=I(A)$ \\
+	Vereinfacht & $4\pi r^2 D(r)=Q(V)$ & $2\pi r H(r)=I(A)$ \\
+	Material & $\vec E = \frac{\vec D}{\varepsilon}$ & $\vec B = \mu \vec H$ \\
+	Divergenz & $\mathrm{div}\ \vec D = \rho $ & $\mathrm{div}\ \vec B = 0 $ \\
+	Rotation & $\mathrm{rot}\ \vec E + \frac{\partial \vec B}{\partial t} = 0 $ & $\mathrm{rot}\ \vec H = \vec j + \frac{\partial \vec D}{\partial t}$\\
+\end{tabular}
+\everymath{\textstyle} % Formeln ab hier normal Schreiben
+
+
+
+\subsection{Formeln der Elektrostatik}
+$ \vec F = \frac{q}{4 \pi \varepsilon} \sum \limits_{i = 1}^N \frac{q_i (\vec r - \vec r_i )}{\abs{\vec r - \vec r_i}^3}$ \quad $\vec F = q \vec E$ \quad $\rot E = 0$ \\
+$ \int \limits_{P_1}^{P_2} \vec E d \vec r \text{ ist wegunabhängig}$ \quad $\Phi (\vec r) = \frac{1}{4 \pi \varepsilon} \sum \limits_{i =1}^{N} \frac{q_i}{\abs{\vec r - \vec r_i}}$ \\
+$\div(\varepsilon \grad(\Phi) = - \varrho$ \quad $\vec E = -\grad \Phi$ \\
+ $U_{12} = \Phi (P_1) - \Phi (P_2) = \int \limits_1^2 \vec E d\vec r$ \quad $\vec D \cdot \vec N = \sigma$ \quad $C = \frac{Q}{U}$ \\
+$W_{12} = \int_C \vec F d \vec r = q \cdot U_{12}$ \quad $w_{el} = \frac{1}{2} \vec E \vec D$ \quad $W_{el} = \frac{1}{2} C U^2$
+
+
+\subsection{Formeln der Magnetostatik}
+$\vec F_L = q \cdot (\vec v \times \vec B)$ \quad $\vec f_L = \vec j \times \vec B$ \quad $d \vec F_L = I \cdot d\vec s  \times \vec B$ \quad $\rot \vec H = \vec j$
+
+\subsection{Formeln zur Induktion}
+$U_{\text{ind}} = - \frac{d \Phi_{\text{mag}}}{dt}$ \quad $\Phi_{\text{mag}} = \int_A \vec B d \vec a$ \\
+$U_{\text{ind}} = - \int_{A(t)} \frac{\partial \vec B}{\partial t} d \vec a + \int_{\partial A(t)} (\vec v \times \vec B) d \vec r$
+
+\subsection{Formeln zu stationären Strömen}
+$I_A = \frac{d Q}{d t} |_A$ \quad $I_A = \int \limits_A \vec j d \vec a$ \quad $\vec j = \sum \limits_{i = 1}^n q_i n_i \vec v_i$ \\
+$\vec v = \sgn{q} \mu \vec E$ \quad $U = R I$ \quad $p_{\text{el}} = \vec j \vec E$ \quad $P = UI$ \\
+$\int_{\partial V} \vec j d \vec a  = - \frac{d Q(V)}{dt}$ \quad $\div \vec j + \frac{\partial \varrho}{\partial t} = 0$
+
+
+
+\subsection{Integralgleichungen}
+$\int \limits_{\partial V} \vec D d \vec a = \int \limits_V \div \vec D d^3 r$ \\
+$\int \limits_{\partial A} \vec H d \vec r = \int \limits_A \rot \vec H d \vec a$
+
+
+\subsection{Durchflutungsgesetze:}
+\boxed{\oiint\limits_{\partial V} \vec D \cdot \diff \vec a \equiv Q(V) } \qquad 
+\boxed{\oint\limits_{\partial A} \vec H \cdot \diff \vec r = I(A) = \int\limits_{A} \vec j \diff \vec a}
+\boxed { \div (\varepsilon \cdot \grad(\Phi)) = -\rho }
+
+
+
+
+% .:: Das Elektrische Feld
+%=======================================================================
+\section{Das elektrische Feld}
+\begin{enumerate}\itemsep-1pt
+	\item Wird erzeugt von Ladung oder sich veränderndes Magnetfeld
+	\item Innerhalb eines idealen Leiters ist das E-Feld Null(Influenz).
+	\item Die Feldlinien stehen immer senkrecht auf eine Leiteroberfläche.
+	\item Die Feldlinien laufen von positiven zu negativen Ladungen.
+	\item Bei Kugelladungen sinkt das E-Feld radial mit $\frac{1}{r^2}$
+	\item Bei unendlicher Linienladung sinkt das E-Feld radial mit $\frac{1}{r}$
+	\item Bei unendlicher Flächenladung bleibt das E-Feld konstant.
+	\item Feldlinien verlaufen lieber in hohem $\varepsilon_r$
+\end{enumerate}
+
+	% ------------------------------------------------------------------ 
+	\subsection{Elektrische Energiedichte}
+	Energie die in einem Bereich nötig ist, um alle Ladungen aus dem unendlichen an ihre Position zu bewegung.\\
+	$W_{el} = \sum\limits_{k=2}^N \Delta W_{el}^{(k)} = \frac{1}{8\pi\varepsilon} \sum\limits_{\scriptscriptstyle \begin{matrix}\scriptscriptstyle i,k=1 \\[-0.3em] \scriptscriptstyle i \ne k\end{matrix}}^N \frac{q_i q_k}{|\vec r_i - \vec r_k|} = \iiint\limits_V \iiint\limits_V \frac{\rho(\vec r) \rho(\vec r')}{|\vec r - \vec r'|} \diff^3 r \diff^3 r'$\\
+	\\
+	\framebox[\columnwidth]{\pbox{\columnwidth}{
+	Substitutionsregel:\\
+	$q_i = \diff Q(\vec r_i) = \rho(\vec r_i) \diff V$\\
+	$\sum\limits_{i=1}^N \{ \vec r_i ... \} q_i \ra \iiint\limits_V \{ \vec r_i ... \} \rho(\vec r) \diff V$} }\\
+	\\
+	$\delta W_{el} = \iiint\limits_V \Phi(\vec r) \delta\varrho(\vec r) \diff^3 r = \iiint\limits_V \vec E \cdot \delta \vec D \diff^3 r$\\
+	
+	
+	\subsection{Energie}
+	Die Gesamtenergie einer Ladungsverteilung mit $n$ Ladungen besteht aus $\frac{1}{2}(n^2 + n)$ summierten Termen.\\
+	\begin{tabular*}{\columnwidth}{@{\extracolsep\fill}lll@{}} \trule
+	& \large Elektrisch & \large Magnetisch\\ \mrule
+				& $\delta w_{\ir el} = \vec E \cdot \delta \vec D$ & $\delta w_{\ir mag} = \vec H \cdot \delta \vec B$\\
+		Energiedichte: & \boxed{ w_{\ir el} = \int\limits_0^{\vec D} \vec E' \diff \vec D' } & \boxed{ w_{\ir mag} = \int\limits_0^{\vec B} \vec H' \diff \vec B' }\\ \mrule
+		$\begin{array}{@{}l} \text{Falls} \\ \varepsilon = \const \\ \mu = \const \end{array}$ & 
+		$\begin{array}{@{}l} w_{\ir el} = \frac{1}{2} \vec E \vec D = \\ = \frac{\varepsilon}{2} \vec E^2 = \frac{1}{2\varepsilon} \vec D^2 \end{array}$ & 
+		$\begin{array}{@{}l} w_{\ir mag} = \frac{1}{2} \vec H \vec B = \\ = \frac{\mu}{2} \vec H^2 = \frac{1}{2\mu} \vec B^2 \end{array}$\\ \mrule
+		Energie: & $W_{\ir el} = \int\limits_V w_{\ir el} \diff V$ & $W_{\ir mag} = \int\limits_V w_{\ir mag} \diff V$\\ \brule
+	\end{tabular*}\\ 
+	\textbf{Leistung:} $P_{\ir em} = \int_V \Pi_{\ir em} \diff V = - \iint\limits_V \vec j(\vec r) \cdot \vec E(\vec r) \diff V$\\
+	
+	Energie eines Teilchens beim durchlaufen einer Spannung: $E = U \cdot Q$\\
+	Energie des el. Feldes im Plattenkondensator: $E = \frac{1}{2} E D V = \frac{1}{2} U Q$\\
+	
+	\subsection{Elektromagnetisches Feld}
+	Poynting Vektor: $\vec S := \vec E \times \vec H$\\
+	Extensive Größe $X$ besitzt eine Volumendichte $x(\vec r,t)$, so dass für jedes Kontrollvolumen $V \subset \R^3$ gilt:
+	$X(V) = \int_V x(\vec r,t) \diff V$\\ % ist die in V enthaltene Menge von $X$
+	Extensive Größe ist eine Größe die man abzählen kann.\\
+	\\
+	Beispiele für extensive Größen:\\
+	\begin{tabular*}{\columnwidth}{@{\extracolsep\fill}llll@{}} \mrule
+	phys. Größe & $X$ & Volumendichte & $x$\\
+	Ladung & $Q$ & Ladungsdichte & $\varrho_{el}$\\
+	Masse & $m$ & Massendichte & $\varrho_m$\\
+	Teilchenzahl & $N$ & Konzentration & $n$\\
+	Energie & $W$ & Energiedichte & $w$\\
+	\end{tabular*}	\\
+	$X$ besitzt Stromdichte $\vec J_X(\vec r,t)$ mit $X = \vec J_X(\vec r,t) \diff \vec a$\\
+	$X$ hat Produktionsrate $\Pi_X(\vec r,t)$ für Zeit und Volumen\\
+	Bilanzgleichung: \boxed{ \frac{\diff X(V)}{\diff t} = -\int\limits_{ \partial V} \vec J_X \diff \vec a + \int\limits_V \Pi_X  \diff V}\\ 
+	Differentielle Form: \boxed{\underset{\text{Akkummulationsrate}}{\frac{\partial x}{\partial t}} + \underset{\text{Zu-/Abfluss}}{\div \vec J_X} = \underset{\text{Generation}}{\Pi_X } }\\
+	\\
+	Halbleiter:\\
+	Elektronen $\frac{\partial n}{\partial t} = -\div \vec J_n + G_n$\\
+	Löcher $\frac{\partial p}{\partial t} = -\div \vec J_p + G_p$ mit $G_n = G_p$\\
+	\\
+	Energiebilanz des El.mag.-Feldes:\\
+	\boxed{\frac{\partial w_{em}}{\partial t} + \div \vec J_{em} = \Pi_{em}}\\
+	mit $w_{em} = w_{el} + e_{mag}$, $\vec J_{em} = \vec E \times \vec H + \vec S_0$, $\Pi_{em} = -\vec j \cdot \vec E$\\	
+
+
+	\section{Potentialtheorie}
+	Elektromagnetisches Vektorpotential $\vec A(\vec r, t)$: $\vec B(\vec r,t) = \rot \vec A(\vec r,t)$\\
+	Elektromagnetisches Skalarpotential $\Phi$: $\vec E(\vec r,t) = - \nabla \Phi - \frac{\partial \vec A}{\partial t}(\vec r,t)$\\ 
+	\\
+	Umeichen: $\vec A' = \vec A - \nabla \chi$ \qquad $\Phi' = \Phi + \dot \chi$ \\
+	
+	Eichfunktion: Riemansche Räume haben an jedem Punkt ein anderes Längenmaß. Die Eichfunktion gibt an, welches Längenmaß an welchem Punkt verwendet werden muss.\\
+
+	\subsection{Maxwell Gleichungen in Potetntialdarstellung}
+	\boxed{\div(\varepsilon \nabla\Phi) + \frac{\partial}{\partial t} \div(\varepsilon \vec A) = - \varrho}\\
+	\boxed{\rot(\frac{1}{\mu} \rot A) + \varepsilon \frac{\partial^2 \vec A}{\partial t^2} + \varepsilon \nabla \frac{\partial \Phi}{\partial t} = \vec j }\\
+	\\
+	\textbf{Lorenzeichung:} $\div \vec A + \varepsilon \mu \frac{\partial \Phi}{\partial t} = 0$\\
+	\\
+	Wellengleichungen: \boxed{\left(\Delta - \varepsilon\mu \frac{\partial^2}{\partial t^2}\right) \vect{\Phi \\ \vec A} = - \vect{\frac{\varrho}{\varepsilon} \\ \mu \vec j }}\\
+	\\
+	\textbf{Coulombeichung:} $\div A = 0$\\
+	$\div\left( \varepsilon \nabla \Phi(\vec r,t) \right) = \rho(\vec r, t)$\\
+	Elektromagn. Skalarpot. $\Phi(\vec r,t)$ folgt $\rho(\vec r, t)$ ohne Verzögerung!\\
+	\\
+	$\Delta \vec A - \varepsilon \mu \frac{\partial^2 \vec A}{\partial t^2} = - \mu \left(\vec j - \varepsilon \frac{\partial}{\partial t} (\nabla \Phi) \right)$\\
+	NF ANteil: $-\nabla \Phi$ \qquad HF Anteil: $\frac{\partial \vec j}{\partial t}$\\
+	Transversale Stromdichte: $\vec j_t = \vec j + \varepsilon\frac{\partial \nabla \Phi}{\partial t}$\\
+	
+	%Fuck-Tor des Fickeschen Gesetzes:\\ 
+	Gesetz bei dem Bert sabbert:\\
+	$\vec H(\vec r) = \frac{I}{4 \pi } \int\limits_\gamma \frac{\diff \vec r \times (\vec r - \vec r')}{|\vec r - \vec r'|^3}$\\
+	\\
+	\sectionbox{
+	\subsection{Feldverhalten an Materialgrenzen}
+	\begin{center}
+		\includegraphics{./img/grenze2.pdf}
+	\end{center} 	An Grenzflächen gibt es Flächenladung $\sigma:$ \\
+	$Q = \lim\limits_{h \ra 0} \int_V \rho \diff V = \int_A \sigma \diff \vec a$\\
+	\begin{eqnarray*}
+	\vec D_2 \vec n - \vec D_1 \vec n = \sigma_{\ir int} \\
+			\vec B_2 \vec n - \vec B_1 \vec n = 0 \\
+			\vec E_1 \times \vec n - \vec E_2 \times \vec n = 0 \\
+			\vec H_2 \times \vec n - \vec H_1 \times \vec n = \vec j
+	\end{eqnarray*}
+	Brechungsgesetz für elektrische Feldlinien: \\
+	\begin{eqnarray*}
+		\frac{\tan \alpha_1}{\tan \alpha_2} = \frac{\varepsilon_1}{\varepsilon_2}
+	\end{eqnarray*}
+	}
+	
+	\subsection{Randwertprobleme der Potentialtheorie}
+	Zu lösen ist die \textsc{Poisson}-Gleichung $\div(\varepsilon \nabla \Phi) = -\rho$ auf $\interior \Omega$:\\
+	\begin{tabular*}{\columnwidth}{@{\extracolsep\fill}llll@{}}
+	Nr. & RWP & Randbedingungen auf $\partial \Omega$ & Lösung\\
+	1. & Dirichlet & $\Phi\big|_{\partial\Omega} = \Phi_D$ & eindeutig $\Phi \in \mathcal C^2$\\[0.5em]
+	2. & Neumann & $\frac{\partial \Phi}{\partial \vec n}\Big|_{\partial\Omega} = F_N$ & eindeutig $(\Phi + C) \in \mathcal C^2$\\[0.5em]
+	3. & Gemischt & $\left( \Phi + k \frac{\partial \Phi}{\partial \vec n}\right)\Big|_{\partial\Omega} = F_N$ & eindeutig $\Phi \in \mathcal C^2$\\
+	\end{tabular*} 
+	Mit Richtungsableitung $\frac{\partial \Phi}{\partial \vec n}\big|_{1/2} = \lim\limits_{\vec r - \vec r_0 \ra 0} \vec n(\vec r_0) \cdot \nabla\Phi(\vec r)$ \quad $\vec r \in \Omega_{1/2}$\\
+	\\
+	Lösungsansatz: $\Phi = \Phi^{(0)} + \varphi$\\
+	$\Phi^{(0)}:$ erfüllt hom. DGL und inhom. RB\\
+	$\varphi:$ erfüllt inhom. DGL und hom. RB\\
+	\\
+	In den meisten Elektrostatischen Problemen gilt $\rho = 0$, da sich die Ladung nur auf den Grenzflächen von Leitern befindet und nicht im Gebiet $\Omega$ in dem die Lösung von $\Phi$ gesucht wird.\\
+	In der Praxis sind die meisten RWPs gemischt, wie Leiterkontakte oder Wärmeleitung\\ 
+	
+	Mehrelektroden-Kondensator Q-RWP:\\
+	$\div(\varepsilon \nabla \Phi) = 0$ in $\interior \Omega$ und $\int_{\partial \Omega_l} \varepsilon \frac{\partial \Phi}{\partial \vec n} \diff \vec a = Q_l$ und  besitz bis auf eine additive Konstante eine eindeutige Lösung
+	
+	\subsubsection*{Spektralzerlegung}
+	Lösungsverfahren:\\
+	\begin{enumerate}
+		\item Konstruiere $\Phi = \Phi^{(0)} + \varphi$
+		\item finde Eigenfunktionen: $-\div(\varepsilon \nabla \vec b_\nu) = \lambda_\nu \vec b_\nu$\\
+			Es gilt $\lambda_\mu \in \R^+$
+		\item 
+	\end{enumerate}
+	
+	
+	
+	\subsection{Greenfunktion $G(\vec r, \vec r')$}
+	Def: Lösung des RWP mit hom. Randbed. und Störung $\rho(\vec r) = \delta(\vec r - \vec r')$ (Einheitspunktladung bei $\vec r'$)\\
+	Allg. Lösung: $\Phi(\vec r) = \int_\Omega G(\vec r, \vec r')\rho(\vec r') \diff^3 \vec r'$\\
+	\\
+	Beispiel Punktladung: $G_{\text{Vac}}(\vec r, \vec r') = \frac{1}{4 \pi \varepsilon} \frac{1}{\norm{\vec r - \vec r'}}$
+	
+	\subsubsection*{Spektralzerlegung mit Greenfunktion}
+	Problem: \boxed{- \lpo \varphi = \tilde{f}}
+
+	\begin{itemize}
+		\item Sperationsansatz für die Eigenfunktionen: \\
+		$b(\vec r) = b_1 (x_1) b_2(x_2) b_3(x_3)$
+		\item $- \frac{\ddot b_1(x_1)}{b_1 (x_1)} - \frac{\ddot b_2(x_2)}{b_2 (x_2)}  - \frac{\ddot b_3(x_3)}{b_3 (x_3)} = \lambda$
+		\item Aufteilen des Problems: \\
+		$- \frac{\ddot b_1(x_1)}{b_1 (x_1)} = \lambda_1$ \\
+		$- \frac{\ddot b_2(x_2)}{b_2 (x_2)} = \lambda_2$ \\
+		$- \frac{\ddot b_3(x_3)}{b_3 (x_3)} = \lambda_3$
+		\item Lösungsansatz für $b_1, b_2, b_3$: \\
+		$b_j (x_j) = A_j \sin(k_j x_j) + B_j \cos (k_j x_j)$ mit $k_j = \sqrt{\lambda_j}$
+		\item $\Ra B_j = 0$ und $k_j L_j = n_j \pi$
+		\item Eigenfunktionen lauten: \\
+		$b_j ( x_j ) = A_j \sin (n_j \frac{\pi}{L_j} x_j)$
+		\item Normiere die Eigenfunktionen: \\
+			$1 \overset{!}{=} \int \limits_0^{L_k} b_j (x_j)^2 \diff x_j$
+	\end{itemize}
+	
+	Die Greenfunktion lautet nun: \\
+	$G(\vec r, \vec r') = \sum \limits_{n_1, n_2 , n_3 \in \mathbb N} b_{n_1 n_2 n_3} (\vec r ) \frac{1}{\lambda_{n_1}\lambda_{n_2}\lambda_{n_3}} b_{n_1 n_2 n_3} (\vec r' )$
+	
+	\subsection*{Spiegelladungsmethode}
+	negierte Ladung gespiegelt an Metallfläche\\
+	\begin{align*}
+		G_{\text{Halb}}(\vec r, \vec r_0) = \frac{1}{4 \pi \varepsilon} \left( \frac{1}{\norm{\vec r - \vec r_0}} - \frac{1}{\norm{\vec r - \vec r_0^*}}\right)
+	\end{align*}
+	
+	
+	\subsection{Stationäre Ströme und RWP}
+	Einflüsse: Drift, Diffusion, Hall-Effekt, Seebeck-Effekt\\
+	Drift-Diffusionsmodell:\\
+	\boxed{ \begin{array}{rll} \vec j = & \underset{\text{Driftstrom}}{\sum\limits_{\alpha = 1}^N |q_\alpha| n_\alpha \mu_\alpha \vec E} & - \underset{\text{Diffusionsstrom}}{\sum\limits_{\alpha = 1}^N q_\alpha D_\alpha \nabla n_\alpha} + \\[2em] + & \underset{\text{Halleffekt}}{\sum\limits_{\alpha = 1}^N \sigma_\alpha R_\alpha^H \vec \j_\alpha \times \vec B} & \underset{\text{Seebeck}}{-\sum\limits_{\alpha = 1}^N \sigma_\alpha P_\alpha \nabla T} \end{array}
+	}\\
+	$-\sum\limits_{\alpha = 1}^N \sigma_\alpha P_\alpha \nabla T$
+	
+	%$\sum\limits_{\alpha = 1}^N \sigma_\alpha R_\alpha^H \vec \j_\alpha \times \vec B
+	
+	
+	\section{Kompaktmodelle}
+	Modellierung als Netzwerk ohne Wellenausbreitung. Vorraussetzungen:\\
+	\begin{description}
+		\item[Knoten:] ideal leitend, überall gleiches Potential.\\
+		\item[Zweige:] flusserhaltend, gerichtete Spannung.\\
+	\end{description}
+	
+	
+		\subsection{Kirchoffsche Gesetze}
+		\boxed{ \sum U_i = U_{\ir ind} } \qquad \boxed{ \sum I_i = - \dot Q_K }\\
+	
+	
+		\subsection{Mehrelektroden Kondensatoranordnung}
+		Finde $N+1$ Grundlösungen $\Phi_i(\vec r)$ zum V-RWP mit $\Phi_k \Big|_{\partial \Omega_l} = \delta_{kl}$\\
+		Gewichtete Superposition: \boxed{ \Phi(\vec r) = \sum\limits_{k = 0}^N V_k \Phi_k(\vec r) }\\
+		$\sum_{l = 1}^N \Phi_l = 1$\\
+	
+	
+		\boxed{c_{kl} = \int\limits_{\Omega} \nabla \Phi_k \varepsilon \nabla \Phi_l \diff^3 r }\\
+		$\ma C$ ist symmetrisch, positiv semi-definit, nicht invertierbar.\\
+
+		$W_{\ir el} = \sum\limits_{k,l = 0}^N \frac{1}{2} V_k C_{kl} V_l = \frac{1}{2} \vec V^\top \ma C \vec V$\\
+		\boxed{ \vec Q = \ma C \vec V \qquad \frac{\partial W_{\ir el}}{\partial V_k} = Q_k \qquad \frac{\partial^2 W_{\ir el}}{\partial V_k \partial V_l} = C_{kl} }\\ 
+		Nullraum des Potentials hat die Dimension 1 $\Ra \ma C$ ist nicht invertierbar!\\
+		Zeilen- und Spaltensumme ist Null!\\
+		
+		
+	\begin{tabular*}{\columnwidth}{@{\extracolsep\fill}ll@{}} \trule
+		Kapazität & Induktivität\\
+		$\vec Q = \ma C \vec U$ & $\vec \Phi_M = \ma L \vec i$\\
+		$W_{\ir el} = \frac{1}{2} \vec V^\top \ma C \vec V$ & $W_{\ir mag} = \frac{1}{2} \vec I^\top \ma L \vec I$\\
+	\end{tabular*}\\
+	\boxed{ W_{\ir mag} = \frac{1}{2} \int\limits_{\R^3} \vec j \cdot \vec A \diff^3 r }	
+
+
+
+\section{Komplexe Wechselstromrechnung}
+	Vorraussetzung: lineares, eingeschwungenes System mit sinusförmiger Erregung $x(t) = \hat x \cdot \cos(\omega t + \varphi)$
+	Effektivwert $X = \frac{\hat x}{\sqrt{2}}$\\
+	\framebox[\columnwidth]{
+	\begin{tabular}{ll}	
+		Reeles Zeitsignal: &\!\!\!\!\!\! $x(t) = \hat x \cdot \cos(\omega t + \varphi_x)$\\[0.5em]
+		Effektiver Zeiger: &\!\!\!\!\!\! $\cx X = X_w + \i X_b = X \exp(\i \varphi_x)$\\[0.5em]
+		Scheitel Zeiger: &\!\!\!\!\!\! $\boldsymbol{\hat X} = \sqrt{2} \cx X = \hat X \exp(\i \varphi_x)$\\[0.5em]
+		Kompl. Zeitsignal: &\!\!\!\!\!\! $\cx x(t) = \boldsymbol{\hat X} \cdot e^{\i \omega t} = \hat x \cdot e^{\i(\omega t + \varphi_x)}$\\[0.5em]
+		Phase: &\!\!\!\!\!\! $\varphi_x := \arg \cx X = \arctan\!2\ \frac{X_b}{X_w}$\\
+	\end{tabular} }	\\
+	\framebox[\columnwidth]{
+		\begin{tabular}{l@{\hspace{4em}}l}
+		$\underset{\text{Impedanz}}{\cx Z(j\omega)} = \underset{\text{Resistanz}}{R(j\omega)} + \underset{\text{Reaktanz}}{jX(j\omega)}$ & $\cx U = \cx Z \cdot \cx I$\\[1em]
+		$\underset{\text{Admittanz}}{\cx Y(j\omega)} = \underset{\text{Konduktanz}}{G(j\omega)} + \underset{\text{Suszeptanz}}{jB(j\omega)}$ & $\cx I = \cx Y \cdot \cx U$\\
+		\end{tabular}
+	}
+	\boxed{\Delta \varphi = \varphi_u - \varphi_i }\\
+	\\
+	\boxed{ p(t) = \underbrace{\frac{1}{2} \hat U \hat I \cos(\varphi_u - \varphi_i)}_{P_m = \text{Eff. Leistungsmittel}} - 
+		\underbrace{\frac{1}{2} \hat U \hat I \cos(2 \omega t + \varphi_u + \varphi_i)}_{\text{Schwingung um } P_m} }
+	$\cx P = \cx U \cxc I = \cx Z \cx I \cxc I$\\
+	$P_W = U I \cos(\Delta \varphi)$ 
+	
+
+	\subsection{Grundlagen Wechselstromlehre}
+	periodische, sinusförmige Strom- \& Spannungsverläufe:\\
+	\begin{itemize}
+		\item Transformierbarkeit(Energieübertragung) 
+		\item Modulierbarkeit (Informations- und Nachrichtentechnik)
+		\item Anpassung an Generatoren und Motoren
+	\end{itemize}
+	$\varphi(t) = \omega t + \varphi_0$ 
+
+
+
+% .:: Elektromagnetische Wellen
+%=======================================================================
+\section{Elektromagnetische Wellen}
+Transportieren Feldenergie mit Lichtgeschwindigkeit. $\varepsilon \mu c^2 = 1$\\ 
+Unendliche Ausbreitung mit Lichtgeschwindigkeit ohne Medium.\\
+Wechselwirkung mit der Materie.\\
+Frequenzabhängigkeit von $\varepsilon(\omega),\mu(\omega),\sigma(\omega)$\\
+Annahmen: $\rho = 0$ außer bei Antennen, keine thermischer Strom.\\
+
+	\subsection{Beschreibung}
+	6-Komponentiges, elektromagnetisches Wellenfeld:\\
+	\boxed{ \mat{ \varepsilon \mu \frac{\partial^2}{\partial t^2} + \mu \sigma \frac{\partial}{\partial t} - \lpo } \vect{ \vec E \\ \vec H } = \vect{ - \nabla \left(\frac{\rho_0}{\varepsilon}\right) - \mu \dot{\vec j}_0 \\ \rot \vec j_0 } }\\
+	Notwendig, aber nicht hinreichend für Maxwellsche Gleichungen. ($\varepsilon \div \vec E = \rho, \div \vec H = 0$)\\
+	\\
+	4-Komponentiges, elektromagnetisches Potential (falls $\sigma = 0$):\\
+	\boxed{\left(\Delta - \varepsilon\mu \frac{\partial^2}{\partial t^2}\right) \vect{\Phi \\ \vec A} = - \vect{\frac{\varrho}{\varepsilon} \\ \mu \vec j }}
+
+	Harmonische, ebene EM Wellen ($\sigma = 0$)\\
+	$\vec E(\vec r,t) = E_{01} \cos(\vec k \vec r - \omega t - \phi_1) \vec e_1 + E_{02} \cos(\vec k \vec r - \omega t - \phi_2) \vec e_2$\\
+	$\vec E(\vec r,t) = \vec E_0 \cos(\vec k \vec r - \omega t - \phi_0)$\\
+	$\vec H(\vec r,t) =\frac{\vec k}{\mu \omega} \times \vec E(\vec r,t)$\\
+	$\omega = c \norm{\vec k}$ \qquad $\varepsilon \mu c^2 = 1$ \qquad $\lambda \norm{\vec k} = 2\pi$\\
+
+	$\norm{\vec E} = Z \norm{\vec H}$ \qquad $Z = \sqrt{\frac{\mu}{\varepsilon}}$\\
+	$\vec S = w_{\ir em} c \vec n$\\
+
+	Ellipsengleichung:\\
+	$\left(\frac{E_1}{E_{01}}\right)^2 + \left(\frac{E_2}{E_{02}}\right)^2 - 2\left(\frac{E_1}{E_{02}}\right)\left(\frac{E_1}{E_{02}}\right) \cos(\phi_{02} - \phi_{01}) = \sin^2(\phi_{02} - \phi_{01})$\\
+	Linear: $\phi_{02} - \phi_{01} = n\pi$ \qquad $\frac{E_1}{E_{01}} = \pm \frac{E_2}{E_{02}}$\\
+	Kreis: $\phi_{02} - \phi_{01} = (n+\frac{1}{2}) \pi \ \land \ E_{01} = E_{02}$ \qquad $\left(\frac{E_1}{E_{01}}\right)^2 + \left(\frac{E_2}{E_{02}}\right)^2$\\
+
+	$\hat{\cx E}(\cx z,t) = \vec e_x \hat A(e^{\i(\omega t - k \cx z)} + \hat r(e^{\i(\omega t + k \cx z)})$\\
+
+	$\tilde{\cx \varepsilon}(\omega) = \varepsilon(\omega) + \i \frac{\sigma(\omega)}{\omega}$\\
+	$\tilde{\cx k}(\omega) = \underset{\text{Phasenmaß}}{\beta(\omega)} + \i \underset{\text{Dämpfungsmaß}}{\alpha(\omega)}$\\
+	
+	\begin{description}
+		\item[statisch:] Keine Veränderung über die Zeit $\frac{\partial}{\partial t} = 0$
+		\item[stationär:] zeitliche Veränderung, aber keine Wellenausbreitung
+		\item[Quasi-Stationär:] Zeitliche Veränderungen sind so langsam, dass sie als statisch angenommen werden $\frac{\partial}{\partial t} \approx 0$
+		\item[Normalgebiet:] zusammenhängend, beschränkt, mit glattem lipschitstetigem Rand
+		\item[Lipschitstetig:] irgendwas zwischen stetig und differenzierbar
+	\end{description}
+	$\mathcal L_2(\Omega) = \iset{f:\Omega \ra \C}{\int_\omega |f(\vec r)|^2 \diff^3 \vec r < \infty }$\\
+	
+	
+	% Komplexe Wechselstromrechnung in der Prüfung!
+	
+	% Riemansche Zahlenkugel
+	% Elektrische und Magnetische Felder können gesättigt werden!
+	% Modell = kein Naturgesetz
+	% Konforme Abbildung aus der Funktionentheorie zur Lösung der Poisson-Gleichung
+	% r' ist r_0 also der Vektor vom Ursprung zur Ladung
+	% Lipschitstetig ist irgendwas zwischen stetig und differenzierbar
+	% IM vierdimensionen/quantenmachanik muss ein minus in den pythagoras
+	% Ladung ist erste Komponente eines 4 dim Stromvektors
+	%Minkovski Diagramm im Minkovski Raum
+	%$\ma F^{\mu\nu} = \mat{0 & -\vec E_x & -\vec E_y & -\vec E_z \\ \vec E_x & 0 & - \vec B_z & \vec B_y \\ \vec E_y & \vec B_z & 0 & -\vec B_x \\ \vec E_z & -\vec B_y & \vec B_x & 0}$
+
+
+
+
+
+
+%URI-QCU-PhiLI
+
+% Zitate:
+% Welche Vorraussetzungen müssen erfüllt sein, damit der Nossek funktioniert?
+% Chemiker basteln Medikamente zusammen
+% Die Ingenieure und die Maschinenbauer...
+
+% Ende der Spalten
+\end{multicols}
+
+% Dokumentende
+% ======================================================================
+\end{document}
+
+% ToDos:
+% Leistungsdichte Vorzeichen
+% Poynting-Vektor
+% Energiebilanz elmag. Feld
+% Leistungsfluss und Leistung
+% Elektromagnetische Stromdichte
+% Gleichung 1.46 & 1.48
+% Gleichung 1.52 & 1.53 & 1.54 & 1.55 & 1.56 & 1.58
+% Maxwellgleichungen in Potentialdarstellung
+% 2. Poissongleichung
+% EuM Schema
+% Randwertproblem der Potentialtheorie
+% Tabelle mit wichtigen Greenfunktionen
+

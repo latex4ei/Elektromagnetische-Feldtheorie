@@ -1,0 +1,1085 @@
+\documentclass[]{article}
+\usepackage[a6paper]{geometry}        % DIN-A4 Größe des Papiers; sollte mit der Ausdehnung des Textes in documetnclass übereinstimmen
+\geometry{a6paper,left=5mm,right=5mm, top=0.3cm, bottom=0.1cm,landscape,includefoot}
+\usepackage[utf8x]{inputenc}          % Zeichenkodierung UTF-8 falls Probleme wegen utf8 auftreten, utf8 durch utf8x ersetzen
+\usepackage[ngerman]{babel}          % Deutsche Sprache und Silbentrennung
+\usepackage{amsmath}            % erlaubt mathematische Formeln
+\usepackage{amssymb}            % Verschiedene Symbole
+\usepackage{amstext}
+\usepackage{graphicx}
+\usepackage{rotating}
+\usepackage{paralist}
+\usepackage{enumitem}
+\usepackage{array}         
+\usepackage{hyperref}
+\usepackage{boxedminipage}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{chemfig}
+\usepackage{multicol}  
+\usepackage{enumitem}
+\setlength{\parindent}{0pt}
+\usepackage{fancyhdr} %Paket laden
+\pagestyle{fancy}
+\fancyhf{}   
+   \renewcommand{\headrulewidth}{0.0pt} %obere Linie ausblenden
+   \renewcommand{\footrulewidth}{0.1pt} %obere Linie ausblenden
+\fancyfoot[C]{\tiny Katharina Krusche - Elektromagnetische Feldtheorie - \thepage}
+\fancyfoot[R]{\tiny Stand: \today \qquad \thepage}
+\fancyfoot[L]{\tiny www.latex4ei.de}
+\let\Bminipage\boxedminipage
+\renewcommand\boxedminipage[2][black]{\color{#1}\Bminipage[c]{#2}\color{black}}
+\let\endBminipage\endboxedminipage
+\renewcommand\endboxedminipage{\endBminipage}
+  \newcommand{\N}{\ensuremath{\mathbb N}}
+  \newcommand{\R}{\ensuremath{\mathbb R}}
+  \newcommand{\C}{\ensuremath{\mathbb C}}
+  \newcommand{\Z}{\ensuremath{\mathbb Z}}
+  \newcommand{\K}{\ensuremath{\mathbb K}}
+  \newcommand{\F}{\ensuremath{\mathbb F}}
+  \newcommand{\B}{\ensuremath{\mathbb B}}  
+  \newcommand{\G}{\ensuremath{\mathbb G}}
+  \newcommand{\Q}{\ensuremath{\mathbb Q}}
+        % Zeichenkodierung UTF-8 falls Probleme wegen utf8 auftreten, utf8 durch utf8x ersetzen
+\newcommand{\dd}{\ensuremath{\text{d}}}
+\renewcommand{\baselinestretch}{1.5}
+
+\newcolumntype{C}[1]{>{\centering}p{#1}} 
+
+%---------------------------------------------------------------------------------------------------------------------------------------------------------------%
+\begin{document}
+\section{Klassische Kontinuumstheorie des Elektromagnetismus in materiellen Medien}
+\subsection{Maxwellsche Gleichungen-Naturgesetze}
+	\begin{center}
+		\begin{boxedminipage}[cyan]{8cm}
+			$\text{div} \ \vec{D}= \rho$\qquad 
+			\\$\text{rot}\ \vec{E}=-\frac{\partial \vec{B}}{\partial t}$\qquad "`Faradaysches Induktionsgesetz"
+			\\$\text{div} \ \vec{B}=0$
+			\\$\text{rot} \ \vec{H}= \vec{j}+ \frac{\partial \vec{D}}{\partial t}$\qquad "`Ampère-Maxwellsches Gesetz"
+		\end{boxedminipage}
+	\end{center}
+$\Rightarrow$ Elektrische Felder
+	\begin{itemize} 
+		\item elektrische Ladungsverteilung $\rho$ (quasi-statisch) 
+		\item schnell zeitveränderliches Magnetfeld $\frac{\partial \vec{B}}{\partial t}$ (magnetische Induktion)
+	\end{itemize}
+
+\newpage
+
+	$\Rightarrow$ Magnetische Felder
+	\begin{itemize}
+		\item 
+			elektrische Stromverteilung $\vec{j}$ (quasi-statisch)
+		\item 
+			schnell zeitveränderliches elektrisches Feld  $\frac{\partial \vec{D}}{\partial t} $("`elektrische Induktion" $\bumpeq$ Verschiebungsstrom)
+	\end{itemize}
+	
+	Außer bei rein statischen Feldern ($\frac{\partial \vec{B}}{\partial t}=0 \ \text{und} \ \frac{\partial \vec{D}}{\partial t}=0$) fasst man $\vec{E}$ und $\vec{H}$ zusammen als "`elektromagnetisches Feld" 
+	\\\textcolor{cyan}{\underline{Materialgleichungen- phänomenologische Modellgleichungen}}
+	
+	\begin{center}
+		\begin{boxedminipage}[cyan]{3cm}
+			\begin{center}
+				$\vec{D}= \epsilon \vec{E}$\\
+				$\vec{B}=\mu \vec{H}$\\
+				$\vec{j}= \sigma \vec{E}$
+			\end{center}
+		\end{boxedminipage}
+	\end{center}
+
+\newpage
+
+\subsection{Energie von elektromagnetischen Feldern}
+\subsubsection{Elektrische Energiedichte}
+	elektrische Energie $W_{el}$ die im elektrischen Feld einer 
+	
+	\begin{itemize}
+		\item  
+			\textcolor{magenta}{diskreten Ladungsverteilung} gespeichert ist: 
+			\begin{displaymath}
+				\begin{boxedminipage}[magenta]{5cm}
+					$W_{el}=\frac{1}{2} \frac{1}{4\pi \epsilon} \sum_{\substack{{i \not=k}\\{i,k=1}}}^N \frac{q_k q_i}{|\vec{r}_k-\vec{r}_i|}$
+				\end{boxedminipage}
+			\end{displaymath}
+			
+		\item 
+			\textcolor{blue}{kontinuierlichen Ladungsverteilung} $\rho (r)$ gespeichert ist: 
+			\begin{displaymath}
+				\begin{boxedminipage}[blue]{6cm}
+					$W_{el}=\frac{1}{2} \frac{1}{4\pi \epsilon} \int_V \int_V\frac{\rho (\vec{r}) \rho (\vec{r}\ ')}{|\vec{r}-\vec{r}\ '|} d^3 r \ d^3 r'$
+				\end{boxedminipage}
+			\end{displaymath}
+	\end{itemize}
+	
+	kleine Änderung bei Ladungsdichte $\delta \rho (\vec{r})$ bewirkt kleine Änderung bei Feldenergie $\delta W_{el}$. Es gilt $F(\alpha):= W_{el}[\rho + \alpha \delta \rho]$
+
+\newpage
+
+	\textcolor{magenta}{\underline{1. Variation von $W_{el}$ bezüglich $\delta \rho$}:}
+	\\
+		\begin{boxedminipage}[magenta]{6cm}
+			$\delta W_{el}[\rho, \delta \rho]:=\frac{d}{d\alpha} \ W_{el}[\rho + \alpha \delta \rho]\bigg\vert_{\alpha=0}$
+		\end{boxedminipage}
+
+	mit dem elektrostat. Potential $\phi(\vec{r})= \frac{1}{4\pi \epsilon} \int_V \frac{\rho(\vec{r}\ ')}{\vec{r}\ ' - \vec{r}} d^3 r'$ erhält man nach Umformungen: 	
+	
+	\begin{displaymath} 
+		\fbox{$\delta W_{el} = \int_V \phi (\vec{r}) \ \delta \rho (\vec{r}) \ d^3 r$}
+	\end{displaymath}
+	
+	Wegen 
+		\begin{boxedminipage}[yellow]{9cm}
+			\begin{itemize}
+				\item 
+					div $\delta \vec{D}=\delta \rho$
+				\item 
+					$\vec{E}=-\nabla \phi$
+				\item 
+					$\delta \rho$ sei eingeschlossen in einer Kugel K $(\vec{0},R)$ 
+			\end{itemize} 
+		\end{boxedminipage}
+
+	\ \\ folgt für R $\rightarrow$ $\infty$: \qquad\fbox{$ \delta W_{el} = \int_{\mathbb R^3} \vec{E} \cdot \delta \vec{D}\ d^3 r$}
+
+\newpage
+
+	Es wird angenommen, dass das elektrische Feld eine Energiedichte $\omega_{el}(\vec{r})$ mit sich trägt für die gilt: $W_{el}=\int_{\R^3} \omega_{el}(\vec{r})\dd^3 r$ 
+	\\\textcolor{green}{$\Rightarrow$ lokale differentielle Änderung der Energiedichte des elektrischen Feldes:}
+
+	\begin{center}
+		\begin{boxedminipage}[green]{3cm}
+			$\delta \omega_{el}=\vec{E}\cdot \delta \vec{D}$
+		\end{boxedminipage}
+	\end{center}
+
+	\textcolor{cyan}{$\Rightarrow$ (lokale)  Energiedichte des elektrischen Feldes:}
+	
+	\begin{center}
+		\begin{boxedminipage}[cyan]{6cm}
+			\begin{displaymath}
+				\omega_{el}=\underbrace{\int\limits_{\vec{0}}^{\vec{D}}\vec{E}(\vec{D}')\cdot \dd \vec{D}'}_{\text{Wegintegral  im} \vec{E}-\vec{D}-\text{Raum}}
+			\end{displaymath}
+		\end{boxedminipage}
+	\end{center}
+	
+	\textcolor{magenta}{$\Rightarrow$ Im Falle eines streng linearen Dielektrikums $\vec{D}=\epsilon\vec{E}$, $\epsilon=$ const.:}
+
+	\begin{center}
+		\begin{boxedminipage}[magenta]{6cm}
+			\begin{displaymath} 
+				\omega_{el}=\frac{1}{2\epsilon}{\vec{D}^2}= \frac{\epsilon}{2} \vec{E}^2=\frac{1}{2}\vec{E}\cdot \vec{D}
+			\end{displaymath}
+		\end{boxedminipage}
+	\end{center}
+
+\newpage
+\subsubsection{Magnetische Energiedichte}
+	Die magnetische Energie $W_{mag}$ kann wegen des Verschiebungsstroms im Ampèreschem Gesetz nicht entkoppelt von $W_{el}$ im $\vec{D}$-Feld betrachtet werden:
+	
+	\begin{itemize}
+		\item 
+			\textcolor{magenta}{diskrete Ladungen} $q_k$ auf Bahnkurve $\vec{r}_k(t)$ mit $v_k(t)$; Zufuhr elmagn. Leistung :
+			\begin{displaymath}
+				\begin{boxedminipage}[magenta]{9cm}
+					$P_{elmag}=\sum\limits_{k=1}^{N} q_k \vec{v}_k\cdot \vec{E}(\vec{r_k})= - \text{mechanische Leistung}	$
+				\end{boxedminipage}
+			\end{displaymath}
+				
+		\item 
+			\textcolor{blue}{kontinuierliche Stromverteilung} $\vec{j}(\vec{r})=\rho (\vec{r})\vec{v}(\vec{r})$ mit Substitutionsregel: 
+			\begin{displaymath}
+				\begin{boxedminipage}[blue]{5cm}
+					$P_{elmag}=- \int\limits_V  \vec{j}(\vec{r})\cdot \vec{E}(\vec{r})\dd^3 r$
+				\end{boxedminipage}
+			\end{displaymath}
+	\end{itemize}
+	
+	Mit Hilfe des Ampèreschen Gesetzes kann $\vec{j} $ eliminiert werden. 
+	\begin{displaymath}
+		P_{elmag}=- \int\limits_V  rot \vec{H}\cdot \vec{E}\dd^3 r+
+		\underbrace{\int\limits_V   \vec{E}\cdot\frac{\partial\vec{D}}{\partial t}\dd^3 r }_{=\frac{\dd W_{el}}{\dd t} (\text{Änderung des rein elektr. Energiegehalts})}
+	\end{displaymath}
+	
+\newpage
+
+	\textcolor{violet}{$\Rightarrow$ $-\int\limits_V  \text{rot} \vec{H} \cdot \vec{E} \dd^3 r= \frac{\dd W_{el}}{\dd t}+$ Energiefluss aus System durch Berandung $\partial$V}
+	\\Mit div $(\vec{E}\times\vec{H})$ $ =\nabla\cdot (\vec{E}\times\vec{H})$$=-\frac{\partial \vec{B}}{\partial t} \cdot \vec{H}- \text{rot} \vec{H}\cdot \vec{E}$ = rot $\vec{E}\cdot \vec{H}- \text{rot} \vec{H}\cdot \vec{E}$ gilt:
+	\begin{displaymath}
+		-\int\limits_V  \text{rot} \vec{H} \cdot \vec{E} \ \dd^3 r= \int\limits_V  \frac{\partial \vec{B}}{\partial t} \cdot \vec{H} \ \dd^3 r + \int\limits_{\partial V} (\vec{E}\times\vec{H}) \ \dd \vec{a}
+	\end{displaymath}
+
+	Wählt man für V eine Kugel $K(\vec{0},R)$ um den Ursprung mit Radius R, mit $R \rightarrow \infty$ gilt:		
+	\begin{displaymath}
+		\begin{boxedminipage}[violet]{\textwidth}
+			$P_{elmag}= \underbrace{\frac{\dd W_{el}}{\dd t}}_{\parbox{2cm}{\tiny{Zeitableitung der elektr. Feldenergie}}}+\underbrace{\frac{\dd W_{mag}}{\dd t}}_{\parbox{2cm}{\tiny{zeitliche Änderung der gesuchten magn. Feldenergie}}}+\underbrace{\lim_{R\rightarrow \infty} \int\limits_{|\vec{r}|=R} (\vec{E}\times \vec{H})\  \dd \vec{a}}_{\text{Leistungsfluss durch Kugeloberfläche nach außen im Limes}}$
+		\end{boxedminipage}
+	\end{displaymath}
+	
+	\textcolor{cyan}{für lokalisierte Ladungen/Ströme gilt für asymptotisches Verhalten der erzeugten Felder:} \textcolor{cyan}{$|\vec{E}|\sim \frac{1}{R^n}$ und $|\vec{H}|\sim \frac{1}{R^m}$} mit $\left\{\begin{array}{ll} n=2 \ \& \ m=3 &\text{im quasistatischen Fall } \\
+         n=m=1  & \text{im dynamischen Fall}\end{array}\right.$
+	\\Oberfläche von $\partial K(\vec{0},R)$ wächst mit $R^2$ deshalb gilt:
+	\\$\lim_{R\rightarrow \infty} \int\limits_{|\vec{r}|=R} (\vec{E}\times \vec{H})\  \dd \vec{a}=\left\{\begin{array}{ll} 0  &\text{quasistatischer Fall}\\\text{total abgestrahlte Leistung} &
+          \text{dynamischen Fall}\end{array}\right.$
+
+\newpage
+
+ 	Diff. Änderung der gesamten magn. Feldenergie beträgt 
+	\fbox{$\delta W_{mag}=\int\limits_{\R^3}\vec{H}(\vec{r})\cdot \delta \vec{B}(\vec{r})\ \dd^3 r$}
+	\\\textcolor{green}{$\Rightarrow$ differentielle Änderung der Energiedichte des magnetischen Feldes:}
+
+	\begin{center}
+		\begin{boxedminipage}[green]{3cm}
+			$\delta \omega_{mag}=\vec{H}\cdot \delta \vec{B}$
+		\end{boxedminipage}
+	\end{center}
+	
+	\textcolor{cyan}{$\Rightarrow$  Energiedichte des magnetischen Feldes:}
+
+	\begin{center}
+		\begin{boxedminipage}[cyan]{6cm}
+			\begin{displaymath}
+				\omega_{mag}=\underbrace{\int\limits_{\vec{0}}^{\vec{B}}\vec{H}(\vec{B}')\cdot \dd \vec{B}'}_{\text{Wegintegral  im} \vec{H}-\vec{B}-\text{Raum}}
+			\end{displaymath}
+		\end{boxedminipage}
+	\end{center}
+	
+	\textcolor{magenta}{$\Rightarrow$ Im Falle eines streng linearen magnetisierteren Materials mit $\vec{B}=\mu \vec{H}, \mu = const.:$}
+
+	\begin{center}
+		\begin{boxedminipage}[magenta]{8cm}
+			\begin{displaymath} 
+				\omega_{mag}=\mu \int\limits_{\vec{0}}^{\vec{H}}\vec{H}'\cdot \dd \vec{H}'=\frac{\mu}{2}{\vec{H}^2}= \frac{1}{2}\vec{H}\cdot \vec{B}=\frac{1}{2\mu}\vec{B}^2
+			\end{displaymath}\
+		\end{boxedminipage}
+	\end{center}
+
+\newpage
+
+\subsubsection{Allgemeine Bilanzgleichung}
+	\textcolor{blue}{extensive physikalische Größe X}= Größe, die eine Volumendichte $x(\vec{r},t)$ besitzt, dass zu jedem beliebigen räumlichen Gebiet V der darin enthaltene \textcolor{blue}{Mengeninhalt $X(V)=\int\limits_V x(\vec{r},t) \ \dd^3 r$ } bestimmt werden kann. 
+		\begin{multicols}{2}
+		Beispiele sind \\
+			\begin{tabular}{|C{1,4cm}C{1cm}|C{1,8cm}C{1cm}|} 
+				\hline Größe & $X$ & Volumendichte & $x$ 
+				\tabularnewline	
+				\hline Ladung &$Q$ & Ladungsdichte& $\rho_{el}$
+				\tabularnewline
+				Masse &$M$&Massendichte &$\rho_M$
+				\tabularnewline
+				Teilchenzahl& N &Konzentration& n
+				\tabularnewline
+				Energie&$W_{el,mag}$&Energiedichte &$	\omega_{el,mag}$
+				\tabularnewline
+				\hline
+			\end{tabular}
+		\columnbreak
+
+		Die extensive Größe X besitzt eine 
+		\\\textcolor{magenta}{Stromdichte $\vec{J}_x(\vec{r},t)$}. 
+		\\Das Skalarprodukt $\vec{J}_x\cdot \dd\vec{a}$ gibt Menge von X an, die pro Zeiteinheit die Kontrollfläche $\dd\vec{a}=\vec{N} \dd a$ in Normalrichtung passiert.
+	\end{multicols}
+	
+	 Das \textcolor{green}{Flussintegral $\int\limits_{\partial V} \vec{J}_x \cdot \dd \vec{a}$} aus Kontrollvolumen V durch geschlossene Oberfläche $\partial V$ pro Zeiteinheit nach außen strömende Menge von X.
+	\textcolor{orange}{Produktionsrate $\prod_x (\vec{r},t)$ }gibt an welche Menge der Größe X pro Volumen- und Zeiteinheit erzeugt ($>0$) oder vernichtet ($<0$)wird.
+
+\newpage
+
+	$X(V)$ kann sich nur ändern durch Zufluss/Abfluss durch Hüllfläche $\partial V$ oder durch Erzeugung/Vernichtung innerhalb von V 
+	
+	\begin{itemize}
+		\item[$\Rightarrow$] 
+			\textcolor{blue}{Bilanzgleichung in integraler Form: \fbox{$\frac{\dd X(V)}{\dd t}=\int\limits_V \frac{\partial x}{\partial t}(\vec{r},t) \ \dd^3 r= -\int\limits_{\partial V} \vec{J}_x\ \dd \vec{a} + \int\limits_V \prod_x \ \dd^3 r$}}
+		\item[$\Rightarrow$] 
+			\textcolor{magenta}{Bilanzgleichung in differentieller Form: \fbox{$\frac{\partial x}{\partial t}=-\text{div} \vec{J}_x+\prod_x$}}
+	\end{itemize}
+	
+	Wichtige Beispiele für Bilanzgleichungen:
+	
+	\begin{itemize}
+		\item 
+			Ladungerhaltung
+		\item 
+			Teilchenbilanz im Halbleiter
+		\item 
+			\textcolor{green}{Energiebilanz für das elektromagnetische Feld: \fbox{$\frac{\partial \omega_{elmag}}{\partial t}+\text{div} \ \vec{J}_{elmag}= \prod_{elmag}$}} mit 
+		
+		\begin{itemize}
+			\item 
+				$\omega_{elmag}=\omega_{el}+\omega_{mag}$= Energiedichte
+			\item 
+				$\vec{J}_{elmag}=$ zugehörige Leistungsflussdichte
+			\item 
+				$\prod_{elmag}=$ dem Feld zugeführte Leistungsdichte
+		\end{itemize} 
+	\end{itemize}
+
+\newpage
+
+ 	mit der zugeführten \textcolor{violet}{Leistungsdichte : $		\prod_{elmag}=-\vec{j}\cdot \vec{E}$} und  Umformungen 		erhält man:
+	
+	\begin{center}
+		\begin{boxedminipage}[magenta]{8cm}
+			\begin{displaymath} 
+				\vec{E}\cdot \frac{\partial \vec{D}}{\partial t}+\vec{H}\cdot \frac{\partial \vec{B}}{\partial t}+ \text{div} \ \vec{J}_{elmag}=-\vec{j}\cdot \vec{E}
+			\end{displaymath}
+		\end{boxedminipage}
+	\end{center}
+	
+	Aus den vorherigen Gleichungen lässt sich schließen, dass gilt: div $(\vec{E}\times \vec{H})=$ div $\vec{J}_{elmag}$
+	$\Rightarrow$ $\vec{J}_{elmag}=\vec{E}\times \vec{H}+\vec{S}_0$ mit additivem quellenfreiem Vektorfeld $\vec{S}_0$ und div$\vec{S}_0=0$
+	\\Der \textcolor{cyan}{Poynting-Vektor $\vec{S}=\vec{E}\times \vec{H}$} lässt sich als elektromag. Leistungsflussdichte interpretieren, wenn $\vec{E}$ und $\vec{H}$, die miteinander gekoppelten Komponenten eines dyadischen elektromagnetischen Feldes bilden, das von einer dynamischen Quelle erzeugt wird, bei der dieselben bewegten Ladungen sowohl das $\vec{E}$-Feld als auch das  $\vec{H}$-Feld erzeugen. (Typischerweise bei elektromagnetischen Wellen).
+
+\newpage
+
+\subsection{Potentialdarstellung des elektromagnetischen Feldes}
+\subsubsection{Elektromagnetisches Vektor- und Skalarpotential}
+	Vektorfeld $\vec{U}(\vec{r})$ besitzt ein Vektorpotential $\vec{V}(\vec{r})$, wenn es ein differenzierteres Vektorfeld $\vec{V}(\vec{r})$ gibt mit: 
+	$$\vec{U}(\vec{r})= \text{rot} \vec{V}(\vec{r}) \Rightarrow\text{div}\vec{U}=0$$
+	In "`sternförmigen" Gebieten gilt auch die Umkehrung (Satz von Poincaré):
+	\\Wenn $\vec{U}(\vec{r})$ stetig differenzierter ist mit div $\vec{U}=0$, dann existiert ein Vektorpotential $\vec{V}(\vec{r})$  mit $\vec{U}= \text{rot}\vec{V}$.
+	\\Alle Vektorpotentiale zu $\vec{U}= \text{rot}\vec{V}$ haben die Form 
+	\\
+	
+	\begin{boxedminipage}[cyan]{\textwidth}
+		$$\vec{V}'=\vec{V}-\text{grad}\chi(\vec{r})$$ 
+	\end{boxedminipage}
+
+	Überall definiertes Vektorfeld $\vec{A}(\vec{r},\vec{t})$ - das elektromagnetisches Vektorpotential - mit 
+	\\
+	\begin{boxedminipage}[magenta]{\textwidth}
+		$$\vec{B}(\vec{r},t)=\text{rot}\vec{A}(\vec{r},t)$$
+	\end{boxedminipage}
+	
+	Es existiert ein Skalarfeld $\Phi (\vec{r},t)$ - das \textcolor{magenta}{elektromagnetisches skalares Potential} - mit \textcolor{magenta}{$$\vec{E}+\frac{\partial \vec{A}}{\partial t}=-\text{grad}\Phi$$}
+	Wird das Vektorpotential gemäß $\vec{A}'=\vec{A}-\vec{\nabla}\chi$ "`umgeeicht", so muss das skalare Potential transformiert werden. Daher muss gelten: \textcolor{blue}{\fbox{$\Phi'(\vec{r},t)= \Phi(\vec{r},t)+\frac{\partial \chi}{\partial t}(\vec{r},t)$}}
+
+\subsubsection{Maxwellsche Gleichungen in Potentialdarstellung}
+	Man hat nun ein 4-Komponentiges partielles Differenzialgleichungssystem für die Unbekannten $(\Phi, \vec{A})$ bei gegebenen Quellen $\rho$ und $\vec{j}$
+	
+	\begin{boxedminipage}[green]{\textwidth}
+		$$\text{div}(\epsilon\nabla\Phi)+\frac{∂}{∂t}\text{ div}(\epsilon\vec{A})=-\rho$$
+		$$\text{rot}(\frac{1}{\mu}\text{rot}\vec{A})+\epsilon \frac{∂^2\vec{A}}{∂t^2}+\epsilon \nabla(\frac{∂\Phi}{∂t})=\vec{j}$$
+	\end{boxedminipage}
+	
+	Ziel ist die Entkopplung dieser Gleichungen bezüglich $\vec{A}$ und $\Phi$, indem man diese  "`Eichbedingungen"' unterwirft, die durch passende Wahl der Eichfunktion $\chi$ erfüllt werden.
+
+\newpage
+
+ 	$\epsilon$ und $\mu$ seien(stückweise) räumlich konstant
+	
+	\begin{itemize}
+		\item 
+			\textcolor{magenta}{Lorenzeichung: div$\vec{A}+\epsilon\mu\frac{∂\Phi}{∂t}=0$} 
+		\begin{itemize}
+			\item[$\Rightarrow$] 
+				\textcolor{magenta}{Wellengleichung} für das \textcolor{magenta}{skalare Potential} \fbox{$\Phi$ :  \ $\Delta \Phi - \epsilon \mu \frac{∂^2\Phi}{∂t^2}=-\frac{\rho}{\epsilon}$}
+			\item[$\Rightarrow$] 
+				\textcolor{magenta}{Wellengleichung} für das \textcolor{magenta}{Vektorpotential} \fbox{$\vec{A}$ :  \ $\Delta \vec{A} - \epsilon \mu \frac{∂^2\vec{A}}{∂t^2}=-\mu\vec{j}$}
+			\item[$\Rightarrow$] 
+				Kompaktschreibweise: $\underbrace{(\Delta - \epsilon\mu \frac{∂^2}{∂t^2})}_\text{Wellenoperator}\begin{pmatrix}\Phi \\ \vec{A}\end{pmatrix}=-\begin{pmatrix}\frac{\rho}{\epsilon}\\\mu\vec{j}\end{pmatrix}$
+		\end{itemize} 
+		\item 
+			\textcolor{blue}{Coulombeichung }(optische Eichung)zielt auf eine Zerlegung des elektrischen Feldern in eine quasistatische und eine hochfrequente wellenartige Komponente 			: \textcolor{blue}{div$\vec{A}=0$}
+		\begin{itemize}
+			\item[$\Rightarrow$] 
+				\textcolor{blue}{Poissongleichung}: \fbox{div $(\epsilon\nabla\Phi)=-\rho(\vec{r},t)$}	
+				
+			\item[$\Rightarrow$] 
+				\textcolor{blue}{Wellengleichung für Vektorpotential}:\ \fbox{$\Delta \vec{A}-\epsilon\mu \frac{∂^2\vec{A}}{∂t^2}=-\mu\underbrace{(\vec{j}-\epsilon\frac{∂}{∂t}(\nabla\Phi))}_{\vec{j}_t}$}\\mit div$\vec{A}=0$ und transversaler Stromdichte $\vec{j}_t:=\vec{j}-\epsilon\frac{∂}{∂t}(\text{grad}\Phi)$$\vec{A}$ 
+		\end{itemize} 	
+	\end{itemize}
+	
+\newpage
+
+\subsection{Feldverhalten an Materialgrenzen}
+\subsubsection{Grenzflächenbedingung für die normalen Feldkomponenten}
+	Das Vektorfeld $\vec{U}$ erfülle in \textcolor{magenta}{benachbarten Gebieten $\Omega_1$ und $\Omega_2$} aus \textcolor{green}{zwei verschiedenen Materialien \textcircled{1} und \textcircled{2}} die Differentialgleichung div $\vec{U}$= $\gamma$ mit Volumendichte $\gamma(\vec{r})$
+	\\An der Grenzfläche $\Sigma$ existiert eine Grenzflächendichte $\nu(\vec{r})$. Es gilt für ein Kontrollvolumen V, das die Grenzfläche schneidet: 
+
+	\begin{boxedminipage}[blue]{\textwidth}
+		$$\int\limits_{∂V}\vec{U}\cdot \dd \vec{a}=\int\limits_{V}\gamma \dd^3 r + \int\limits_{V\cap \Sigma}\nu \dd a$$
+	\end{boxedminipage}
+	
+	Für einen Punkt $\vec{r_0}$ auf der Grenzfläche sei \textcolor{violet}{$\vec{N}(\vec{r_0})$ die Oberflächeneinheitsnormale}, die vom Material \textcircled{1} zum Material \textcircled{2} zeigt. 
+	\\ Z sei ein kleines zylinderförmiges Kontrollvolumen, dessen Stirnflächen $A_1$ und $A_2$ in $\Omega_1$ und $\Omega_2$ liegen. Der Abstand von $A_1$ und $A_2$ ist $\Delta h$= Höhe des Zylindermantels M. 
+
+\newpage
+
+ 	Es gilt: 
+
+	\begin{center}
+		\begin{boxedminipage}[red]{9cm}
+			\begin{displaymath}
+				\int\limits_{A_1} \vec{U}\dd \vec{a}+\int\limits_{A_2}\vec{U}\dd \vec{a}+\int\limits_{M}\vec{U}\dd \vec{a}=\int\limits_{Z}\gamma \dd^3 r+\int\limits_{Z \cap \Sigma} \nu \dd 
+			\end{displaymath} 
+		\end{boxedminipage}
+	\end{center}
+	
+	Für den Flächeninhalt von $|A|=Z\cap \Sigma$ gilt: $|A|=|A_1|=|A_2|$.
+	\\Umformungen durch:
+	
+	\begin{itemize}
+		\item 
+			Mittelwertsatz der Integralrechnung
+		\item 	
+			Für $\Delta h \rightarrow 0$ verschwinden: $\int\limits_{M}\vec{U}\dd \vec{a}$ und $\int\limits_{Z}\gamma \dd^3 r$
+		\item 
+			$\vec{U}_j\cdot \vec{N}(\vec{r_0}):=\lim\limits_{\vec{r}\rightarrow\vec{r_0}; \vec{r}\in \Omega_1} \vec{U}(\vec{r})\cdot \vec{N(\vec{r_0)}}$
+	\end{itemize}
+	
+	\textcolor{orange}{Sprungbedingung:}
+	
+	\begin{center}
+		\begin{boxedminipage}[orange]{6cm}
+			\begin{displaymath}
+				\vec{U}_2\cdot \vec{N}-\vec{U}_1\cdot \vec{N}=\nu \ \text{auf} \ \Sigma
+			\end{displaymath} 
+		\end{boxedminipage}
+	\end{center}
+
+\newpage
+
+ Spezialfälle:
+
+	\begin{itemize}
+		\item 
+			$\vec{U}=\vec{D}$ (dielektrische Verschiebung) mit 
+			\begin{itemize}
+				\item 
+					$\gamma=\rho=$ Raumladungsdichte
+				\item 
+					$\nu=\sigma_{int}=$ Grenzflächenladungsdichte
+					\begin{itemize}
+						\item[$\rightarrow$]
+							wenn $\sigma_{int}=0 \Rightarrow $ Normalkomponente von $\vec{D} $ ist stetig
+					\end{itemize}
+			\end{itemize}
+		\item 
+			$\vec{U}=\vec{B}$ (magnetische Induktion) 
+			\begin{itemize}
+				\item 
+					$\gamma=\nu=0$ $\rightarrow$  Normalkomponente von $\vec{B}$ ist stetig 
+			\end{itemize}
+	\end{itemize}
+
+\subsubsection{Grenzflächenbedingung für die tangentialen Feldkomponenten}
+	Das Vektorfeld $\vec{U}$ erfülle in \textcolor{magenta}{benachbarten Gebieten $\Omega_1$ und $\Omega_2$} aus \textcolor{green}{zwei verschiedenen Materialien \textcircled{1} und \textcircled{2}} die Differentialgleichung rot $\vec{U}$= $\vec{J}+\vec{V}$ mit einer stetigen Flussdichte $\vec{J}$ und einem beschränkten Vektorfeld $\vec{V}$.
+	\\An der Grenzfläche $\Sigma$ existiert eine Grenzflächenflussdichte $\vec{\nu}(\vec{r})$. Es gilt für ein Kontrollfläche A mit positiv orientierter Randkurve $C=∂A$, das die Grenzfläche schneidet: 
+	
+	\begin{boxedminipage}[blue]{\textwidth}
+		$$\int\limits_{∂A}\vec{U}\cdot \dd \vec{r}=\int\limits_{A}\vec{J} \dd \ \vec{a}+\int\limits_A \vec{V} \dd \ \vec{a} + \int\limits_{A\cap \Sigma}\vec{\nu}\cdot \vec{n} \ \dd a$$
+	\end{boxedminipage}
+	
+	Für einen Punkt $\vec{r_0}$ auf der Grenzfläche sei \textcolor{violet}{$\vec{N}(\vec{r_0})$ die Oberflächennormale}, die vom Material \textcircled{1} zum Material \textcircled{2} zeigt und \textcolor{violet}{$\vec{t}(\vec{r_0})$ ein Tangentialvektor} an $\Sigma$. 
+	\\ A sei eine kleine rechteckige Kontrollfläche, die auf der Tangentialebene senkrecht steht und $\vec{r_0}$ als Mittelpunkt hat.  Für die Kanten $\gamma_1=-\vec{t}\Delta l$, $\gamma_3=\vec{t}\Delta l$ und $\gamma_2=-\vec{N}\Delta b$, $\gamma_4=\vec{N}\Delta b$. $\gamma_2$ und $\gamma_4$ verlaufen teilweise in $\Omega_1$ und teilweise in $\Omega_2$. 
+	\\\textcolor{red}{Orientierte Oberflächennormale $\vec{n}=\vec{N}\times \vec{t}$}
+	\\Es gilt:
+	
+	\begin{center}
+		\begin{boxedminipage}[red]{9cm}
+			\begin{displaymath}
+				\sum\limits_{i=1}^{4} \int\limits_{\gamma_i} \vec{U}\dd \vec{r}=\int\limits_{A}(\vec{J}+\vec{V})\cdot \vec{n}\ \dd a+\int\limits_{\Sigma \cap A} \vec{\nu} \cdot \vec{n} \ \dd s
+			\end{displaymath} 
+		\end{boxedminipage}
+	\end{center}
+	
+\newpage
+
+ Mit Umformungen erhält man: 
+	\\\textcolor{orange}{Sprungbedingung:}
+	
+	\begin{center}
+		\begin{boxedminipage}[orange]{9cm}
+			\begin{displaymath}
+				\vec{U}_2\cdot \vec{t}-\vec{U}_1\cdot \vec{t}=\nu\cdot \vec{n} \ \text{auf} \ \Sigma
+			\end{displaymath} 
+		\end{boxedminipage}
+	\end{center}
+	
+	\begin{center}
+		\begin{boxedminipage}[orange]{9cm}
+			\begin{displaymath}
+				\vec{U}_2\cdot \vec{t}-\vec{U}_1\cdot \vec{t}= (\vec{\nu}\times \vec{N})\cdot \vec{t} \ \text{für jeden Tangentialvektor} \ \vec{t}
+			\end{displaymath} 
+		\end{boxedminipage}
+	\end{center}
+	
+	Der \textcolor{blue}{Projektor auf die Tangentialebene} lautet:
+	$$\Pi \vec{X}= -\vec{N}\times(\vec{N}\times \vec{X})$$
+	Es gelten die Äquivalenzen: 
+	
+	\begin{itemize}
+		\item 
+			$\vec{X}\cdot \vec{t}=0$ für alle $\vec{t}\perp \vec{N}$, d.h. alle Tangentialvektoren
+		\item 
+			$\Pi\vec{X}=0 \Leftrightarrow  \vec{N}\times(\vec{N}\times \vec{X})=0 \Leftrightarrow \vec{N}\times \vec{X}=0$
+	\end{itemize}
+
+\newpage
+
+ 	Es folgt für \textcolor{green}{$\vec{t}\perp \vec{N}$: }
+	
+	\begin{center}
+		\begin{boxedminipage}[green]{7cm}
+			\begin{displaymath}
+				\vec{N}\times \vec{U}_2-\vec{N}\times \vec{U}_1= \vec{\nu} \ \text{auf } \ \Sigma\end{displaymath} 
+		\end{boxedminipage}
+	\end{center}
+	
+	Spezialfälle:
+
+	\begin{multicols}{2}
+		\begin{itemize}
+			\item 
+				$\vec{U}=\vec{E}$ (elektrisches Feld) mit 
+				\begin{itemize}
+					\item 
+						$\vec{J}=0$
+					\item 
+						$\vec{V}=-\frac{∂\vec{B}}{∂t}$
+					\item 
+						$\vec{\nu}=0$
+				\end{itemize}
+			\item 
+				$\vec{U}=\vec{H}$ (Magnetfeld) mit
+				\begin{itemize}
+					\item 
+						$\vec{J}=\vec{j}$
+					\item 
+						$\vec{V}=-\frac{∂\vec{D}}{∂t}$
+					\item 
+						$\vec{\nu}=i$
+				\end{itemize}
+		\end{itemize}
+	\end{multicols}	
+
+\newpage
+
+\subsection{Das Randwertproblem der Potentialtheorie}
+\subsubsection{Randwertproblem der Elektrostatik: Rand-/Grenzflächenbedingungen}
+	In einem dielektischen Medium gilt im elektrostatischen Fall die \\\textcolor{red}{Poissongleichung: 
+	div $(\epsilon\nabla\Phi)=-\rho(\vec{r},t)$}. Für die Eindeutigkeit der Lösung dieser partiellen Differentialgleichung müssen auf dem Rand $∂\Omega$ \\\textcolor{SlateBlue}{Rand- und Grenzflächenbedinungen} formuliert werden:
+	
+	\begin{itemize}
+		\item 
+			\fbox{$\Phi(\vec{r})=$ const. auf Leitern}
+		\item 
+			für das elektrische Potential an Materialgrenzen: \fbox{$\Phi$ ist längs Materialgrenzen stetig}
+		\item 
+			für die Normalenableitung des Potentials: \fbox{$\epsilon_1\frac{∂\Phi}{∂n}\vline_1-\epsilon_2\frac{∂\Phi}{∂n}\vline_2=\sigma_{int}$} auf $\Sigma$
+			\\mit $\frac{∂\Phi}{∂n}\vline_j:=\lim\limits_{\vec{r}\rightarrow \vec{r_0};\vec{r}\in \Omega_j} \vec{n}(\vec{r_0})\cdot \nabla\Phi(\vec{r})$  \ ($j = 1,2$)
+		
+\newpage
+		
+		\item 
+			Sonderfälle:
+			\begin{itemize}
+			\item 
+				Material \textcircled{1}= Leiter, \textcircled{2}= dielektrischer Isolator 
+
+			\item 
+				zwei diel. Isolatoren \textcircled{1} und \textcircled{2}
+			\end{itemize} \item 
+				Material \textcircled{1}= Leiter, Material \textcircled{2}= dielektrischer Isolator:
+			
+			\begin{itemize}
+				\item 
+					E-Feld im Leiter verschwindet $\rightarrow \text{Tangentialkomponente:} \ \vec{E_1}\cdot \vec{t}=\vec{E_2}\cdot \vec{t}=0$
+				\item  
+					einseitiger Grenzwert des Potentialgradienten hat nur eine Normalkomponente: \\\fbox{$-\nabla \Phi \ \vline_2=\vec{E_2}\perp$ Leiteroberfläche}
+				\item 
+					mit $\vec{D_2}\cdot \vec{n}=\sigma_{int}$ und $\vec{D_2}=-\epsilon_2\nabla \Phi \ \vline_2$ gilt: \fbox{$\epsilon_2\frac{∂\Phi}{∂n}\vline_2=-\sigma_{int}$ auf $\Sigma$}
+			\end{itemize}
+		
+\newpage
+		
+		\item 
+			Zwei dielektrische Isolatoren \textcircled{1} und \textcircled{2} grenzen aneinander, ohne dass eine Oberflächenladung auf $\Sigma$ existiert:
+			\begin{itemize}
+			\item 
+				Tangentialkomponente/Normalkomponente von $\vec{E}/\vec{D}$ längs von $\Sigma$ stetig: \\\fbox{$\vec{E}_1\cdot \vec{t}=\vec{E}_2\cdot \vec{t}$ und $\vec{D}_1\cdot \vec{n}=\vec{D}_2\cdot \vec{n}$}
+			\item 
+				mit $\vec{D}_j=\epsilon_j\vec{E}_j$ gilt: \fbox{$\frac{1}{\epsilon_1}\cdot \frac{\vec{E}_1\cdot \vec{t}}{\vec{E}_1\cdot \vec{n}}=\frac{1}{\epsilon_2}\cdot \frac{\vec{E}_2\cdot \vec{t}}{\vec{E}_2\cdot \vec{n}}$}
+			\item 
+				$\alpha_1, \alpha_2$ sind Winkel zwischen Feldlinien und Oberflächennormalen: $\tan \alpha_j=\frac{\vec{E}_j\cdot \vec{t}}{\vec{E}_j\cdot \vec{n}}$ 
+			\item 
+				\textcolor{green}{Brechungsgesetz für elektrische Feldlinien: \fbox{$\frac{\tan \alpha_1}{\tan \alpha_2}=\frac{\epsilon_1}{\epsilon_2}$}}
+		\end{itemize}
+	\end{itemize}
+
+\newpage
+
+\subsubsection{Klassifikation der Potential-Randwertprobleme}
+	Randwertproblem= man sucht Lösungen $\Phi$ der Poissongleichung, die auf dem Rand $∂\Omega$ bestimmte Randbedingungen erfüllen. 
+	Es gibt:
+	
+	\begin{itemize}
+		\item 
+			\textcolor{magenta}{Dirichlet-Problem} = Vorgabe der Potentialwerte auf $∂\Omega$
+		\item 
+			\textcolor{violet}{Neumann-Problem} = Vorgabe der Normalenableitung $\frac{∂\Phi}{∂n}$ auf $∂\Omega$
+		\item 
+			\textcolor{blue}{gemischtes Randwertproblem} = Vorgabe einer Linearkombination von beiden
+	\end{itemize}
+	
+\paragraph{1.5.2.1 Dirichletsches Randwertproblem}
+	\ \\Lösung $\Phi$ soll auf dem Rand $∂\Omega$ einen vorgegebenen Verlauf $\Phi_D(\vec{r})$ für alle $\vec{r}\in ∂\Omega$ 
+	\\ annehmen: 
+	$$
+		\textcolor{magenta}{\fbox{[Dir-RWP]\quad div$(\epsilon \nabla \Phi)=-\rho \ \text{auf}\  \overset{\circ}{\Omega}$}}
+	$$
+	Satz: Für $\epsilon\in C^1(\overline{\Omega})$ mit $0 < c_0 \leq \epsilon(\vec{r}), \rho \in C(\overline{\Omega})$ und $\Phi_D\in C(∂\Omega)$ hat  [Dir-RWP] eine eindeutig bestimmte klassische Lösung $\Phi \in C^2(\Omega)\cap C^1(\overline{\Omega})$
+
+\newpage
+
+\paragraph{1.5.2.2 Neumannsches Randwertproblem}
+	\ \\Normalableitung der Lösung $\frac{∂\Phi}{∂n}(\vec{r}):=\vec{n}\cdot \vec{\nabla} \Phi(\vec{r})$ mit $n=$ äußere Normale auf $∂\Omega$ soll vorgegebenen Wert $F_N(\vec{r})$ annehmen:
+	$$
+		\textcolor{violet}{\fbox{[Neu-RWP]\quad div$(\epsilon \nabla \Phi)=-\rho \ \text{auf}\  \overset{\circ}{\Omega} \ \text{und}\ \frac{∂\Phi}{∂n}\vline_{∂\Omega}=F_N$}}
+	$$
+	Satz: Für $\epsilon\in C^1(\overline{\Omega})$ mit $0 < c_0 \leq \epsilon(\vec{r}), \rho \in C(\overline{\Omega})$ und $F_N\in C(∂\Omega)$ mit $\int\limits_{∂\Omega} \epsilon F_N \ \dd a$ \ hat  [Neu-RWP] eine, bis auf eine additive Konst., eind. best. klassische Lösung $\Phi \in C^2(\Omega)\cap C^1(\overline{\Omega})$
+
+\paragraph{1.5.2.3 Gemischtes Randwertproblem (Randbedingung 3.Art)}
+	\  \\Auf dem Rand $∂\Omega$ soll die Linearkombination $\alpha(\vec{r})\Phi(\vec{r})+\beta(\vec{r})\frac{∂\Phi}{∂n}(\vec{r})$ für gegebene Koeffizientenfunktionen $\alpha(\vec{r}), \beta{\vec{r}}$ einen vorgegebenen Wert $F(\vec{r})$ annehmen mit $h \geq 0$ und $\sigma \geq 0$:
+	$$
+		\textcolor{blue}{\fbox{[Mix-RWP]\quad div$(\epsilon \nabla \Phi)=-\Pi \ \text{auf}\  \overset{\circ}{\Omega} \ \text{und}\ \left(\frac{∂\Phi}{∂n}+h\Phi\right)\vline_{∂\Omega}=F$ auf $∂\Omega$}}
+	$$
+	Satz: Für $\sigma\in C^1(\overline{\Omega})$ mit $0 < c_0 \leq \sigma(\vec{r}), \Pi \in C(\overline{\Omega})$,$h\in C(∂\Omega)$ mit $h\geq 0, h\not=0$ und $F\in C(∂\Omega)$ hat  [Mix-RWP] eine eindeutig bestimmte klassische Lösung $\Phi \in C^2(\Omega)\cap C^1(\overline{\Omega})$
+
+\newpage
+
+ 	Für Normalgebiete (beschränkte, zusammenhängende 		Gebiete mit glattem Rand) haben Eigenwerte und 				Eigenfunktionen folgende Eigenschaften:
+	
+	\begin{itemize}
+		\item 
+			\textcolor{red}{Spektrum} $\{\lambda_{\nu}|\nu = 1,\dots, \infty\}$ ist \textcolor{red}{diskret}
+		\item 
+			alle Eigenwerte sind positiv: \textcolor{red}{$\lambda_\nu >0$} und aufsteigende Folge: $0<\lambda_1\leq\lambda_2\leq\lambda_3\leq\dots$
+		\item 
+			Eigenfunktionen $\{b_\nu\}_{\nu \in \N} $können orthonormal im Funktionenraum $L_2(\Omega)$ gewählt werden. Mit dem \textcolor{orange}{Skalarprodukt: $<f|g>:=\int\limits_{\Omega}f(\vec{r})*g(\vec{r})\ \dd^3r$} erfüllen die \textcolor{red}{orthonormierten Eigenfunktionen} die Bedingungen: 
+			$$
+				\textcolor{red}{<b_\mu|b_\nu>=\int\limits_{\Omega}b_\mu(\vec{r})*b_\nu(\vec{r})\ \dd^3r=\delta_{\mu\nu}\ \text{(Kroneckersches Deltasymbol)}}
+			$$ 
+		\item 
+			\textcolor{red}{Eigenfunktionen sind vollständig}, d.h. jede Funktion $\varphi\in L_2$ lässt sich bezüglich des Skalarproduktes nach $b_1,b_2,b_3,\dots$ entwickeln: 
+			\fbox{$\varphi=\sum\limits_{\nu=1}^{\infty}\alpha_\nu b_\nu $mit $ \alpha_{\nu}=<b_{\nu} | \varphi > $}
+			Vollständigkeitsrelation: $\sum\limits_{\nu=1}^{\infty}b_\nu(\vec{r})b_\nu(\vec{r}\ ')^*=\delta(\vec{r}-\vec{r}\ ')$
+	\end{itemize}
+
+\newpage
+
+\subsubsection{Analytische Lösungsverfahren für die Poissongleichung}
+\paragraph{1.5.3.1 Orthogonalentwicklung nach Eigenfunktionen des Laplace-Operators (Spektraldarstellung)}
+	$$
+	\begin{boxedminipage}[yellow]{5cm}
+		$$\text{div}(\epsilon \nabla\Phi)=-\rho \ \text{in} \ \overset{\circ}{\Omega}$$
+	\end{boxedminipage}
+	$$
+	mit $\Phi\vline_{∂\Omega^D}=\Phi_D$ und $\epsilon \frac{∂\Phi}{∂n}\vline_{∂\Omega^{(N)}}=\sigma_N$
+	\\wobei $∂\Omega=∂\Omega^{(D)}\cup∂\Omega^{(N)}$, $∂\Omega^{(D)}\cap ∂\Omega^{(N)}=\emptyset$ und $∂\Omega^{(D)}\not= \emptyset$
+	
+	\begin{enumerate}
+		\item[\textcolor{magenta}{1.}]
+			 \textcolor{magenta}{Lösungsschritt:} 
+			\\konstruiere Funktion $\Phi^{(0)}\in C^2(\Omega)\cap C^1(\overline{\Omega})$, welche die inhomogenen Randbed. erfüllt. 
+			\\Für die Lösung verwendet man den Ansatz: \fbox{$\Phi=\Phi^{(0)}+\varphi$}
+			\\$\varphi$ ist eine Lösung des modifizierten RWP mit homogenen Rangbedingungen:
+			$$
+				\begin{boxedminipage}[magenta]{7cm}
+					$-f:=\text{div}(\epsilon \nabla \varphi)=-\rho-\text{div}(\epsilon \nabla\Phi^{(0)}) \ \text{in} \ \Omega$ 
+				\end{boxedminipage}
+			$$
+			mit $\varphi\vline_{∂\Omega^{(D)}}=0$, $\frac{∂\varphi}{∂n}\vline_{∂\Omega^{(N)}}=0$
+\newpage		
+
+		\item[\textcolor{violet}{2.}] 
+			\textcolor{violet}{Lösungsschritt:} Lösung $\varphi$ des RWP kann man aus den Eigenfunktionen $b_{\nu}(\vec{r})$ und Eigenwerten $\lambda_{\nu}\in \C$ von -div($\epsilon\nabla \ . \ $) aufbauen: 
+			$$
+				\begin{boxedminipage}[violet]{6cm}
+					$$-\text{div}\ (\epsilon\nabla b_{\nu} )=\lambda_{\nu}b_{\nu} \ \text{in}\ \overset{\circ}{\Omega}$$
+				
+				\end{boxedminipage}
+			$$
+	 		mit $b_{\nu}\vline_{∂\Omega^{(D)}}=0$ und $\frac{∂b_{\nu}}{∂n}\vline_{∂\Omega^{(N)}}=0$
+
+
+		\item[\textcolor{blue}{3.}] 
+			\textcolor{blue}{Lösungsschritt:}
+			\\Poissongleichung in $\varphi=\sum\limits_{\nu=1}^{\infty}\alpha_\nu b_\nu(\vec{r})$ einsetzen: 
+			$$
+			\begin{boxedminipage}[blue]{8cm}
+				$$f\overset{!}{=} -\text{div}(\epsilon\nabla\varphi)=\sum\limits_{\nu=1}^{\infty} \alpha_\nu\underbrace{[-\text{div}(\epsilon\nabla b_\nu)]}_{\lambda_\nu b_\nu}$$
+			\end{boxedminipage}$$
+			Für $\alpha_\nu$ erhält man: $\alpha_\nu=\frac{<b_\nu|f>}{\lambda_\nu}$ und damit die \textcolor{green}{Lösung des RWP:} 
+			\\\begin{boxedminipage}[green]{12cm}
+				$$\varphi (\vec{r})=\sum\limits_{\nu=1}^{\infty}\frac{<b_\nu|f>}{\lambda_\nu } b_\nu(\vec{r})=\int\limits_{\Omega}\underbrace{\sum\limits_{\nu=1}^{\infty} b_\nu(\vec{r})\frac{1}{\lambda_\nu}b_\nu(\vec{r})}_{Greenfunktion G(\vec{r},\vec{r}')}*f(\vec{r}\ ')\dd^3 r'$$
+			\end{boxedminipage}
+	\end{enumerate}
+\paragraph{1.5.3.2 Lösung mittels Greenfunktion}
+	\ \\Die Greendfunktion $G(\vec{r},\vec{r}\ ')$ ist definiert als Lösung des reduzierten RWP mit homogenen Randbedingungen und rechter Seite $f(\vec{r})= \delta(\vec{r}-\vec{r}\ ')$ :
+	$$
+		\begin{boxedminipage}[red]{8cm}
+		$$\text{div}_{\vec{r}}(\epsilon(\vec{r})\nabla_{\vec{r}}G(\vec{r},\vec{r}\ '))=-\delta(\vec{r}-\vec{r}\ ')$$
+		\end{boxedminipage}
+	$$
+	Mit $G(\vec{r},\vec{r}\ '))=0$ für $\vec{r}\in ∂\Omega^{(D)}$ und $\frac{∂G(\vec{r},\vec{r}\ '))}{∂n}=0$ für $\vec{r}\in ∂\Omega^{(N)}$
+	\\Für unbeschränkte Gebiete muss die Summe durch ein Integral ersetzt werden, da das Spektrum der Eigenwerte eine kontinuierliche Menge bildet.
+
+\paragraph{1.5.3.3 Konstruktion der Greenfunktion m.H. der Spiegelladungsmethode}
+	\ \\Ausgangspunkt: \textcolor{red}{Vakuum-Greenfunktion}, Greenfunktion zur Poissongleichung im unbeschränkten homogenen Raum $\Omega=\R^3$: 
+	$$
+		\begin{boxedminipage}[red]{8cm}
+		$$G_{vac}(\vec{r},\vec{r}\ ')=\frac{1}{4\pi \epsilon}\frac{1}{|\vec{r}-\vec{r}\ '|}$$
+		\end{boxedminipage}
+	$$
+
+\newpage
+
+ 	Aus der \textcolor{red}{Vakuum-Greenfunktion} lässt sich die 
+	\\\textcolor{green}{Greenfunktion für den Halbraum mit ideal leitendem Rand} konstruieren:
+	
+	\begin{itemize}
+		\item 
+			Halbraum= dielektrisches Gebiet: 
+			$\Omega=H:=\{\vec{r}=\vec{r}_{||}+n\vec{n}|\vec{r}_{||}\cdot \vec{n}=0; \quad z>0\}$
+		\item 
+			Rand von der Ebene: 
+			$∂H=\{\vec{r}=\vec{r}_{||}|\vec{r}_{||}\cdot \vec{n}=0; \quad z=0\}$
+		\item 
+			$\vec{n}=$ Normalenvektor der Ebene $∂H$
+		\item 
+			Permittivität $\epsilon$ sei im Halbraum H konstant 
+		\item 
+			Der unterhalb der Randfläche liegende Halbraum $z\leq 0$ sei ein (idealer) Leiter, der zusammen mit der Ebene $∂H$ ein Äquipotentialgebiet mit konstantem Potential bildet, das auf den Wert $\Phi(\vec{r})=0$ gesetzt werden kann
+		\item 
+			Punkt $\vec{r}_Q^*$ entsteht durch Spiegelung von Punkt $\vec{r}_Q$ an der Ebene $∂H$
+		\item
+			Spiegelung an der Ebene $∂H$= S:  $\vec{r}=\vec{r}_{||}+z\vec{n} \rightarrow$ $\vec{r}^*=S\vec{r}:=\vec{r}_{||}-z\vec{n}$
+	\end{itemize}
+
+\newpage
+
+	Um die \textcolor{green}{Greenfunktion für den Halbraum} zu bestimmen wird eine \textcolor{green}{Punktladung $Q$ an dem Ort $\vec{r}_Q\in H$ gesetzt und das erzeugte Potential bestimmt}, aber man betrachtet ein Ersatzproblem, indem das Dielektrikum über $∂H$ hinaus nach unten fortgesetzt wird. Im virtuellen Dielektrikum wird am Punkt $\vec{r}_Q^*$ eine virtuelle Gegenladung $-Q$ platziert. Ladung und Gegenladung erzeugen im Halbraum H das elektrische Potential:
+	$$
+	\begin{boxedminipage}[green]{12cm}
+		$$\Phi_H(\vec{r})=\frac{Q}{4\pi\epsilon}\left[ \frac{1}{|\vec{r}-\vec{r}_Q|}-\frac{1}{|\vec{r}-\vec{r}_Q^*|}\right] \ \text{für} \ \vec{r}\in H$$
+	\end{boxedminipage}$$
+	Um die Greenfunktion zu erhalten $Q=1$ und $\vec{r}_Q=\vec{r}\ '$ setzen:
+	$$\begin{boxedminipage}[green]{12cm}
+		$$G_H(\vec{r},\vec{r}\ ')=\frac{1}{4\pi\epsilon}\left[\frac{1}{|\vec{r}-\vec{r}\ '|}-\frac{1}{|\vec{r}-S\vec{r}\ '|}\right]$$
+	\end{boxedminipage}
+	$$
+	Für beliebige Ladungsverteilungen $\rho(\vec{r})$ ist:
+	$\Phi(\vec{r})=\int\limits_{H}G_H(\vec{r},\vec{r}\ ')\rho(\vec{r}\ ')\dd^3 r'$ die Lösung des Potentialproblems in H
+
+\newpage
+
+	In analoger Weise lässt sich die Spiegelladungsmethode auf einen \textcolor{blue}{Viertelraum mit metallischer Begrenzung} anwenden, bei dem zwei Halbebenen den Rand $∂W$ bilden, auf dem das Potential der Randbedingung $\Phi_{∂W}=0$ genügen muss. Die reale Punktladung wird dreimal gespiegelt an die Punkte $S_1\vec{r}_Q, S_2\vec{r}_Q, S_3\vec{r}_Q$ mit der Ladung $-Q,+Q,-Q$. Potential zum Ersatzproblem lautet dann: 
+	$$
+		\begin{boxedminipage}[blue]{12cm}
+			$\Phi_W(\vec{r})=\frac{Q}{4\pi\epsilon}\left[ \frac{1}{|\vec{r}-\vec{r}_Q|}-\frac{1}{|\vec{r}-S_1\vec{r}_Q|}+\frac{1}{|\vec{r}-S_2\vec{r}_Q|}-\frac{1}{|\vec{r}-S_3\vec{r}_Q|}\right] \ \text{für} \ \vec{r}\in W$
+		\end{boxedminipage}
+	$$
+	Um die Greenfunktion für den Winkelraum zu erhalten $Q=1$ und $\vec{r}_Q=\vec{r}\ '$ setzen:
+	$$
+		\begin{boxedminipage}[blue]{12cm}
+			$$
+				G_W(\vec{r},\vec{r}\ ')=\frac{1}{4\pi\epsilon}\sum\limits_{n=0}^{3}\frac{(-1)^n}{|\vec{r}-S_n\vec{r}\ '|}
+			$$	
+		\end{boxedminipage}
+	$$
+	Mit $S_0\vec{r}=\vec{r}$
+
+\newpage
+
+\subsubsection{Stationäre elektrische Strömungen und das zugehörige RWP}
+\paragraph{1.5.4.1 Bilanz- und Transportgleichungen für elektrische Strömungsverteilungen}
+	Grundlage für Theorie elektrischer Strömungen ist \textcolor{teal}{Ladungserhaltungsgleichung: 
+	$$\text{div}\vec{j}+\frac{∂\rho}{∂t}=0$$ }
+	\textcolor{magenta}{1. Annahme:} elektr. Strömungsfeld aus K versch. Ladungsträgersorten zusammengesetzt: 
+	$\left.
+	\begin{array}{l}
+		$spezifische Ladung$\  q_{\alpha}\\
+		$Beweglichkeit$ \ \mu_\alpha\\
+		$Teilchendichte $ \ n_\alpha
+	\end{array}
+	\right\}$ Partialstromdichte: $\textcolor{magenta}{\vec{j}=\underbrace{|q_\alpha|n_\alpha\mu_\alpha \vec{E}}_{\text{Driftstrom}} - \underbrace{a_\alpha D_\alpha\nabla n_\alpha}_{\text{Diffusionsstrom}}}$
+	\\\textcolor{Magenta}{2.Annahme:} Keine Wirbelströme im $\vec{E}-$Feld $\Rightarrow$ \textcolor{Magenta}{reines Gradientenfeld: $\vec{E}=-\nabla \Phi$}
+\paragraph{Driftstrom} im $\vec{E}-$Feld führt zum Ohmschen Gesetzt, ist in Metallen dominant
+\paragraph{Diffusionsstrom}
+	in Richtung des negativen Konzentrationsgradienten $-\nabla n_\alpha$, Intensität durch Diffusionskoeffizienten $D_\alpha=\frac{kT}{|q_\alpha|\mu_\alpha}>0$ gegeben 
+		$\rightarrow$ Ficksches Diffusionsgesetz
+ 
+
+\newpage
+
+	Mit dem elektrochemischen Potential: $\Phi_\alpha :=\Phi+\frac{kT}{q_\alpha}\ln \frac{n_\alpha}{n_0}$  und $\sigma_\alpha :=|q_\alpha|\mu_\alpha n_\alpha$ folgt:
+	$$\textcolor{YellowOrange}{\vec{j}_\alpha=-\sigma_\alpha\nabla\Phi_\alpha }\qquad \text{und} \qquad \textcolor{RedOrange}{\vec{j}=\sum\limits_{\alpha=1}^{K} \vec{j}_\alpha}\qquad\Rightarrow\qquad \textcolor{FireBrick}{\rho=\sum\limits_{\alpha=1}^K q_\alpha n_\alpha}$$
+	Teilchen genügen einer \textcolor{ForestGreen}{Teilchenbilanzgleichung : \fbox{$\frac{∂n_\alpha}{∂t}=-\frac{1}{q_\alpha}\text{div}\vec{j}_\alpha+G_\alpha$}}
+	\\ mit $G_\alpha=$ Generations-Rekombinationsrate der Spezies $\alpha$ und Teilchenstromdichte $\frac{1}{q_\alpha}\vec{j}_\alpha$
+\paragraph{1.5.4.2 Stationäre Strömungsfelder im Drift-Diffusions-Modell} 
+	\ \\Bei stationären Strömungen gilt: $\frac{∂n_\alpha}{∂t}=0 \Rightarrow  \text{div}(\sigma_\alpha\nabla\Phi_\alpha)=-q_\alpha G_\alpha$
+\paragraph{1.5.4.3 Stationäre Strömungsfelder im Ohmschen Transportmodell}
+	\ \\\textcolor{green}{einfaches Ohmsches Gesetz: \fbox{$\vec{j}=\sigma\vec{E}=-\sigma\nabla\Phi$}}
+	\\\textcolor{magenta}{Annahme: konstante Leitfähigkeit $\sigma$ und Permittivität $\epsilon$}
+	$$\frac{∂\rho}{∂t}=-\text{div}\vec{j}=-\text{div}\left(\frac{\sigma}{\epsilon}\vec{D}\right)=-\frac{\sigma}{\epsilon}\text{div}\vec{D}=-\frac{\sigma}{\epsilon}\rho$$
+	
+\newpage
+	
+	Wird der Gleichgewichtszustand durch lokale Ladungsfluktuation $\Delta \rho(t,\vec{r})$ gestört 
+	\\$\rightarrow \Delta \rho(t,\vec{r})=\Delta \rho(t_0,\vec{r})e^{-\frac{t-t_0}{\tau_R}}$
+	mit \textcolor{DarkOrchid}{dielektrischer Relaxationszeit $\tau_R:=\frac{\epsilon}{\sigma}$}
+	\\Bei Metall ist die Relaxationszeit so kurz, dass man die Ausbildung einer Raumladung meistens vernachlässigen $\rightarrow$ \textcolor{cyan}{quasistationäre Näherung: $\frac{∂\rho}{∂t}\approx 0$}
+\paragraph{1.5.4.4 Randwertproblem für stationäre Ohmsche Strömungsfelder}
+	\ \\stationäres Strömungsproblem: div$\vec{j}=0$ $\rightarrow$ homogene Poissongleichung: div $\left(\sigma(\vec{r})\nabla \Phi\right)=0$
+	\\Der Rand $∂\Omega$ mit potentialgesteuerten Kontakten (Klemmen) auf denen die Potentialwerte $\left.\Phi\right|_{∂\Omega_j}=V_j$ vorgegeben sind $\Rightarrow$ \textcolor{LimeGreen}{homogene Neumannsche Randbedingung:}
+	
+	\begin{boxedminipage}[LimeGreen]{\textwidth}
+	$$\frac{∂\Phi}{∂n}=0 \qquad \text{auf}\quad ∂\Omega\backslash\left(\bigcup\limits_{j=1}^{N}∂\Omega_j\right)$$\end{boxedminipage} 
+
+\newpage
+
+\section{Modellierung elektromagnetischer Vorgänge in \\technischen Systemen mit Kompaktmodellen}
+\subsection{Flusserhaltende Diskretisierung mit Kirchhoff. Netzwerken}
+	Erfüllung der Erhaltungssätze für Ladung/Energie $\rightarrow$ flusserhaltende Diskretisierung
+\subsubsection{Generelle Modellannahmen: Vorraussetzungen}
+	
+	\begin{enumerate}
+		\item 
+			System besteht aus \textcolor{magenta}{räumlich begrenzten Funktionsblöcken}, die über \\lokalisierte Schnittstellen miteinander wechselwirken
+		\item	
+			elektrische/magnetische Felder sind \textcolor{magenta}{nur quasistationär zeitveränderlich} $\rightarrow$ keine elektromagnetischen Wellenausbreitung in und zwischen den Funktionsblöcken. 
+			\\Bedingung: \fcolorbox{magenta}{white}{Wellenlänge der EM-Welle $\lambda >>$ Abmessung des Systems $d$}
+	\end{enumerate}
+\subsubsection{Feldtheoretische Beschreibung der Quasistationarität}
+	Wenn Ausbildung elektromagnetischer Wellen unterdrückt wird ($\epsilon\mu\frac{∂^2}{∂^2t}\vec{A}=0$) 
+	\\$\Rightarrow$ Näherung des Verschiebungsstromes $\Rightarrow$ magnetisch induzierter Anteil wird vernachlässigt
+	\\\textcolor{red}{Alle Feldgrößen sind quasistationär:} 
+	\\$\Phi,\vec{A},\vec{E},\vec{B}$ sind nur von momentanen zeitlichen Wert von $\rho,\vec{j}$ abhängig  
+	\\Wegen Coulomb-Eichung gilt: div $\vec{A}=0$ $\Rightarrow$ \fbox{div $\vec{j}+\frac{∂\rho}{∂t}=0$}
+\subsubsection{Synthese von Netzwerkmodellen aus funktionalen Blöcken}
+	Reale 3D Struktur durch Kirchhoff. Netzwerk darstellen (realitätsgetr. Klemmenverhalten)
+
+\newpage
+
+\paragraph{2.1.3.1 Funktionale Blöcke}
+	\ \\Annahme: Blöcke können als mehrpolige elektrische Bauelemente dargestellt werden
+
+	\begin{itemize}
+		\item 
+			\textcolor{red}{Ladungsaustausch} (Stromfluss) erfolgt über disjunkte, lokalisierte Randflächen \\\textcolor{red}{(=Kontakte/Klemmen)}
+		\item 
+			Klemmenpotentiale $\Phi_k=\left. \Phi\right |_{A_k}$
+		\item 
+			Bauelement als Ganzes elektrisch neutral $\Rightarrow$ auslaufend gerichtete Klemmenströme: $$I_k:=\int\limits_{A_k} \vec{j}\cdot \dd \vec{a} \qquad \textcolor{red}{\Rightarrow \qquad \sum\limits_{k=1}^N I_k=0}$$
+		\item 
+			differential-algebraisches Gleichungssystem ("Kompaktmodell"):
+			$$\underline{F}(\underline{U},\underline{I},\underline{\dot{U}},\underline{\dot{I}}=0)$$
+			mit $\underline{U}=(\Phi_1-\Phi_0,\Phi_2-\Phi_0)=$ Klemmenspannungen, $\underline{I}=$ Klemmenströme, \\$\Phi_0=$ Bezugspotential
+	\end{itemize}
+	
+\newpage	
+
+\paragraph{2.1.3.2 Erstellung eines Kirchhoffschen Netzwerkes}
+	\ \\elektrische Verknüpfung der Kompaktmodelle der Bauelemente über Knoten und Zweige.
+
+
+
+	\textcolor{Green}{Erforderliche Eigenschaften von (physikalischen) Knoten: }
+	
+	\begin{boxedminipage}[Green]{\textwidth}
+	
+	\begin{itemize}
+		\item 
+			ideal leitende Verbindung zwischen M Kontakten mit Potentialwert $\Phi_K$
+		\item 
+			"`echter Knoten" wenn $M \geq 3$
+		\item 
+			$\mathcal K:=$ Menge aller Knoten im Netzwerk 
+		\item 
+			meist ladungsneutral, gespeicherte Ladung $Q_K=0$
+		\item 
+			"`speichernde Knoten" (=Elektroden) mit $Q_K\not= 0$, wenn andere Elektroden die Gegenladung tragen: $\sum\limits_{K\in \mathcal K} Q_K=0$
+	\end{itemize}
+\end{boxedminipage}
+
+\newpage
+
+	\textcolor{Blue}{Erforderliche Eigenschaften von Zweigen:}
+
+	\begin{boxedminipage}[Blue]{\textwidth}
+	\begin{itemize}[itemsep=0pt,parsep=0pt]
+		\item 
+			gerichtete Zweige bezeichnen möglichen Strompfad von $K_1$ zu $K_2$
+		\item 
+			$\mathcal Z:=$ Menge aller Zweige im Netzwerk 
+		\item 
+			fließender Strom wird als gerichteter Zweigstrom $I(K_1,K_2)$ flusserhalten zwischen $K_1$ und $K_2$ transportiert
+		\item 
+			Jedem Zweig ist anliegende, gerichtete Zweigspannung $$U(K_1,K_2):=\int\limits_{K_1}^{K_2}\vec{E}\cdot \dd \vec{r}$$
+		\item 
+			induzierte Spannung hängt von Wahl des physikalischen Integrationsweges ab: 
+			$$U_{ind}(K_1,K_2):=\int\limits_{K_1}^{K_2}\vec{E}_{int}\cdot \dd \vec{r}= -\int\limits_{K_1}^{K_2}\frac{∂\vec{A}}{∂t}\cdot \dd \vec{r}$$
+		\item 
+			Ohne Induktionseffekt gilt: \fbox{$U(K_1,K_2)=\Phi_{K_1}-\Phi_{K_2}$}
+	\end{itemize}
+	\end{boxedminipage}
+	
+\newpage
+
+\paragraph{2.1.3.3 Kirchhoffsche Knotenregel}
+
+	\begin{itemize}
+		\item 
+			Kirchhoffsche Knotenregel für speichernde Knoten:
+			$$\sum\limits_{K'\in \mathcal N(K)} I(K,K')=-\frac{\dd Q_K}{\dd t}$$
+		\item 
+			Kirchhoffsche \textcolor{Salmon}{Knotenregel für nichtspeichernde Knoten:
+			$$\sum\limits_{K'\in \mathcal N(K)} I(K,K')=0$$}
+
+	\end{itemize}
+
+\paragraph{2.1.3.4 Kirchhoffsche Maschenregel}
+	\ \\\textcolor{magenta}{Masche/Schleife $\mathcal M$ ist eine geschlossene Knotenfolge} längs Zweigen im Netzwerk
+	Linienintegral über $\vec{E}$ mit $K_{N+1}:=N_0$: 
+	$$\sum\limits_{j=0}^{N}\int\limits_{K_j}^{K_{j+1}}\vec{E}\cdot \dd \vec{r}= \sum\limits_{j=0}^{N}U(K_j,K_{j+1})$$
+	Kirchhoffsche Maschenregel mit eingeprägter (induktiver) Spannungsquelle: 
+	$$\sum\limits_{j=0}^{N}U(K_j,K_{j+1})=U_{ind}(\mathcal M)$$
+	!Nur sinnvoll, wenn $U_{ind}(\mathcal M)$ durch konzentrierte Bauelemente (z.B. Spulen) erzeugt wird!
+\subsection{Kapazitive Speicherelemente}
+\subsubsection{Mehrelektroden-Kondensatoranordnungen (Geometrie und RWP)}
+	\begin{enumerate}
+		\item 
+			\textcolor{purple}{RWP lösen:} \fbox{$[\text{V-RWP}] \quad\text{div}	(\epsilon\nabla\Phi)=0 \quad \text{in}\quad\Omega \qquad \text{und}\quad \left.\Phi\right|_{∂\Omega_l}=V_l$}
+		\item 
+			\textcolor{purple}{Konstruktion des Potential aus Grundlösung:} Lösung zu [V-RWP]: \\Linearkombination von $N+1$ Grundlösungen $\Phi_0$ darstellen: \fcolorbox{purple}{white}{$\Phi(\vec{r})=\sum\limits_{k=0}^N V_k\Phi_k(\vec{r})$} \\mit $\text{div}(\epsilon\nabla\Phi_k)=0 \quad \text{in}\quad\Omega \qquad \text{und}\quad \left.\Phi_k\right|_{∂\Omega_l}=\delta_{kl}=\begin{cases}1 & k=l\\0&k\not=l\end{cases}$ 
+	\end{enumerate}
+
+\subsubsection{Maxwellsche Kapazitätsmatrix}
+\paragraph{2.2.2.1 Beziehung zwischen Elektrodenladungen und -potentialen}
+	\ \\Auf Elektrode $∂\Omega_k$ befindliche Ladung $Q_k$ ergibt mit Gaußschem Satz $Q_k=\int\limits_{∂\Omega_k} \vec{D}\cdot \vec{n \dd \vec{a}}:$ 
+	$$\textcolor{Red}{Q_k=\sum\limits_{l=0}^{N}C_{kl}V_l}\qquad \text{mit} \qquad \textcolor{Blue}{C_{kl}:=-\int\limits_{∂\Omega_k} \epsilon \vec{n}\cdot \nabla \Phi_l \ \dd a = \text{Maxwellscher Kapazitätskoeffizient}} $$
+	Mit $\dd \vec{a}=-\vec{n}\ \dd a$ und weiteren Umformungen folgt $$C_{kl}= \int\limits_{∂\Omega}\Phi_k\epsilon \nabla \Phi_l \cdot \dd \vec{a}= \int\limits_\Omega \text{div}(\Phi_k\epsilon \nabla \Phi_l)\dd^3= \int_\Omega \nabla\Phi_k\epsilon\nabla \Phi_l \dd^3r$$ 
+	\textcolor{Orange}{$\Rightarrow$ Matrix $C_{kl}$ ist symmetrisch: $C_{kl}=C_{lk}$}
+\paragraph{2.2.2.2 Darstellung der gespeicherten elektrischen Energie }
+	\ \\\textcolor{Green}{gespeicherte Energie:} 
+	\begin{boxedminipage}[Green]{7cm}
+		$$W_{el}=\frac{1}{2}\sum\limits_{k,l=0}^{N}V_l C_{lk}V_k= \frac{1}{2}\underline{V}^T\underline{\underline{C}}\ \underline{V}\geq 0$$
+	\end{boxedminipage}
+
+	mit der \textcolor{Olive}{Maxwellschen Kapazitätsmatrix: 
+	$\underline{\underline{C}}=C_{kl}=\begin{pmatrix}C_{00}&C_{01}&\dotsm&C_{0N}\\C_{10}&C_{11}&\dotsm&C_{1N}\\\vdots&\vdots&\ddots
+	&\vdots\\C_{N0}&C_{N1}&\dotsm&C_{NN}&\end{pmatrix}$}
+	\\und \textcolor{Green}{Vektor der Klemmenpotentiale: $\underline{V}:=\begin{pmatrix}V_0\\V_1\\\vdots\\V_N\end{pmatrix}$}
+	\\Kapazitätsmatrix \textcolor{Olive}{$\underline{\underline{C}}$ ist positiv semi-definit}: $\underline{\underline{C}}=\underline{\underline{C}}^T$ und $\underline{V}^T\underline{\underline{C}}\ \underline{V}\geq 0$
+	\\Mit dem Vektor der Elektrodenladungen: $\underline{Q}:=\begin{pmatrix}Q_0\\Q_1\\\vdots \\Q_N\end{pmatrix}$ gilt: $\underline{Q}= \underline{\underline{C}}\ \underline{V}$
+
+\newpage
+
+	Ausserdem: \fbox{$\frac{∂W_{el}}{∂V_k}=Q_k \text{bzw.}\frac{∂W_{el}}{∂\underline{V}}=\underline{Q}$}
+	und \fbox{$\frac{∂^2W_{el}}{∂V_k∂V_l}=C_kl \text{bzw.}\frac{∂^2W_{el}}{∂\underline{V}∂\underline{V}}=\underline{\underline{C}}$}
+
+	Potentialvorgaben $\underline{V}$ und $\underline{V}+c\underline{e}$ mit $\underline{e}:=(1,1, \dots,1)^T$ dasselbe $\vec{E}-$Feld im 
+	\\Dielektrikum $\Omega$ \textcolor{magenta}{$\rightarrow$ Alle Zeilen/Spaltensummen von $\underline{\underline{C}}$ sind Null}
+	\\$\Rightarrow$ Gesamtladung $Q_{tot}=\sum\limits_{k=0}^{N}Q_k=0$
+	\\\textcolor{lime}{Für die Grundlösungen $\Phi_0(\vec{r},\Phi(\vec{r}),\dots,\Phi_N(\vec{r}))$ gilt: 
+	$$\sum\limits_{k=0}^{N}\Phi_k(\vec{r})=1$$}
+	$\underline{\underline{C}}$ ist nicht invertierbar deshalb: 
+	
+	\begin{itemize}
+		\item 
+			\textcolor{Turquoise}{"`reduzierte Kapazitätsmatrix": $\underline{\underline{\tilde{C}}}=\begin{pmatrix}C_{11}&C_{12}&\dotsm&C_{1N}\\C_{21}&C_{22}&\dotsm&C_{2N}\\\vdots&\vdots&\ddots&\vdots\\C_{N1}&C_{N2}&\dotsm&C_{NN}\end{pmatrix}$}
+		\item 
+			reduzierter Ladungs/Spannungsvektor: 
+			$\underline{\tilde{Q}}=\begin{pmatrix}Q_1\\\vdots\\Q_N\end{pmatrix}$
+			 und 
+			$\underline{\tilde{U_0}}=
+			\begin{pmatrix}
+				U_{1,0}\\\vdots\\U_{N,0}
+			\end{pmatrix}=
+			\begin{pmatrix}
+				V_1-V_0\\\vdots\\V_N-V_0
+			\end{pmatrix}$
+	\end{itemize}
+
+	Es gilt. $\underline{\tilde{Q}}=\underline{\underline{\tilde{C}}} \ \underline{U_0}$
+
+\paragraph{2.2.2.3 Teilkapazitätskoeffizienten}
+	Mehrelektroden-Kondensatoranordnung kann als Netzwerk von kapazitiven Zweipolen (Eintoren) dargestellt werden mit den elektrischen Spannungen $U_{kl}:=V_k-V_l$ zwischen den Elektroden $∂\Omega_k$ und $∂\Omega_l$. 
+	\\Es gilt : $\sum\limits_{l=0}^{N}C_{kl}U_{kl}=-Q_k$ $\Rightarrow$ Teilchenkapazitätskoeffizient: $K_{kl}=-C_{kl}$
+	$$Q_k=\sum\limits_{l=0,l\not=k}^{N}K_{kl}U_{kl}$$
+
+\subsection{Induktive Speicherelemente}
+\subsubsection{Spulenanordnungen (Geometrie und Topologie)}
+	Induktive Bauelemente bestehen aus \textcolor{Green}{fast geschlossenen stromdurchflossenen Leiterschleifen }$\rightarrow$ erzeugen zeitveränderliches Magnetfeld $\rightarrow$ elektrische Spannung wird induziert $\rightarrow$ induzierter Strom wird getrieben. Um magnetische Feldenergie zu konzentrieren, platziert man im Inneren der Leiterschleife ein magnetisierteres Material mit großer Permeabilität. Betrachtung von $N$ ruhenden, drahtförmigen Leiterschleifen $C_k$, die orientierte Flächen $S_k$ einschließen und durch die ein zeitveränderlicher Strom $i_k(t)$ fließt: 
+	\textcolor{magenta}{$$u_k(t)=-u_{ind,k}(t)+r_ki_k(t)$$}
+	Spulenstrom erzeugt Magnetfeld im Spuleninneren: $B(t)=c\cdot i(t)$ mit c=konstant: 
+	\textcolor{cyan}{$$u(t)=L\cdot \frac{\dd i}{\dd t}$$} mit \textcolor{Blue}{$L=w|S_0|c=$ Eigeninduktivität der Spule }
+	
+	\begin{itemize}
+		\item 
+			\textcolor{Blue}{Spule als Generator:} ideale Spule mit $w$ Windungen, deren Inneres vom homogenen, zeitveränderlichen Magnetfeld $\vec{B}(t)=B(t)\vec{e}_z$
+			Spule stellt orientierte Leiterschleife C dar, die die Fläche S  einschließt.
+			\textcolor{Blue}{Jede Windungsfläche $S_0$ wird vom magnetischen Fluss durchsetzt: $\Phi(S_0)=\int_{S_0}\vec{B}\cdot \dd \vec{a}= |S_0|\cdot B(t)$}
+			\\ In der Spule wird eine elektrische Spannung $u_{ind}(t)$ induziert: $$\textcolor{blue}{u_{ind}(t)=}-\frac{\dd }{\dd t}\Phi(S)=-w\frac{\dd }{\dd t}\Phi(S_0)=\textcolor{blue}{-w|S_0|\frac{\dd B}{\dd t}}$$
+			Der Zählpfeil von $u_{ind}(t)$ gleichorientiert mit Umlaufsinn der Leiterschleife
+			\\\textcolor{blue}{$\Rightarrow$ Spule als (ideale) Spannungsquelle mit Ausgangsspannung $u_{ind}(t)$}
+		\item 
+			\textcolor{green}{Spule als Verbraucher: }Schließt man an die Spule eine äußere Spannungsquelle mit zeitveränderlicher Spannung $u(t)$ an $\rightarrow$ Strom $i(t)$ fließt durch Spule. \textcolor{green}{$u(t)=-u_{ind}(t)$}. \textcolor{green}{Spule als Verbraucher}
+	\end{itemize}
+
+\subsubsection{Induktionskoeffizienten}
+	vereinfachende Modellannahmen: 
+	\begin{enumerate}
+		\item[a)] 
+			Alle Spulen sind \textcolor{magenta}{ortsfest} (geometrischer Aufbau: starr \& zeitunabhängig) 
+		\item[b)]
+			\textcolor{magenta}{Ruheinduktion} (induzierte Sp. werden nur von Zeitableitung des $\vec{B}-$ Feldes verursacht)
+		\item[c)]
+			Spulenströme ändern sich so langsam, dass \textcolor{magenta}{quasistationäre Näherung }angewendet werden darf
+		\item[d)]
+			\textcolor{magenta}{Antennenwirkung} von Spulen und Wellenausbreitung werden \textcolor{magenta}{vernachlässigt}
+		\item[e)] 
+			\textcolor{magenta}{keine Retardierungseffekte}
+	\end{enumerate}
+
+	Stellt man das Magnetfeld $\vec{H}_k$ über ein Vektorpotential $\vec{A}_k(\vec{r},t)$ mit $\vec{H}_k=\frac{1}{\mu}\text{rot} \vec{A}_k $ so genügt in Coulombeichung das Vektorpotential der Poissongleichung: $\Delta\vec{A}_k(\vec{r},t)=-\mu\vec{j}_k(\vec{r},t)$ mit Hilfe der Vakuum-Greenfunktion kann man diese lösen und erhält:
+	$$\vec{A}_k(\vec{r},t)=\frac{\mu}{4\pi}\int\limits_{\R^3}\frac{\vec{j}_k(\vec{r'},t)}{|\vec{r}-\vec{r'}|}\dd^3 r'$$
+	Linienförmige Leiter $C_k$ stellt man durch eine Ortskurve mit Parametrisierung $s \mapsto \vec{r}_k(s)$ mit Bogenlänge s. Überall konstante Querschnittsfläche $a_k$ mit Einheitstangentenvektor $\vec{t}_k(s):=\frac{\dd \vec{r}_k}{\dd s}$. Für Stromdichte folgt: $\vec{j}_k=\vec{t}_k(s)\frac{i_k(t)}{a_k} $ $\Rightarrow$ $\vec{A}(\vec{r},t)=\frac{\mu}{4\pi}\int_{C_k}\frac{\dd \vec{s}}{|\vec{r}-\vec{s}|}i_k(t)$ mit $\vec{t}_k \dd s=\dd \vec{s_k}$. Das \textcolor{magenta}{von allen Spulen erzeugte Vektorpotential} ergibt sich aus: 
+	\textcolor{magenta}{$$\vec{A}(\vec{r},t)=\sum\limits_{k=1}^{N}\vec{A_k}(\vec{r},t)$$}
+	Für \textcolor{green}{induzierte Spannung gilt:
+	$$u_{ind,k}(t)=-\sum\limits_{l=1}^N\underbrace{\frac{\mu}{4\pi}\int\limits_{C_k}\int\limits_{C_l}\frac{\dd \vec{s}\cdot \dd \vec{r}}{|\vec{r}-\vec{s}|}}_{:= L_{kl}=\text{Induktionskoeffizient}}\frac{\dd }{\dd t}i_l(t)$$}
+	
+	Man erhält die \textcolor{blue}{Transformatorgleichung: $$u_k(t)= r_ki_k(t)+\sum\limits_{l=1}^{N}L_{kl}\frac{\dd i_l}{\dd t}$$}
+
+	\begin{itemize}
+		\item 
+			\textcolor{green}{Selbstinduktionskoeffizienten: $L_{kk}$}
+		\item 	
+			\textcolor{Green}{Gegeninduktionskoeffizienten: $L_{kl}$ mit $k\not= l$	}
+		\item 
+			Es gilt: \fbox{$L_{kl}=L_{lk}$}
+		\item 
+			Die \textcolor{violet}{Induktivitätsmatrix $\underline{\underline{L}}$ ist symmetrisch und positiv Defizit }
+	\end{itemize}
+	
+\subsubsection{Zusammenhang mit der magnetischen Feldenergie}
+	Für die gespeicherte magnetische Energie mit quasistationärer Näherung gilt: $$W_{mag}=\frac{1}{2}\int_{\R^3}\vec{j}\cdot \vec{A}\dd^3r=\frac{1}{2}\sum\limits_{k=1}^N\int_{C_k} \vec{A}(\vec{r},t)\cdot \dd\vec{r}\cdot i_k(t)=\frac{1}{2}\sum\limits_{k=1}^N\Phi(S_k)\cdot i_k$$
+	
+\newpage
+	
+	$$\textcolor{magenta}{\Rightarrow W_{mag}=}\frac{1}{2}\sum\limits_{k,l=1}^{N}i_kL_{kl}i_l=\textcolor{magenta}{\frac{1}{2}\underline{I}^T\underline{\underline{L}}\ \underline{I}}$$ mit dem Vektor der Spulenströme $\underline{I}:=(i_1,i_2.\dots,i_N)^T$
+	$$\textcolor{magenta}{\Rightarrow \Phi(S_k)= \sum\limits_{l=1}^{N}L_{kl}i_l}$$
+	Für nicht-drahtförmige Schleifen gilt: 
+	\fbox{$\frac{∂W_{mag}}{∂i_k}=\sum\limits_{l=1}^{N}L_{kl}\cdot i_l	$} \fbox{$\frac{∂^2W_{mag}}{∂i_k∂i_l}=L_{kl}$}
+	\\\textcolor{green}{Allgemeine Neumannsche Formel: 
+	Stromverteilung in jeder Schleife $\Omega_l$}: $\vec{j}_l(\vec{r},t)=\vec{s}_l(\vec{r})\cdot i_l(t)$ mit der Formfunktion $\vec{s}_l(\vec{r})$ als Lösung des stationären Strömungsproblems: div $\vec{s}_l=0$ in $\Omega_l$
+	Randbedingung: Einheitsstrom fließt durch die Klemmen $A_l^{(in)} $ und $A_l^{(out)} $:
+	$$\int\limits_{A_l^{(in)}} \vec{s}_l\cdot \dd \vec{a}=-1 \qquad \text{und}\qquad  \int\limits_{A_l^{(out)}} \vec{s}_l\cdot \dd \vec{a}=+1$$
+	
+\newpage	
+	
+	\textcolor{blue}{Magnetische Feldenergie} beträgt: 
+	\textcolor{blue}{$$W_{mag}=\frac{1}{2}\sum\limits_{k=1}^{N}\underbrace{\frac{\mu}{4\pi}\int\limits_{\Omega_k}\int\limits_{\Omega_l}\frac{\vec{s}_k(\vec{r})\cdot \vec{s}_l(\vec{s})}{|\vec{r}-\vec{s}|}\dd^3 r\dd^3 s}_{L_{kl}=\text{Neumannscher Induktivitätskoeffizient}}\cdot i_l(t)i_k(t)$$}
+
+
+\end{document}

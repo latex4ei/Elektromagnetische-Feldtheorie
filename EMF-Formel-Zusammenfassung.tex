@@ -1,0 +1,292 @@
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+% 
+% FS-Vorlage											Stand: 30.01.12
+%
+% Formelsammlungsvorlage von Emanuel Regnath und Martin Zellner	
+% Bietet verschiedene Abkürzungen und Befehle	
+%
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+
+
+% Dokumenteinstellungen
+% ======================================================================
+
+% Dokumentklasse (Schriftgröße 6, DIN A4, Artikel)
+\documentclass[11pt,a4paper]{scrartcl}
+%\documentclass[5pt,a4paper]{scrartcl} %USE IN CASE OF EMERGENCY  geschafft! emergency not needed
+
+% Pakete laden
+\usepackage[utf8]{inputenc}		% Zeichenkodierung: UTF-8 (für Umlaute)   
+\usepackage[german]{babel}		% Deutsche Sprache
+\usepackage{multicol}			% ermöglicht Seitenspalten  
+\usepackage{booktabs}			% bessere Tabellenlinien
+\usepackage{enumitem}			% bessere Listen
+\usepackage{graphicx}			% Zum Bilder einfügen benötigt
+\usepackage{pbox}				%Intelligent parbox: \pbox{maximum width}{blabalbalb \\ blabal}
+\usepackage{../packages/scientific}			% Eigenes Paket
+\usepackage{scrtime}
+\usepackage{parskip} 			%Verhindert das einrücken am Zeilenanfang
+\usepackage{titlesec}
+
+
+% .:: Seitenlayout und Ränder
+% ======================================================================
+\usepackage{geometry}
+\geometry{a4paper, left=6mm,right=6mm, top=0mm, bottom=3mm,includeheadfoot} 
+
+
+% .:: Kopf- und Fußzeile
+% ======================================================================
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+
+   \fancyfoot[C]{\footnotesize Mail: \emph{info@latex4ei.de}}
+   \renewcommand{\headrulewidth}{0.0pt} %obere Linie ausblenden
+   \renewcommand{\footrulewidth}{0.1pt} %obere Linie ausblenden
+
+   \fancyfoot[R]{\footnotesize Stand: \today \ um \thistime \ Uhr \qquad \thepage}
+   \fancyfoot[L]{\footnotesize Homepage: www.latex4ei.de -- Fehler bitte \emph{sofort} melden.}
+	
+% Schriftart SANS für bessere Lesbarkeit bei kleiner Schrift
+\renewcommand{\familydefault}{\sfdefault} 
+% Array- und Tabellenabstände vergrößern
+\renewcommand{\arraystretch}{1.2}
+
+
+% .:: Überschriften anpassen
+% ======================================================================
+
+%\titleformat{ command }[ shape ]{ format }{ label }{ sep }{ before-code }[ after-code ]
+\titleformat{\section}{\Large \bfseries}{\thesection .}{0.5em}{}[\hrule \hrule ]
+\titleformat{\subsection}{\large \bfseries}{\thesubsection .}{0.3em}{}[ ]
+
+%\titlespacing{Überschriftart}{keine Ahnung}{Abstand oberhalb}{Abstand unterhalb}
+\titlespacing{\section}{0em}{1.0em}{0.1em}
+\titlespacing{\subsection}{0em}{0.2em}{-0.4em}
+\titlespacing{\subsubsection}{0em}{0em}{-0.5em}
+
+\let\vec\oldvec
+
+% Dokumentbeginn
+% ======================================================================
+\begin{document}
+
+
+% Aufteilung in Spalten
+\vspace{-4mm}
+%\begin{multicols}{4}
+	\vspace{-20mm}{
+	\parbox{3cm}{
+		\includegraphics[height=3cm]{./img/Logo.pdf}		
+	}
+	\parbox{8cm}{
+		\emph{\large{EMF Formel-Zusammenfassung}}
+	}}
+\vspace{-4mm} % Man muss optimieren wos nur geht ;)
+% -------------------------------
+% | 		EMF					|
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%=======================================================================
+\\
+\\
+\\
+Die Zusammenfassung basiert auf der Kurzwiederholung der gesamten Kapitel des Zentralübungsleiters Christoph Weiß.
+
+\section{Klassische Kontinumstheorie}
+\subsection{Maxwellsche Gleichungen}
+%\setlength{\tabcolsep}{6pt}
+
+\framebox[\columnwidth]{\vspace{0.3em}
+	\begin{tabular*}{\columnwidth-4em}{@{\extracolsep\fill}ll@{}}
+	Gaußsches Gesetz: & Faradaysches ind. Gesetz\\
+	\large $\div \vec D = \varrho $ & \large $\rot \vec E = - \frac{\partial \vec B}{\partial t}$ \\[1em]
+	Quellfreiheit des magn. Feldes & Ampèrsches Gesetz\\
+	\large $\div \vec B = 0$ & \large $\rot \vec H = \vec j + \frac{\partial \vec D}{\partial t}$\\[0.3em]
+\end{tabular*} }\\
+\\
+
+\subsection{Materialgleichungen}
+
+\framebox[\columnwidth]{\vspace{0.3em}
+	\begin{tabular*}{\columnwidth-4em}{@{\extracolsep\fill}ccc@{}}
+	\large $ \vec D = \epsilon \vec E$ & \large $\vec B = \mu \vec H$ & \large $ \vec j = \sigma \vec E + \cdots $\\
+\end{tabular*} }\\
+\\
+
+\subsection{Energie}
+\framebox[\columnwidth]{\vspace{0.3em}
+	\begin{tabular*}{\columnwidth-4em}{@{\extracolsep\fill}ccc@{}}
+	\large $\delta w_{\ir el} = \vec E \cdot \delta \vec D$& \large$\overset{\epsilon~const}{\ra}$&  \large $w_{\ir el} = \frac{1}{2} \vec E \vec D$ \\
+	\large $\delta w_{\ir mag} = \vec H \cdot \delta \vec B$ &  \large$\overset{\mu~const}{\ra}$& \large $ w_{\ir mag} = \frac{1}{2} \vec H \vec B$ \\
+\end{tabular*} }\\
+\\
+
+\subsection{Bilanzen}
+\framebox[\columnwidth]{\vspace{0.3em}
+
+	\begin{tabular}{@{\extracolsep\fill}c@{}}
+	\large $ \frac{\partial x}{\partial t} + \div \vec j_x = \Pi_x$\\
+	\large $\ra$ Ladungserhaltung: $ \frac{\partial \rho}{\partial t} + \div \vec j = 0$
+	\end{tabular} 
+}
+\vspace{0.3em}\\
+\framebox[\columnwidth]{\vspace{0.3em}
+	\begin{tabular}{@{\extracolsep\fill}ccc@{}}
+	Energiebilanz (Poynting-Vektor): $\vec S = \vec E \times \vec H$
+	\end{tabular} 
+}\\
+\\
+
+\subsection{Potentiale}
+\framebox[\columnwidth]{\vspace{0.3em}
+	\begin{tabular*}{\columnwidth-4em}{@{\extracolsep\fill}cccc@{}}
+	\large $ \phi, \vec A $&\large $\Ra $ & \large $\vec B = \rot \vec A$ & \large $ \vec E = - \vec \nabla \phi - \frac{\partial \vec A}{\partial t}$
+	\end{tabular*}}
+\vspace{0.1em}\\
+\framebox[\columnwidth]{\vspace{0.3em}
+	\begin{tabular*}{\columnwidth-4em}{@{\extracolsep\fill}ccc@{}}
+	Eichfreiheit: & \large $\vec A' = \vec A - \vec \nabla \lambda$ & \large $\phi' = \phi +  \frac{\partial \lambda}{\partial t}$
+	\end{tabular*} 
+}
+\vspace{0.1em}\\
+\framebox[\columnwidth/2-0.3em]{\vspace{0.3em}
+	\begin{tabular*}{(\columnwidth/2)-4em}{@{\extracolsep\fill}ll@{}}
+	Lorenz-Eichung: & \large $ \div \vec A + \epsilon \mu \frac{\partial \phi}{\partial t} = 0$ 
+	\end{tabular*} 
+}
+\framebox[\columnwidth/2]{\vspace{0.3em}
+	\begin{tabular*}{(\columnwidth/2)-4em}{@{\extracolsep\fill}ll@{}}
+	Coulomb-Eichung: & \large $ \div \vec A = 0$ 
+	\end{tabular*} 
+}\\
+\\
+
+\subsection{Materialgrenzen}
+\framebox[\columnwidth]{\vspace{0.3em}
+	\begin{tabular*}{\columnwidth-4em}{@{\extracolsep\fill}cc@{}}
+	\large $\vec D_2 \vec n - \vec D_1 \vec n = \sigma_{int}$ & \large $\vec E_1 \times \vec n - \vec E_2 \times \vec n = 0$\\
+	\large $\vec B_2 \vec n - \vec B_1 \vec n = 0$ & \large $\vec H_2 \times \vec n - \vec H_1 \times \vec n = \vec i $\\
+\end{tabular*} }\\
+\\
+
+\subsection{RWP der Potentialtheorie}
+\framebox[\columnwidth]{\vspace{0.3em}
+	\begin{tabular}{@{\extracolsep\fill}cc@{}}
+	\large $ \phi$: stetig an Grenzfläche $\Ra \frac{\tan \alpha_1}{\tan \alpha_2}= \frac{\epsilon_1}{\epsilon_2}$
+	\end{tabular} 
+}\\
+\\
+
+\subsection{RWP}
+%\framebox[\columnwidth]{\vspace{0.3em}
+	\begin{itemize}
+	\item \large $\Omega$
+	\item $\div(\epsilon \vec \nabla \phi) = - \rho$
+	\item Randwerte\\
+	\end{itemize}
+%}
+
+\subsection{Lösungsmethoden}
+\framebox[\columnwidth]{\vspace{0.3em}
+	\begin{tabular}{@{\extracolsep\fill}c@{}}
+	\large $\phi = \phi^{(0)} + \varphi$\\
+	\large $ \Ra \varphi(\vec r) = \int_{\Omega}G(\vec r,\vec r') \rho((\vec r') \diff^3 r'$
+	\end{tabular} 
+}\vspace{0.3em}\\
+	Bestimmen der $G(\vec r',\vec r')$:
+	\begin{itemize}
+	\item Spektralzerlegung
+	\item Als Lösung einer Punktladung der Größe 1\\
+	\end{itemize}
+
+\subsection{Korrespodenzprinzip}
+	\begin{itemize}
+	\item \large $\div(\kappa \vec \nabla T) = 0$
+	\item \large $\div(\sigma \vec \nabla \phi) = 0$\\
+	\end{itemize}
+
+\section{Kompaktmodelle}
+\framebox[\columnwidth]{\vspace{0.3em}
+	\begin{tabular}{@{\extracolsep\fill}c@{}}
+	Gebiet $\Omega$ $\ra$ Knoten + Zweige\\
+	Vorrausetzung: Quasistationarität\\
+	$\Ra$ Knotenregel + Maschenregel\\
+	\end{tabular} 
+}\\
+
+\subsection{Kapazitätsmatrix ($\rho = 0$)}
+\framebox[\columnwidth]{\vspace{0.3em}
+	\begin{tabular*}{\columnwidth-4em}{@{\extracolsep\fill}ccc@{}}
+	\large $Q_k = \sum\limits_{l=1}^N C_{kl}V_l$ & \large $\vec Q = \ma C \vec V$ & \large $W_{\ir el} = \frac{1}{2} \vec V^\top \ma C \vec V$ \\
+	\end{tabular*} 
+}\\
+
+\subsection{Induktivitätsmatrix}
+\framebox[\columnwidth]{\vspace{0.3em}
+	\begin{tabular*}{\columnwidth-4em}{@{\extracolsep\fill}cc@{}}
+	\large $u_k(t) = r_k i_k(t) + \sum\limits_{l=1}^N L_{kl}\frac{\mathrm d i_l}{\mathrm d t}$ (Trafo) & \large $W_{\ir mag} = \frac{1}{2} \vec I^\top \ma L \vec I$ \\
+	\end{tabular*} 
+}\\
+Eigenschaft von $\ma C, \ma L$: symmetrisch, positiv semi-definit, nicht invertierbar, Alle Zeilen-/Spaltensummen = 0
+
+\subsection{Wechselstrom}
+\framebox[\columnwidth/2-0.3em]{\vspace{0.3em}
+	\begin{tabular*}{(\columnwidth/2)-4em}{@{\extracolsep\fill}l@{}}
+	\large $u(t) = \hat U \sin(\omega t+ \varphi_m) = Im[\boldsymbol{\hat U} e^{j\omega t}]$\\
+	\large $\Ra$ Zeiger $\boldsymbol{\hat U} \in \mathbb C$\\
+	\large $\boldsymbol{\hat U} = \boldsymbol{Z} \boldsymbol{\hat I}$
+	\end{tabular*} 
+}
+\framebox[\columnwidth/2]{\vspace{0.3em}
+	\begin{tabular*}{(\columnwidth/2)-4em}{@{\extracolsep\fill}l@{}}
+	\large $i(t) = \hat I \sin(\omega t+ \varphi_m) = Im[\boldsymbol{\hat I} e^{j\omega t}]$\\
+	\large $\Ra$ Zeiger $\boldsymbol{\hat I} \in \mathbb C$\\
+	\large $\boldsymbol{\hat I} = \boldsymbol{Y} \boldsymbol{\hat U}$
+	\end{tabular*} 
+} 
+\\
+
+\framebox[\columnwidth]{\vspace{0.3em}
+	\begin{tabular*}{\columnwidth-4em}{@{\extracolsep\fill}ccc@{}}
+	Widerstand: $\boldsymbol{ Z} = R$ & Kondensator: $\boldsymbol{ Z} = \frac{1}{j\omega C}$ & Spule: $\boldsymbol{Z} = j\omega L$\\
+	\end{tabular*} 
+}
+
+\framebox[\columnwidth]{\vspace{0.3em}
+	\begin{tabular}{@{\extracolsep\fill}ccc@{}}
+	Leistung: $\boldsymbol{P} =  \frac{1}{2} \boldsymbol{\hat U} \boldsymbol{\hat I^*}  = P_w + j P_B$ & $P_S = \abs{\boldsymbol{P}}$\\
+	\end{tabular} 
+}\\
+
+\section{Harmonische EM-Wellen ($\sigma = 0$)}
+$\Ra \vec E(\vec r,t) = \vec E_0 \cos(\vec k \vec r - \omega t -\varphi_0)$\\
+\\ Richtung von $\vec k$: Ausbreitungsrichtung der Welle\\
+
+\framebox[\columnwidth]{\vspace{0.3em}
+	\begin{tabular*}{\columnwidth-4em}{@{\extracolsep\fill}cc@{}}		
+	\large$ \vec H(\vec r,t) = \frac{1}{\mu \omega} \vec k \times \vec E$ & $ \vec E(\vec r,t) = -\frac{1}{\epsilon \omega} \vec k \times \vec H $ \\
+	\end{tabular*}
+}\\
+
+\framebox[\columnwidth]{\vspace{0.3em}
+	\begin{tabular*}{\columnwidth-4em}{@{\extracolsep\fill}ccc@{}}		
+	\large $\vec H \perp \vec E$ & $ \vec H \perp \vec k$ & $ \vec E \perp \vec k$ \\
+	\end{tabular*}
+}\\
+
+
+Erfüllt die Wellengleichungen, wenn gilt: $\omega = c \abs{\vec k}$\\
+Wellenlänge: $\lambda = \frac{2 \pi}{\abs{\vec k}}$ mit $\epsilon \mu  c^2 = 1$\\
+\\
+Allgemeiner:\\
+$\vec E(\vec r, t) = E_{01} \cos(\vec k \vec r - \omega t - \varphi_1) \vec e_1 +   E_{02} \cos(\vec k \vec r - \omega t - \varphi_2) \vec e_2$\\
+mit $\vec e_1 \perp \vec e_2 \Ra$ Polarisation\\
+
+
+% Dokumentende
+% ======================================================================
+\end{document}
+
+% ToDos:
+

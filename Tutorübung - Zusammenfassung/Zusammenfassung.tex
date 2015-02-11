@@ -1,0 +1,97 @@
+w\documentclass[]{article}
+
+% Pakete laden
+\usepackage[utf8]{inputenc}		% Zeichenkodierung: UTF-8 (für Umlaute)   
+\usepackage[german]{babel}		% Deutsche Sprache
+\usepackage{multicol}			% ermöglicht Seitenspalten  
+\usepackage{booktabs}			% bessere Tabellenlinien
+\usepackage{graphicx}			% Zum Bilder einfügen benötigt
+\usepackage{pbox}				% Intelligent parbox: \pbox{maximum width}{blabalbalb \\ blabal}
+\usepackage{scientific}			% Eigenes Paket
+\begin{document}
+
+\title{Zusammenfassung EMF}
+\author{Martin Zellner}
+
+\section*{1. Tutorübung}
+
+Poynting-Vektor: 
+\begin{equation}
+	\vec s = \vec E \times \vec H
+\end{equation}
+\begin{equation}
+	[\vec s] = \frac{J}{m^2 s} = \frac{W}{m^2} = \frac{N}{m s}
+\end{equation}
+\begin{equation}
+	\int \vec E d \vec s = U
+\end{equation}
+Durchfultungsgesetz:
+\begin{equation}
+	\int \limits_{\partial A} \vec H d \vec s = J(A) = \iint \limits_{A} \vec j d \vec a
+\end{equation}
+für Spulen
+\begin{equation}
+\int \limits_{\partial A} \vec H  d s = N J
+\end{equation}
+
+Materialgesetze
+\begin{eqnarray}
+	\vec B = \underbrace{\mu_0 \mu_r}_{\mu} \vec H \\
+	\vec D = \underbrace{\epsilon_r \epsilon_0}_{\epsilon} \vec E
+\end{eqnarray}
+lokales ohmsches Gesetz
+\begin{eqnarray}
+	\vec j = \sigma \vec E
+\end{eqnarray}
+Energiedichte 
+
+\begin{eqnarray}
+	w_{mag} = \frac 1 2 \vec H \vec B = \frac{1}{2\mu} \abs{\vec B}^2 \\
+	w_{el} = \frac 1 2 \vec E \vec D = \frac \epsilon 2 \abs{\vec E}^2
+\end{eqnarray}
+
+Bilanz
+\begin{eqnarray}
+	\underbrace{\frac{\partial x}{\partial t}}_{\text{zeitliche Veränderung}} + \underbrace{\div \vec J_x (\vec r, t)}_{\text{zu- oder abfluss}} = \underbrace{\pi}_{\text{Produktionsrate}} 
+\end{eqnarray}
+
+
+\section*{2. Tutorübung}
+MWG: 
+\begin{eqnarray}
+\div \vec D = \rho &  \text{Gaußsches Gesetz} \\
+\div \vec B = 0 & \text{Quellenfreiheit des B-Feldes} \\
+\rot \vec H = \vec j + \frac{\partial \vec D}{\partial t} & \text{Ampersches Durchflutungsgesetz} \\
+\rot \vec E = - \frac{\partial \vec B}{\partial t} & \text{Induktionsgestz}
+\end{eqnarray}
+Materialgleichungen: 
+\begin{eqnarray}
+\vec D = \epsilon \vec E \\
+\vec B = \mu \vec H \\
+\vec j = \sigma \vec E \\
+\end{eqnarray}
+Poynting-Vektor:
+\begin{eqnarray}
+\vec s = \vec E \times \vec H
+\end{eqnarray}
+
+Potential stromdurchflossener Leiter:
+
+\begin{eqnarray}
+\Phi (\vec r) = - \frac{Q}{2 \pi \epsilon l} \ln (\frac{r}{r_0}) + C \\
+\vec E = - \nabla \Phi
+\end{eqnarray}
+
+Elektromagnetisches Vektorpotential: $\vec B = \rot \vec A$ \\
+Skalares magnetisches Potential $\Phi$: $\vec E = - \nabla \Phi - \frac{\partial \vec A}{\partial t}$
+\\
+Eichfreiheit
+\begin{eqnarray}
+\vec A' = \vec A - \nabla \chi & \Phi'_\chi = \Phi + \frac{\partial \chi}{\partial t} \\
+A = \frac{Vs}{m} & \Phi = V
+\end{eqnarray}
+Lorentz-Eichung: $\div \vec A + \epsilon M \frac{\partial \Phi}{\partial t} = 0$ \\
+Coulomb-Eichung:  $\div \vec A = 0$
+
+Zeitlicher Mittelwert: $ \overline{x} = \frac{1}{T} \int \limits_0^T x dt$
+\end{document}

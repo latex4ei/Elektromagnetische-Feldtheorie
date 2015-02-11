@@ -1,0 +1,120 @@
+% Eigene Macros für wissenschaftliche Texte			Stand 01.10.12
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{scientific}[2012/10/01 Scientific Macros for LaTeX4EI]
+
+
+% Benötigte Pakete laden
+\RequirePackage{xifthen}			% If Then Else Anweisungen
+\RequirePackage{amsmath}			% erlaubt mathematische Formeln
+\RequirePackage{accents}			% Für eigene Ableitungspunkte benötigt
+
+% Zusätzliche Pakete
+\RequirePackage{amssymb}			% Verschiedene Symbole
+\RequirePackage{esint}				% erweiterte Integralsymbole
+\RequirePackage[version=3]{mhchem}	% chemistry \ce
+\RequirePackage{siunitx}			% SI gerechte Darstellung von Zahlen
+
+
+
+% .:: Externe Befehl 
+% ======================================================================
+
+% \utilde: aus Package undertilde.sty
+\newlength\knuthian@fdfive
+\def\mathpal@save#1{\let\was@math@style=#1\relax}
+\def\utilde#1{\mathpalette\mathpal@save
+              {\setbox124=\hbox{$\was@math@style#1$}%
+\setbox125=\hbox{$\fam=3\global\knuthian@fdfive=\fontdimen5\font$}
+\setbox125=\hbox{$\widetilde{\vrule height 0pt depth 0pt width \wd124}$}%
+               \baselineskip=1pt\relax
+               \vtop{\copy124\copy125\vskip -\knuthian@fdfive}}}
+
+% Laplace Befehl aus trfsigns.sty
+\newcommand{\laplace}{\mbox{\setlength{\unitlength}{0.1em}
+                            \begin{picture}(25,10)
+                              \put(3,3){\circle{4}}
+                              \put(5,3){\line(1,0){13}}
+                              \put(19,3){\circle*{4}}
+                            \end{picture}}}
+
+
+% .:: Eigene Befehle und Abkürzungen
+% ======================================================================
+
+% Bestehende Befehle sichern
+\let\oldvec = \vec
+\let\olddot = \dot
+\let\oldfrac = \frac
+\let\oldlaplace = \laplace
+
+% Eigene Bruchdarstellung:
+\renewcommand{\frac}[3][]{%
+ \ifthenelse{\isempty{#1}}%
+	{\oldfrac{#2}{#3}}
+	{\genfrac{}{}{}{}{\raisebox{#1}[\height+0.1em][\depth]{$\scriptstyle #2$}}{\raisebox{-#1}[\height][\depth + 0.2em]{$\scriptstyle #3$}}}
+}
+
+
+% Eigene Befehle
+\newcommand{\ul}[1]{\ensuremath{\underline{#1}}}								% Untersteichen
+\newcommand{\ol}[1]{\ensuremath{\overline{#1}}}									% Überstreichen
+\newcommand{\bs}[1]{\ensuremath{\boldsymbol{#1}}}								% Fett und kursiv im mathmode
+\newcommand{\iset}[2]{\ensuremath{\bigl\{ \bigl. #1 \, \bigr| \, #2 \bigr\}}}	% intensional set
+\newcommand{\eset}[1]{\ensuremath{\bigl\{#1\bigr\}}}							% extensional set
+\newcommand{\norm}[1]{\ensuremath{\left\|#1\right\|}}							% Norm
+\newcommand{\mat}[1]{\ensuremath{\begin{bmatrix} #1 \end{bmatrix}}}				% Matrix
+\newcommand{\ma}[1]{\ensuremath{\utilde{\boldsymbol {#1}}}}						% Matrixsymbol
+\newcommand{\vect}[1]{\ensuremath{\begin{pmatrix} #1 \end{pmatrix}}}			% Vektor
+\newcommand{\mvect}[1]{\ensuremath{\left.\begin{matrix} #1 \end{matrix}\right]}}% Matrixvektor
+\newcommand{\gk}[1]{\ensuremath{\left\lfloor#1\right\rfloor}} 					% Gaußklammer
+\newcommand{\sprod}[2]{\ensuremath{\left\langle #1, #2 \right\rangle }}			% Skalarprodukt
+\newcommand{\abs}[1]{\ensuremath{\left\vert#1\right\vert}} 						% Betrag
+\newcommand{\chem}[1]{\ensuremath{\displaystyle{\mathrm{#1}}}}					% chemische Formeln die gut aussehen ;)
+\newcommand{\cx}[1]{\ensuremath{\boldsymbol #1}}								% komplexe Zehl
+
+% Überschreibungen
+\renewcommand{\vec}[1]{\ensuremath{\underline{\boldsymbol {#1}}}}								% Vektor fett und unterstrichen
+\renewcommand{\emph}[1]{\textbf{#1}}															% Hervorhebungen fett
+\renewcommand*{\dot}[1]{\accentset{\mbox{\textrm{\large\bfseries .}} }{#1}}						% Dicker Ableitungspunkt
+\renewcommand*{\ddot}[1]{\accentset{\mbox{\textrm{\large\bfseries .\hspace{-0.25ex}.}}}{#1}}	% Dicker Doppelableitungspunkt
+\renewcommand*{\dddot}[1]{\accentset{\mbox{$\overset{\textrm{\large\bfseries .}}{\textrm{\large\bfseries.\hspace{-0.25ex}.}}$}}{#1}}	
+
+% Abkürzungen für Symbole
+\newcommand{\Ra}{\ensuremath{\Rightarrow}}									% Rightarrow
+\newcommand{\ra}{\ensuremath{\rightarrow}} 									% rightarrow
+\newcommand{\lra}{\ensuremath{\longrightarrow}} 							% Longrightarrow
+\newcommand{\bdot}{\ensuremath{\boldsymbol \cdot}} 							% Dicker Punkt für Skalarprodukt
+\newcommand{\svdots}{\ensuremath{\olddot :}}								% small vertical dots
+\newcommand{\shdots}{\ensuremath{\!\cdot \!\cdot\!\cdot\!}}					% small horizontal dots
+\newcommand{\diff}{\ensuremath{\ \mathrm d}}								% differentielles Delta
+\renewcommand{\i}{\ensuremath{\mathrm{i}}}									% imaginary unit	
+
+	% Abkürzungen für Mengensymbole
+	\DeclareMathOperator{\N}{\mathbb N}									% Natürliche Zahlen
+	\DeclareMathOperator{\R}{\mathbb R}									% Reele Zahlen
+	\DeclareMathOperator{\C}{\mathbb C}									% Komplexe Zahlen
+	\DeclareMathOperator{\K}{\mathbb K}									% Reele oder komplexe Zahlen
+	\DeclareMathOperator{\B}{\mathbb B}									% Binäre Zahlen 1,0
+	\def\P{\operatorname{\mathbb P}}									% Primzahlen
+	
+
+
+% Aufrechtschrift für Funktionen
+\DeclareMathOperator{\grad}{grad}							% Gradient
+\def\div{\operatorname{div}}								% Divergenz
+\DeclareMathOperator{\rot}{rot}								% Rotation
+\DeclareMathOperator{\Sp}{Sp}								% Spur
+\DeclareMathOperator{\ggT}{ggT}								% ggT
+\DeclareMathOperator{\sgn}{sgn}								% Signum
+\DeclareMathOperator{\sinc}{sinc}							% Sinus Cardinalis
+\newcommand{\heavi}{\ensuremath{\Theta}}					% Heaviside Funktion
+\DeclareMathOperator{\const}{const.}						% Konstante
+
+% Eigene Tabellenlinien
+\def\trule{\noalign{\vspace{1pt}\hrule\hrule\vspace{2pt}}}					% top rule
+\def\mrule{\noalign{\vspace{1pt}\hrule\vspace{2pt}}}						% middle rule
+\def\brule{\noalign{\vspace{2pt}\hrule\hrule\vspace{1pt}}}					% bottom rule
+
+% Ende von /input
+\endinput
+
