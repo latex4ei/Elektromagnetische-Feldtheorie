@@ -23,11 +23,11 @@
 \usepackage{enumitem}			% bessere Listen
 \usepackage{graphicx}			% Zum Bilder einfügen benötigt
 \usepackage{pbox}				%Intelligent parbox: \pbox{maximum width}{blabalbalb \\ blabal}
-\usepackage{../packages/scientific}			% Eigenes Paket
+\usepackage{scientific}			% Eigenes Paket
 \usepackage{scrtime}
 \usepackage{parskip} 			%Verhindert das einrücken am Zeilenanfang
 \usepackage{titlesec}
-
+\usepackage{latex4ei}
 
 % .:: Seitenlayout und Ränder
 % ======================================================================
@@ -279,7 +279,8 @@ $\int \limits_{\partial A} \vec H d \vec r = \int \limits_A \rot \vec H d \vec a
 	\subsection{Feldverhalten an Materialgrenzen}
 	\begin{center}
 		\includegraphics{./img/grenze2.pdf}
-	\end{center} 	An Grenzflächen gibt es Flächenladung $\sigma:$ \\
+	\end{center} 
+	An Grenzflächen gibt es Flächenladung $\sigma:$ \\
 	$Q = \lim\limits_{h \ra 0} \int_V \rho \diff V = \int_A \sigma \diff \vec a$\\
 	\begin{eqnarray*}
 	\vec D_2 \vec n - \vec D_1 \vec n = \sigma_{\ir int} \\

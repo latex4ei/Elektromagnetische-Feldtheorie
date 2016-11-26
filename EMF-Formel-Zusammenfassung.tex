@@ -23,7 +23,9 @@
 \usepackage{enumitem}			% bessere Listen
 \usepackage{graphicx}			% Zum Bilder einfügen benötigt
 \usepackage{pbox}				%Intelligent parbox: \pbox{maximum width}{blabalbalb \\ blabal}
-\usepackage{../packages/scientific}			% Eigenes Paket
+\usepackage{scientific}			% Eigenes Paket
+\usepackage{latex4ei}			% Eigenes Paket
+
 \usepackage{scrtime}
 \usepackage{parskip} 			%Verhindert das einrücken am Zeilenanfang
 \usepackage{titlesec}
@@ -220,7 +222,9 @@ Die Zusammenfassung basiert auf der Kurzwiederholung der gesamten Kapitel des Ze
 	\begin{tabular*}{\columnwidth-4em}{@{\extracolsep\fill}ccc@{}}
 	\large $Q_k = \sum\limits_{l=1}^N C_{kl}V_l$ & \large $\vec Q = \ma C \vec V$ & \large $W_{\ir el} = \frac{1}{2} \vec V^\top \ma C \vec V$ \\
 	\end{tabular*} 
+
 }\\
+Eigenschaft von $\ma C$: symmetrisch, positiv \textbf{semi-}definit, nicht invertierbar, Alle Zeilen-/Spaltensummen = 0
 
 \subsection{Induktivitätsmatrix}
 \framebox[\columnwidth]{\vspace{0.3em}
@@ -228,7 +232,7 @@ Die Zusammenfassung basiert auf der Kurzwiederholung der gesamten Kapitel des Ze
 	\large $u_k(t) = r_k i_k(t) + \sum\limits_{l=1}^N L_{kl}\frac{\mathrm d i_l}{\mathrm d t}$ (Trafo) & \large $W_{\ir mag} = \frac{1}{2} \vec I^\top \ma L \vec I$ \\
 	\end{tabular*} 
 }\\
-Eigenschaft von $\ma C, \ma L$: symmetrisch, positiv semi-definit, nicht invertierbar, Alle Zeilen-/Spaltensummen = 0
+Eigenschaft von $\ma L$: symmetrisch, positiv definit (Unterschiede zu Kapazitätsmatrix!)
 
 \subsection{Wechselstrom}
 \framebox[\columnwidth/2-0.3em]{\vspace{0.3em}
