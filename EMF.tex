@@ -99,6 +99,18 @@ Elektrostatik heißt $\frac{\partial \vec D}{\partial t} = 0$, $\vec j = 0$ und 
 	Magn. Feldkonst. & $\mu_0 = 4\pi \times \SI{e-7}{\henry\per\meter}$\\
 \end{tabular*}
 
+\subsection{Mathematik}
+$z=a+b\mathbf{i}\ne0$\ in Polarkoordinaten:\\
+$z=r (\cos(\varphi)+\mathbf{i}\sin(\varphi))=r\cdot e^{\mathbf{i} \varphi}$\\
+$r=|z|=\sqrt{a^2+b^2}\quad\varphi=\arg(z)=\begin{cases}+\arccos \left( \frac{a}{r}\right),  & b\ge0   \\  -\arccos \left( \frac{a}{r}\right), & b<0\end{cases}$
+
+\begin{description}\itemsep0pt
+\item[Multiplikation:] $z_1\cdot z_2=r_1 \cdot r_2 ( \cos ( \varphi_1 + \varphi_2) + \mathbf{i} \sin (\varphi_1 + \varphi_2))$
+\item[Division:] $\frac{z_1}{z_2}=\frac{r_1}{r_2} ( \cos ( \varphi_1 - \varphi_2) + \mathbf{i} \sin (\varphi_1 - \varphi_2))$
+\item[n-te Potenz:] $z^n=r^n\cdot e^{n\varphi \mathbf{i}}= r^n (\cos (n \varphi) + \mathbf{i} \sin (n \varphi))$
+\item[n-te Wurzel:] $\sqrt[n]{z}= z_k = \sqrt[n]{r} \left(\cos \left(\frac{\varphi + 2k\pi}{n}\right) + \mathbf{i} \sin \left(\frac{\varphi + 2k\pi}{n}\right)\right) \\ k =0,1, \ldots, n-1$
+\item[Logarithmus:] $\ln(z)=\ln(r) + \mathbf{i}(\varphi + 2k\pi)$ \quad (Nicht eindeutig!)
+\end{description}
 
 \subsection{Maxwellsche Gleichungen (Naturgesetze)}
 \setlength{\tabcolsep}{6pt}
@@ -394,6 +406,8 @@ $\int \limits_{\partial A} \vec H d \vec r = \int \limits_A \rot \vec H d \vec a
 			Zweige: flusserhaltend, gerichtete Spannung.\\
 	\end{enumerate}
 	
+		\boxed{\lambda = \frac{c_0}{f}}
+	
 	
 		\subsection{Kirchoffsche Gesetze}
 		\boxed{ \sum U_i = U_{\ir ind} } \qquad \boxed{ \sum I_i = - \dot Q_K }\\
@@ -403,7 +417,7 @@ $\int \limits_{\partial A} \vec H d \vec r = \int \limits_A \rot \vec H d \vec a
 		\begin{itemize}
 			\item Kapazitätsmatrix:\\
 				$C_{kl} = \int\limits_\Omega \nabla \Phi_k \varepsilon \nabla \Phi_l \diff^3 r = -\int\limits_{\partial\Omega_k} \epsilon \vec n \nabla \Phi_l d\vec a$ (k,l = 0, ..., N)\\
-				$\ma C$ symmetrisch, positiv semi-definit, nicht invertierbar\\
+				$\ma C$ symmetrisch, positiv semi-definit, nicht invertierbar, Zeilen- und Spaltensumme null\\
 			\item Reduzierte Kapazitätsmatrix:\\
 				$\ma C_0: \ma C$ um 0. Zeile und 0. Spalte abgeschnitten\\
 				$\vec U_0 = \mat{ V_1 - V_0 \\ \cdots \\ V_N - V_0 }$ \quad $\vec Q_0 = \ma C_0\vec U_0$ \quad $\ma C_0$ invertierbar\\
@@ -545,10 +559,66 @@ Annahmen: $\rho = 0$ außer bei Antennen, keine thermischer Strom.\\
 	Linear: $\phi_{02} - \phi_{01} = n\pi$ \qquad $\frac{E_1}{E_{01}} = \pm \frac{E_2}{E_{02}}$\\
 	Kreis: $\phi_{02} - \phi_{01} = (n+\frac{1}{2}) \pi \ \land \ E_{01} = E_{02}$ \qquad $\left(\frac{E_1}{E_{01}}\right)^2 + \left(\frac{E_2}{E_{02}}\right)^2$\\
 
-	$\hat{\cx E}(\cx z,t) = \vec e_x \hat A(e^{\i(\omega t - k \cx z)} + \hat r(e^{\i(\omega t + k \cx z)})$\\
-
-	$\tilde{\cx \varepsilon}(\omega) = \varepsilon(\omega) + \i \frac{\sigma(\omega)}{\omega}$\\
-	$\tilde{\cx k}(\omega) = \underset{\text{Phasenmaß}}{\beta(\omega)} + \i \underset{\text{Dämpfungsmaß}}{\alpha(\omega)}$\\
+	\subsubsection{Komplexe Darstellung}
+	$\vec E(t,\vec r) = \Re{\underset{\hat E_0}{\underbrace{\left(E_{\ir 01}\e^{j\varphi_1}\vec\e_1 + E_{\ir 02}\e^{j\varphi_2}\vec\e_2\right)}\e^{j(\omega t-\vec k\cdot\vec r)}}}$\\
+	\subsubsection{Darstellung beliebiger EM-Wellen durch harmonische ebene Wellen}
+	Annahmen: $\varrho_0, \vec j_0 = 0, \sigma \geq 0$\\
+	Materialgleichungen:
+	\begin{itemize}
+		\item $\vec D(\vec k) = \epsilon(\omega(\vec k))\vec E(\vec k)$
+		\item $\vec B(\vec k) = \mu(\omega(\vec k))\vec H(\vec k)$
+		\item $\vec j(\vec k) = \sigma(\omega(\vec k))\vec E(\vec k)$
+	\end{itemize}
+	komplexe Permittivität: $\tilde{\cx \varepsilon}(\omega) = \varepsilon(\omega) + \i \frac{\sigma(\omega)}{\omega}$\\
+	komplexe Dispersionsrelation: $\tilde{k(\omega)}=\frac{1}{\tilde{\varepsilon}(\omega(\vec k))\mu(\omega(\vec k))}\vec k^2$\\
+	komplexer Wellenwiderstand: $\tilde{Z}(\omega) = \sqrt{\frac{\mu(\omega)}{\tilde{\varepsilon}(\omega)}} = \frac{\tilde{k}(\omega)}{\omega\tilde{\varepsilon}(\omega)}$\\
+	Fourierkoeffizienten der Feldgrößen:
+	\begin{itemize}
+		\item $\rot\vec E = -\frac{\partial\vec B}{\partial t} \overset{FT}{=} -j\vec k \times\hat{\vec E}(\vec k) = -j\omega\mu(\omega)\hat{\vec H}(\vec k)$, also $\vec k\times\hat{\vec E}(\vec k) = \omega(\vec k)\mu(\omega(\vec k))\hat{\vec H}(\vec k)$
+		\item $\div\vec D = 0 \overset{FT}{=} -j\vec k\cdot\varepsilon(\omega)\hat{\vec E}(\vec k) = 0$, also $\vec k\cdot\hat{\vec E}(\vec k) = 0$
+		\item $\rot\vec H = \vec j + \frac{\partial\vec D}{\partial t} \overset{FT}{=} \sigma(\omega)\hat{\vec E}(\vec k)+j\omega\varepsilon(\omega)\hat{\vec E}(\vec k) = j\omega\tilde{\varepsilon}(\omega)\hat{\vec E}(\vec k)$, also $-\vec k\times\hat{\vec H}(\vec k) = \omega(\vec k)\tilde{\varepsilon}(\omega(\vec k))\hat{\vec E}(\vec k)$
+		\item $\div\vec B = 0 \overset{FT}{=} j\vec k\cdot\mu(\omega)\hat{\vec H}(\vec k) = 0$, also $\vec k\cdot\hat{\vec H}(\vec k) = 0$
+	\end{itemize}
+	inv. Dispersionsrelation: $\tilde{\cx k}(\omega) = \sqrt{\tilde{\varepsilon}(\omega)\mu(\omega)}$\\
+	\subsubsection{Räumlich gedämpfte ebene EM-Welle in Leitern}
+	$\tilde{\cx k}(\omega) = \underset{\text{Phasenmaß}}{\beta(\omega)} - \i \underset{\text{Dämpfungsmaß}}{\alpha(\omega)}$\\
+	Näherung: $\sigma(\omega) \gg \omega\varepsilon(\omega)$\\
+	$\alpha(\omega) = \beta(\omega) = \sqrt{\frac{\sigma(\omega)\mu\omega}{2}} = \frac{2\pi}{\lambda}$\\
+	Eindringtiefe: $\Delta z(\omega) = \sqrt{\frac{2}{\sigma(\omega)\mu\omega}}$\\
+	Abklingverhältnis: $\e^{-\lambda\alpha}$\\
+	Skin-Effekt: Abschirmverhalten von leitenden Medien gegen das Eindringen von EM-Wellen
+	\subsection{Einfall ebener elektromagnetischer Wellen auf ebene Materialgrenzschichten}
+	Aufteilung der EM-Welle in reflektierenden und transmittierenden Anteil\\
+	einfallend: $\vec H_h(\vec r) = \vec H_{\ir h0}\e^{-j\vec k_h\cdot\vec r}$, \qquad $\vec E_h = Z_1\vec H_h \times \e_{\ir kh}$\\
+	reflektierend: $\vec H_r(\vec r) = \vec H_{\ir r0}\e^{-j\vec k_r\cdot\vec r}$, \qquad $\vec E_h = Z_1\vec H_h \times \e_{\ir kh}$
+	transmittierend: $\vec H_D(\vec r) = \vec H_{\ir D0}\e^{-j\vec k_D\cdot\vec r}$, \qquad $\vec E_h = Z_2\vec H_h \times \e_{\ir kh}$
+	%TODO Bild Skript S.163
+	Reflexionswinkel gleich Einfallswinkel: $\alpha_h = \alpha_r$\\
+	Brechungsgesetz (Snellius): $k_1\sin\alpha_h = k_2\sin\alpha_D$\\ \\
+	\boxed{
+		(\vec H_h + \vec H_r) \times \vec n = \vec H_D \times\vec n \qquad (\vec E_h + \vec E_r)\times n = \vec E_D \times \vec n
+	}
+	\textbf{E-Feld $\parallel$ Einfallsebene:} Einfallende Welle nennt sich TM-Welle\\
+	%TODO Bild Skript S.165
+	Reflexionskoeffizient: $r_{\parallel} = \frac{\hat E_r}{\hat E_h} = \frac{\hat H_r}{\hat H_h} = \frac{Z_2\cos\alpha_D - Z_1\cos\alpha_h}{Z_2\cos\alpha_D + Z_1\cos\alpha_h}$\\
+	Transmissionskoeffizient: $t_{H\parallel} = \frac{\hat H_D}{\hat H_h} = \frac{2Z_1\cos\alpha_h}{Z_2\cos\alpha_D+Z_1\cos\alpha_h}$\\
+	$t_{E\parallel} = \frac{\hat E_D}{\hat E_h} = \frac{Z_1}{Z_2}t_{H\parallel}$\\
+	\textbf{E-Feld $\perp$ Einfallsebene:} Einfallende Welle nennt sich TE-Welle\\
+	Reflexionskoeffizient: $r_\perp = \frac{\hat E_r}{\hat E_h} = \frac{\hat H_r}{\hat H_h} = \frac{Z_2\cos\alpha_h-Z_1\cos\alpha_D}{Z_2\cos\alpha_h+Z_1\cos\alpha_D}$\\
+	Transmissionskoeffizient: $t_{E\perp} = \frac{\hat E_D}{\hat E_h} = \frac{2Z_2\cos\alpha_h}{Z_2\cos\alpha_h+Z_1\cos\alpha_D}$\\
+	$t_{H\perp} = \frac{\hat H_D}{\hat H_h} = \frac{Z_1}{Z_2}t_{E\perp}$\\
+	\subsection{Abstrahlung von EM-Wellen im freien Raum}
+	Maxwellsche Gleichungen in zeitharmonischen Feldern:
+	\begin{itemize}
+		\item $\rot\vec E = -\j\omega\vec B = -\j\omega\mu_0\vec H$
+		\item $\rot\vec H = \j\omega\vec D + \vec j_0 = \j\omega\varepsilon_0\vec E+\vec j_0$
+		\item $\div\vec E = \frac{1}{\epsilon_0}\div\vec D = \frac{\varrho_0}{\varepsilon_0}$
+		\item $\div\vec H = \frac{1}{\mu_0}\div\vec B = 0$
+	\end{itemize}
+	Helmholtz-Gleichung: $\Delta\vec A + \j\omega\varepsilon_0\mu_0\vec A = -\mu_0\vec j_0$\\
+	Vereinfachung durch eingeprägte Dirac-Impuls Stromdichte der Form: $\vec j_0^D(\vec  r) = \hat I_0\Delta l\vec\e_z\delta(\vec r)$\\
+	$\Rightarrow$ \textbf{Hertzscher-Dipol} mit Dipolmoment $I_0\Delta l$ mit $\vec A(\vec r) = \hat I_0\Delta l\mu_0\frac{\e^{-\j k_0r}}{4\pi r}\vec\e_z$\\
+	%TODO Bild Skript S. 169
 	
 	\begin{description}
 		\item[statisch:] Keine Veränderung über die Zeit $\frac{\partial}{\partial t} = 0$
