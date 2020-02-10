@@ -117,9 +117,9 @@ $r=|z|=\sqrt{a^2+b^2}\quad\varphi=\arg(z)=\begin{cases}+\arccos \left( \frac{a}{
 
 \framebox[\columnwidth]{\vspace{0.3em}
 	\begin{tabular*}{\columnwidth-4em}{@{\extracolsep\fill}ll@{}}
-	Gaußsches Gesetz: & Faradaysches ind. Gesetz\\
+	Gaußsches Gesetz (inhom.) & Faradaysches ind. Gesetz\\
 	\large $\div \vec D = \varrho $ & \large $\rot \vec E = - \frac{\partial \vec B}{\partial t}$ \\[1em]
-	Quellfreiheit des magn. Feldes & Ampèrsches Gesetz\\
+	Quellfreiheit des magn. Feldes & Ampèrsches Gesetz (inhom.)\\
 	\large $\div \vec B = 0$ & \large $\rot \vec H = \vec j + \frac{\partial \vec D}{\partial t}$\\[0.3em]
 \end{tabular*} }\\
 \\
@@ -426,6 +426,7 @@ $\int \limits_{\partial A} \vec H d \vec r = \int \limits_A \rot \vec H d \vec a
 		
 		\subsection{Induktive Speicherelemente}
 		$u_k(t) = -u_{\text{ind,k}}(t) + r_ki_k(t)$\\
+		Transformatorgleichung: $u_k(t) = r_ki_k(t)+\sum_{l=1}^N L_{\ir kl} \frac{\diff i_l}{\diff t}$\\
 		Neumannsche Formel: $L_{\text{kl}} = \frac{\mu}{4\pi}\int_{C_k}\int_{C_l} \frac{d\vec s' \cdot d\vec s}{\abs{\vec r - \vec r'(s)}} = \frac{\partial^2W_{\ir mag}}{\partial i_k\partial i_l}$ \\
 		$L_{\text{kl}} : \begin{cases}\text{Selbstinduktionskoeffizient}, k=l\\\text{Gegeninduktionskoeffizient}, k \neq l\end{cases}$\\
 		$\ma L$ symmetrisch, positiv definit
