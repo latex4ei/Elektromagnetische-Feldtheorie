@@ -369,6 +369,7 @@ $\int \limits_{\partial A} \vec H d \vec r = \int \limits_A \rot \vec H d \vec a
 	
 	\subsection{Greenfunktion $G(\vec r, \vec r')$}
 	Def: Lösung des RWP mit hom. Randbed. und Störung $\rho(\vec r) = \delta(\vec r - \vec r')$ (Einheitspunktladung bei $\vec r'$)\\
+	Poissongleichung $\Delta\varphi = -\frac{\rho}{\varepsilon_0}$ wird durch das Coulomb-Integral gelöst.
 	Allg. Lösung: $\Phi(\vec r) = \int_\Omega G(\vec r, \vec r')\rho(\vec r') \diff^3 \vec r'$\\
 	\\
 	Beispiel Punktladung: $G_{\text{Vac}}(\vec r, \vec r') = \frac{1}{4 \pi \varepsilon} \frac{1}{\norm{\vec r - \vec r'}}$
@@ -399,11 +400,10 @@ $\int \limits_{\partial A} \vec H d \vec r = \int \limits_A \rot \vec H d \vec a
 	\subsection*{Spiegelladungsmethode}
 	Konstruktion eines Ersatzproblems durch Spiegelung der negierten Ladung an einer ebenen leitenden Randfläche\\
 	%TODO S.63 Bild
-	Poissongleichung $\Delta\varphi = -\frac{\rho}{\varepsilon_0}$ wird durch das Coulomb-Integral gelöst: $\varphi(\vec r) = \frac{1}{4\pi\varepsilon_0}\int_{\R}  \frac{\rho(\vec r)}{\abs{\vec r - \vec r'}}\diff v'$
 	\begin{align*}
 		G_{\text{Halb}}(\vec r, \vec r_0) = \frac{1}{4 \pi \varepsilon} \left( \frac{1}{\norm{\vec r - \vec r_0}} - \frac{1}{\norm{\vec r - \vec r_0^*}}\right)
 	\end{align*}
-	analog für Winkelräume
+	analog für Winkelräume. Eventuell müssen die gespiegelten Ladungen wieder gespiegelt werden (möglicherweise unendlich oft), bis sich alles ausgleicht.
 	
 	\subsection*{Multipolentwicklung}
 	Coulomb-Integral: $\Phi(\vec r) = \int_{\R^3} G_{\ir vac}(\vec r, \vec r')\rho(\vec r') \diff^3 \vec r' = \frac{1}{4\pi\varepsilon_0}\int_{\R^3}  \frac{\rho(\vec r)}{\abs{\vec r - \vec r'}}\diff v'$\\
@@ -456,6 +456,8 @@ $\int \limits_{\partial A} \vec H d \vec r = \int \limits_A \rot \vec H d \vec a
 		\subsection{Induktive Speicherelemente}
 		$u_k(t) = -u_{\text{ind,k}}(t) + r_ki_k(t)$\\
 		Transformatorgleichung: $u_k(t) = r_ki_k(t)+\sum_{l=1}^N L_{\ir kl} \frac{\diff i_l}{\diff t}$\\
+		Kopplungsinduktivität: $M = k\sqrt{L_1L_2}$\\
+		$\quad\Rightarrow U_1=L_1\dot{I}_1 + M\dot{I}_2\qquad U_2 = M\dot{I}_1+L_2\dot{I}_2$\\
 		Neumannsche Formel: $L_{\text{kl}} = \frac{\mu}{4\pi}\int_{C_k}\int_{C_l} \frac{d\vec s' \cdot d\vec s}{\abs{\vec r - \vec r'(s)}} = \frac{\partial^2W_{\ir mag}}{\partial i_k\partial i_l}$ \\
 		$L_{\text{kl}} : \begin{cases}\text{Selbstinduktionskoeffizient}, k=l\\\text{Gegeninduktionskoeffizient}, k \neq l\end{cases}$\\
 		$\ma L$ symmetrisch, positiv definit
