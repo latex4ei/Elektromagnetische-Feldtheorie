@@ -658,6 +658,35 @@ Annahmen: $\rho = 0$ außer bei Antennen, keine thermischer Strom.\\
 	Vereinfachung durch eingeprägte Dirac-Impuls Stromdichte der Form: $\vec j_0^D(\vec  r) = \hat I_0\Delta l\vec\e_z\delta(\vec r)$\\
 	$\Rightarrow$ \textbf{Hertzscher-Dipol} mit Dipolmoment $I_0\Delta l$ mit $\vec A(\vec r) = \hat I_0\Delta l\mu_0\frac{\e^{-\j k_0r}}{4\pi r}\vec\e_z$\\
 	%TODO Bild Skript S. 169
+		\subsection{Elektromagnetische Wellenleiter}
+	Alle Verbindungen zwischen elektrischen und elektronischen Bauteilen oder Systemen sind Wellenleiter (bei niedrigen Frequenzen vernachlässigbar).\\
+	Wellenausbreitungseffekte ab $\frac{1}{10}\lambda \rightarrow$ Vermeidung von Reflexionen und Mehrwegeausbreitungseffekten\\
+	Translationsinvarianz des Wellenleiters in z-Richtung $\rightarrow$ Feldtypen der Form:
+	\begin{align*}
+	 \vec E(x,y,z) = \vec E_0(x,y)\e^{\pm\gamma}\\
+	 \vec H(x,y,z) = \vec H_0(x,y)\e^{\pm\gamma}
+\end{align*}
+	$\gamma = \j\beta$: verlustloser Wellenleiter\\
+	$\gamma = \alpha$: Dämpfungstypen (evaneszente Moden)\\
+	Wellentypen können eine \textbf{untere Grenzfrequenz} aufweisen, ab der sie ausbreitungsfähig sind\\
+	Existiert unterhalb einer bestimmten Grenzfrequenz noch eine einziger Wellentyp $\Rightarrow$ \textbf{Grundmode / Fundamentalmode} (i.d.R. bei Leitungen TEM-Welle).\\
+	Koaxialleitung:
+	\begin{align*}
+	\vec E(\vec r) = \frac{\hat U_0}{\ln\left(\frac{D}{d}\right)}\frac{1}{r}\vec\e_r\e^{-\j kz}\\
+	\vec H(\vec r) = \frac{\hat I_0}{\ln\left(\frac{D}{d}\right)}\frac{1}{r}\vec\e_\varphi\e^{-\j kz}\\
+	\underset{\textbf{Leitungswellenwiderstand}}{\frac{\hat U_0}{\hat I_0} = Z_L = 60\Omega\sqrt{\frac{\mu_r}{\varepsilon_r}}\ln\left(\frac{D}{d}\right)}
+	\end{align*}
+	mit $D$: Innendurchmesser, $d$: Außendurchmesser\\ \\
+	
+	Rechteckhohlleiter:
+	\begin{align*}
+	H_z(\vec r) = -\hat H_0\cos\left(\frac{\pi}{a}x\right)\e^{-\j\beta z)}\\
+	H_x(\vec r) = -\j \frac{\beta}{\beta_c}\frac{\pi}{a}\hat H_0\sin\left(\frac{\pi}{a}x\right)\e^{-\j\beta z}\\
+	H_y(\vec r) = 0\qquad E_x(\vec r) = 0\\	
+	E_y(\vec r) = \j \frac{\omega\mu}{\beta_c}\frac{\pi}{a}\hat H_0\sin\left(\frac{\pi}{a}x\right)\e^{-\j\beta z}
+	\end{align*}
+	mit $\beta_c = \omega_c\sqrt{\varepsilon\mu} = \frac{2\pi}{\lambda_c}$: Cut-off-Wellenzahl, $\omega_c$: Cut-off-Kreisfrequenz, $\lambda_c = 2a$: Cut-off-Wellenlänge\\
+	Ausbreitungsfähig für Kreisfrequenzen oberhalb von Ausbreitungskonstante: $\beta = \sqrt{\omega^2\varepsilon\mu-\beta_c^2}$
 	
 	\begin{description}
 		\item[statisch:] Keine Veränderung über die Zeit $\frac{\partial}{\partial t} = 0$
