@@ -100,6 +100,16 @@ Elektrostatik heißt $\frac{\partial \vec D}{\partial t} = 0$, $\vec j = 0$ und 
 \end{tabular*}
 
 \subsection{Mathematik}
+\hspace{-20pt}
+\scalebox{0.77}
+{
+$\begin{array}{c|c|c|c|c|c|c|c|c|c|c|c}
+x & 0 & \pi / 6 & \pi / 4 & \pi / 3 & \pi / 2 & \frac{2}{3}\pi& \frac{3}{4}\pi& \frac{5}{6}\pi& \pi  & \frac{3}{2}\pi & 2 \pi \\ \hline
+\sin & 0 & \frac{1}{2} & \frac{1}{\sqrt{2}} & \frac{\sqrt 3}{2} & 1 & \frac{\sqrt 3}{2} & \frac{1}{\sqrt{2}} & \frac{1}{2} & 0 & -1 & 0 \\
+\cos & 1 & \frac{\sqrt 3}{2} & \frac{1}{\sqrt 2} & \frac{1}{2} & 0 & -\frac{1}{2} & -\frac{1}{\sqrt 2}  & -\frac{\sqrt 3}{2}   & -1 & 0 & 1 \\
+\tan & 0 & \frac{\sqrt{3}}{3}&1 &\sqrt{3} &  & -\sqrt{3}& -1& -\frac{1}{\sqrt{3}} & 0 &  & 0\\
+\end{array}$
+}
 $z=a+b\mathbf{i}\ne0$\ in Polarkoordinaten:\\
 $z=r (\cos(\varphi)+\mathbf{i}\sin(\varphi))=r\cdot e^{\mathbf{i} \varphi}$\\
 $r=|z|=\sqrt{a^2+b^2}\quad\varphi=\arg(z)=\begin{cases}+\arccos \left( \frac{a}{r}\right),  & b\ge0   \\  -\arccos \left( \frac{a}{r}\right), & b<0\end{cases}$
@@ -275,21 +285,26 @@ $\int \limits_{\partial A} \vec H d \vec r = \int \limits_A \rot \vec H d \vec a
 	
 	Eichfunktion: Riemansche Räume haben an jedem Punkt ein anderes Längenmaß. Die Eichfunktion gibt an, welches Längenmaß an welchem Punkt verwendet werden muss.\\
 
-	\subsection{Maxwell Gleichungen in Potetntialdarstellung}
+	\subsection{Maxwell Gleichungen in Potentialdarstellung}
 	\boxed{\div(\varepsilon \nabla\Phi) + \frac{\partial}{\partial t} \div(\varepsilon \vec A) = - \varrho}\\
 	\boxed{\rot(\frac{1}{\mu} \rot A) + \varepsilon \frac{\partial^2 \vec A}{\partial t^2} + \varepsilon \nabla \frac{\partial \Phi}{\partial t} = \vec j }\\
 	\\
 	\textbf{Lorenzeichung:} $\div \vec A + \varepsilon \mu \frac{\partial \Phi}{\partial t} = 0$\\
 	\\
-	Wellengleichungen: \boxed{\left(\Delta - \varepsilon\mu \frac{\partial^2}{\partial t^2}\right) \vect{\Phi \\ \vec A} = - \vect{\frac{\varrho}{\varepsilon} \\ \mu \vec j }}\\
+	$\Rightarrow$ Wellengleichungen: \boxed{\left(\Delta - \varepsilon\mu \frac{\partial^2}{\partial t^2}\right) \vect{\Phi \\ \vec A} = - \vect{\frac{\varrho}{\varepsilon} \\ \mu \vec j }}\\
 	\\
 	\textbf{Coulombeichung:} $\div A = 0$\\
-	$\div\left( \varepsilon \nabla \Phi(\vec r,t) \right) = \rho(\vec r, t)$\\
+	$\Rightarrow$ Wellengleichungen: 
+	\boxed{
+	\begin{array}{lcl}
+	\div\left( \varepsilon \nabla \Phi(\vec r,t) \right) = -\rho(\vec r, t) \text{ (Poisson)} \\ \\ 
+	\Delta\vec A - \epsilon\mu\frac{\partial^2\vec A}{\partial t^2} = -\mu\left(\vec j - \epsilon\frac{\partial}{\partial t}(\nabla \Phi)\right)
+	\end{array}
+	}
 	Elektromagn. Skalarpot. $\Phi(\vec r,t)$ folgt $\rho(\vec r, t)$ ohne Verzögerung!\\
 	\\
-	$\Delta \vec A - \varepsilon \mu \frac{\partial^2 \vec A}{\partial t^2} = - \mu \left(\vec j - \varepsilon \frac{\partial}{\partial t} (\nabla \Phi) \right)$\\
-	NF ANteil: $-\nabla \Phi$ \qquad HF Anteil: $\frac{\partial \vec j}{\partial t}$\\
-	Transversale Stromdichte: $\vec j_t = \vec j + \varepsilon\frac{\partial \nabla \Phi}{\partial t}$\\
+	NF Anteil: $-\nabla \Phi$ \qquad HF Anteil: $\frac{\partial \vec j}{\partial t}$\\
+	Transversale Stromdichte: $\vec j_t = \vec j - \varepsilon\frac{\partial \nabla \Phi}{\partial t}$\\
 	
 	%Fuck-Tor des Fickeschen Gesetzes:\\ 
 	Gesetz bei dem Bert sabbert:\\
@@ -300,6 +315,10 @@ $\int \limits_{\partial A} \vec H d \vec r = \int \limits_A \rot \vec H d \vec a
 	\begin{center}
 		\includegraphics{./img/grenze2.pdf}
 	\end{center} 
+	Sprungbedingung für die Normalenableitung des Potentials:\\
+	\begin{eqnarray*}
+		\epsilon_1\frac{\partial \Phi}{\partial n}\big|_1 - \epsilon_2\frac{\partial \Phi}{\partial n}\big|_2 = \sigma_{\ir int} \text{ auf }\Sigma\\
+	\end{eqnarray*}
 	An Grenzflächen gibt es Flächenladung $\sigma:$ \\
 	$Q = \lim\limits_{h \ra 0} \int_V \rho \diff V = \int_A \sigma \diff \vec a$\\
 	\begin{eqnarray*}
@@ -308,7 +327,7 @@ $\int \limits_{\partial A} \vec H d \vec r = \int \limits_A \rot \vec H d \vec a
 			\vec E_1 \times \vec n - \vec E_2 \times \vec n = 0 \\
 			\vec H_2 \times \vec n - \vec H_1 \times \vec n = \vec j
 	\end{eqnarray*}
-	Brechungsgesetz für elektrische Feldlinien: \\
+	Brechungsgesetz für elektrische Feldlinien (2 Isolatoren): \\
 	\begin{eqnarray*}
 		\frac{\tan \alpha_1}{\tan \alpha_2} = \frac{\varepsilon_1}{\varepsilon_2}
 	\end{eqnarray*}
@@ -378,10 +397,18 @@ $\int \limits_{\partial A} \vec H d \vec r = \int \limits_A \rot \vec H d \vec a
 	$G(\vec r, \vec r') = \sum \limits_{n_1, n_2 , n_3 \in \mathbb N} b_{n_1 n_2 n_3} (\vec r ) \frac{1}{\lambda_{n_1}\lambda_{n_2}\lambda_{n_3}} b_{n_1 n_2 n_3} (\vec r' )$
 	%TODO S.52 Skript Lösungen der Laplace-Glg.
 	\subsection*{Spiegelladungsmethode}
-	negierte Ladung gespiegelt an Metallfläche\\
+	Konstruktion eines Ersatzproblems durch Spiegelung der negierten Ladung an einer ebenen leitenden Randfläche\\
+	%TODO S.63 Bild
+	Poissongleichung $\Delta\varphi = -\frac{\rho}{\varepsilon_0}$ wird durch das Coulomb-Integral gelöst: $\varphi(\vec r) = \frac{1}{4\pi\varepsilon_0}\int_{\R}  \frac{\rho(\vec r)}{\abs{\vec r - \vec r'}}\diff v'$
 	\begin{align*}
 		G_{\text{Halb}}(\vec r, \vec r_0) = \frac{1}{4 \pi \varepsilon} \left( \frac{1}{\norm{\vec r - \vec r_0}} - \frac{1}{\norm{\vec r - \vec r_0^*}}\right)
 	\end{align*}
+	analog für Winkelräume
+	
+	\subsection*{Multipolentwicklung}
+	Coulomb-Integral: $\Phi(\vec r) = \int_{\R^3} G_{\ir vac}(\vec r, \vec r')\rho(\vec r') \diff^3 \vec r' = \frac{1}{4\pi\varepsilon_0}\int_{\R^3}  \frac{\rho(\vec r)}{\abs{\vec r - \vec r'}}\diff v'$\\
+	Vereinfachung der Integraldarstellung durch Taylorentwicklung des Integralkerns $\frac{1}{\abs{\vec r - \vec r'}}$ unter der Annahme $\abs{\vec r'} < \abs{\vec r}$: 
+	$\Phi(\vec r) = \frac{1}{4\pi\varepsilon_0}\frac{1}{r}Q + \frac{1}{4\pi\varepsilon_0}\frac{\vec r \cdot \vec p}{r^3} \mp \hdots$
 	
 	
 	\subsection{Stationäre Ströme und RWP}
@@ -414,6 +441,8 @@ $\int \limits_{\partial A} \vec H d \vec r = \int \limits_A \rot \vec H d \vec a
 		
 		\subsection{Kapazitive Speicherelemente}
 		Mehrelektroden Kondensatoranordnung $\rightarrow$ Modellierung als Netzwerk von kapazitiven Zweipolen.\\
+		Plattenkondensator: \\
+		$\vec E = \frac{Q}{\varepsilon_0A}\vec\e$ \qquad $U = \int_0^d \vec E\diff\vec r = \frac{Q}{\varepsilon_0A}d$
 		\begin{itemize}
 			\item Kapazitätsmatrix:\\
 				$C_{kl} = \int\limits_\Omega \nabla \Phi_k \varepsilon \nabla \Phi_l \diff^3 r = -\int\limits_{\partial\Omega_k} \epsilon \vec n \nabla \Phi_l d\vec a$ (k,l = 0, ..., N)\\
@@ -436,7 +465,7 @@ $\int \limits_{\partial A} \vec H d \vec r = \int \limits_A \rot \vec H d \vec a
 	\begin{tabular*}{\columnwidth}{@{\extracolsep\fill}ll@{}} \trule
 		Kapazität & Induktivität\\
 		$\vec Q = \ma C \vec U$ & $\vec \Phi_M = \ma L \vec i$\\
-		$W_{\text{el}} = \frac{1}{2}\vec U_0\vec Q_0$ & $W_{\ir mag} = \frac{1}{2} \vec I^\top \ma L \vec I$\\
+		$W_{\text{el}} = \frac{1}{2}\vec U_0\vec Q_0 = \frac{1}{2}\vec V^T\ma C\vec V$ & $W_{\ir mag} = \frac{1}{2} \vec I^\top \ma L \vec I$\\
 		& $\boxed{ W_{\ir mag} = \frac{1}{2} \int\limits_{\R^3} \vec j \cdot \vec A \diff^3 r }	$
 	\end{tabular*}\\
 
@@ -444,6 +473,8 @@ $\int \limits_{\partial A} \vec H d \vec r = \int \limits_A \rot \vec H d \vec a
 
 \section{Komplexe Wechselstromrechnung}
 \textbf{Vorraussetzung:} lineares, eingeschwungenes System mit sinusförmiger Erregung $x(t) = A_m \cdot \cos(\omega t + \phi)$\\
+Beim Kondensator eilt der Strom vor.\\
+Bei der Induktivität kommt der Strom zu spät.\\
 \sectionbox{
 \subsection{Komplexe Zeigergrößen}
 \emphbox{
@@ -467,8 +498,11 @@ $\int \limits_{\partial A} \vec H d \vec r = \int \limits_A \rot \vec H d \vec a
 	 & \textbf{Widerstand} & \textbf{Kondensator} & \textbf{Spule}\\ \cmrule
 	Impedanz $Z = \frac{U}{I} $ & $R$ & $\frac{1}{j \omega C}$ & $j \omega L$\\
 	Admittanz $Y = \frac{I}{U} $ & $G = \frac{1}{R}$ & $j \omega C$ & $\frac{1}{j \omega L}$ \\[0.5em]
-	$\underset{\varphi_u - \varphi_i}{\Delta \varphi =}$ & 0 & $-\frac{\pi}{2}$ & $\frac{\pi}{2}$ \\ \cbrule
+	$\underset{\varphi_u - \varphi_i}{\Delta \varphi =}$ & 0 & $-\frac{\pi}{2}$ & $\frac{\pi}{2}$ \\ 
+				$\tan(\Delta\varphi) = \frac{\Im Z}{\Re Z}$\\
+\cbrule
 	\end{tabular*} 
+
 	}
 	\framebox[\columnwidth]{
 		\begin{tabular}{l@{\hspace{4em}}l}
@@ -479,15 +513,15 @@ $\int \limits_{\partial A} \vec H d \vec r = \int \limits_A \rot \vec H d \vec a
 }
 \sectionbox{
 	\subsection{Komplexe Leistungsrechnung}
-	$U_{\text{eff}} = \frac{1}{\sqrt{2}}U_m$\quad
+	$U_{\text{eff}} = \frac{1}{\sqrt{2}}U_m = \sqrt{\frac{1}{T}\int_0^T u(t)^2\diff t}$\qquad
 	$I_{\text{eff}} = \frac{1}{\sqrt{2}}I_m$\\
 	\textbf{Momentanleistung}: $p(t) = u(t)i(t)$\\
 	\textbf{Energie einer Periode}: $E=\int_0^Tu(t)i(t)dt$\\
 	\textbf{Leistungsmittelwert}: $P_w = \frac{1}{T} \int_0^T u(t)i(t)dt$\\
-	\textbf{Komplexe Leistung}: $P = \frac{1}{2}UI^* = \frac{1}{2}U_m\cdot e^{j\phi_u}\cdot I_m\cdot e^{-j\phi_i} = U_{\text{eff}}\cdot I_{\text{eff}}\cdot e^{j(\phi_u-\phi_i)}$\\
+	\textbf{Komplexe Leistung}: $P = \frac{1}{2}UI^* = \frac{1}{2}U_m\cdot e^{j\varphi_u}\cdot I_m\cdot e^{-j\phi_i} = U_{\text{eff}}\cdot I_{\text{eff}}\cdot e^{j(\varphi_u-\varphi_i)}$\\
 	\textbf{Scheinleistung}: $S = |P|$\\
-	\textbf{Wirkleistung}: $P_w = \text{Re}\{P\}$\\
-	\textbf{Blindleistung}: $P_B = \text{Im}\{P\}$
+	\textbf{Wirkleistung}: $P_w = \text{Re}\{P\} = \frac{1}{2}\hat U\hat I\cos \varphi$\\
+	\textbf{Blindleistung}: $P_B = \text{Im}\{P\} = \frac{1}{2}\hat U\hat I\sin \varphi$
 }
 
 	\subsection{Grundlagen Wechselstromlehre}
@@ -528,6 +562,8 @@ Annahmen: $\rho = 0$ außer bei Antennen, keine thermischer Strom.\\
 	
 	Als Nebenbedingung muss nur die Eichbedingung erfüllt sein.\\
 	
+	homogene Wellengleichung: \boxed { \left(\frac{1}{c^2}\frac{\diff^2}{\diff t^2}-\Delta\right)\vec E = 0}
+	
 	\subsection{Eindimensionale Welle}
 	Annahmen: $\sigma, \vec j_0,\rho_0 = 0 \Rightarrow \epsilon\mu \frac{\partial^2u}{\partial t^2}-\frac{\partial^2 u}{\partial x^2} = 0$\\
 	Ausbreitungsgeschwindigkeit: $c = \frac{1}{\sqrt{\epsilon\mu}}$\\
@@ -556,9 +592,9 @@ Annahmen: $\rho = 0$ außer bei Antennen, keine thermischer Strom.\\
 	Harmonische, ebene EM Wellen ($\sigma = 0$)\\
 
 	Ellipsengleichung:\\
-	$\left(\frac{E_1}{E_{01}}\right)^2 + \left(\frac{E_2}{E_{02}}\right)^2 - 2\left(\frac{E_1}{E_{02}}\right)\left(\frac{E_1}{E_{02}}\right) \cos(\phi_{02} - \phi_{01}) = \sin^2(\phi_{02} - \phi_{01})$\\
-	Linear: $\phi_{02} - \phi_{01} = n\pi$ \qquad $\frac{E_1}{E_{01}} = \pm \frac{E_2}{E_{02}}$\\
-	Kreis: $\phi_{02} - \phi_{01} = (n+\frac{1}{2}) \pi \ \land \ E_{01} = E_{02}$ \qquad $\left(\frac{E_1}{E_{01}}\right)^2 + \left(\frac{E_2}{E_{02}}\right)^2$\\
+	$\left(\frac{E_1}{E_{01}}\right)^2 + \left(\frac{E_2}{E_{02}}\right)^2 - 2\left(\frac{E_1}{E_{02}}\right)\left(\frac{E_1}{E_{02}}\right) \cos(\varphi_{02} - \varphi_{01}) = \sin^2(\varphi_{02} - \varphi_{01})$\\
+	Linear: $\varphi_{02} - \varphi_{01} = n\pi$ \qquad $\frac{E_1}{E_{01}} = \pm \frac{E_2}{E_{02}}$\\
+	Kreis: $\varphi_{02} - \varphi_{01} = (n+\frac{1}{2}) \pi \ \land \ E_{01} = E_{02}$ \qquad $\left(\frac{E_1}{E_{01}}\right)^2 + \left(\frac{E_2}{E_{02}}\right)^2$\\
 
 	\subsubsection{Komplexe Darstellung}
 	$\vec E(t,\vec r) = \Re{\underset{\hat E_0}{\underbrace{\left(E_{\ir 01}\e^{j\varphi_1}\vec\e_1 + E_{\ir 02}\e^{j\varphi_2}\vec\e_2\right)}\e^{j(\omega t-\vec k\cdot\vec r)}}}$\\
