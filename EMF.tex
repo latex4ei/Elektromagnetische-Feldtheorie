@@ -385,7 +385,8 @@ $\vec B$-Feld: $\epsilon \mu \frac{\delta}{\delta t^2} \vec B (\vec r, t) - \Del
 	\subsection{Greenfunktion $G(\vec r, \vec r')$}
 	Def: Lösung des RWP mit hom. Randbed. und Störung $\rho(\vec r) = \delta(\vec r - \vec r')$ (Einheitspunktladung bei $\vec r'$)\\
 	Poissongleichung $\Delta\varphi = -\frac{\rho}{\varepsilon_0}$ wird durch das Coulomb-Integral gelöst.
-	Allg. Lösung: $\Phi(\vec r) = \int_\Omega G(\vec r, \vec r')\rho(\vec r') \diff^3 \vec r'$\\
+	Allg. Lösung: $\Phi(\vec r) = \varphi(\vec r)+\psi(\vec r) = \int_\Omega G(\vec r, \vec r')\rho(\vec r') \diff^3 \vec r' + \psi(\vec r)$\\
+	für $\varepsilon(\vec r) = \varepsilon$: $\psi(\vec r) = -\varepsilon\iint_{\partial V^{(D)}}\left[\dfrac{\partial G(\vec r, \vec r')}{\partial\vec n'}\Phi_D(\vec r')\right]\diff a'+\varepsilon\iint_{\partial V^{(N)}}\left[G(\vec r, \vec r')\dfrac{\partial\Phi_N(\vec r')}{\partial n'}\right]\diff a'$
 	\\
 	Beispiel Punktladung: $G_{\text{Vac}}(\vec r, \vec r') = \frac{1}{4 \pi \varepsilon} \frac{1}{\norm{\vec r - \vec r'}}$
 	
