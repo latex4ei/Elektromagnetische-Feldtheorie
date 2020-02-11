@@ -33,7 +33,7 @@
 % .:: Seitenlayout und Ränder
 % ======================================================================
 \usepackage{geometry}
-\geometry{a4paper,landscape, left=6mm,right=6mm, top=0mm, bottom=3mm,includeheadfoot} 
+\geometry{a4paper,landscape, left=6mm,right=6mm, top=0mm, bottom=3mm,includeheadfoot}
 
 
 % .:: Kopf- und Fußzeile
@@ -138,7 +138,10 @@ Zusammen mit Materialgleichungen bildet
 $(\vec E,\vec H)$ ein 6 komponentiges Elektromagnetisches Feld
 
 \subsection{Materialgleichungen}
+In linearen, räumlich und zeitlich homogenen Medien:\\
+$\vec D = \epsilon \vec E$; $\vec H = \frac{1}{\mu} \vec B$; Ohmsches Gesetz: $\vec j = \sigma \vec E$\\
 
+%TODO Prüfen, ob es mehr Sinn macht auf die zweite Seite zu packen
 \subsection{Bauteilgleichungen}
 \setlength{\tabcolsep}{6pt}
 \begin{tabular*}{\columnwidth}{@{\extracolsep\fill}lll@{}} \trule
@@ -219,6 +222,7 @@ $\int \limits_{\partial A} \vec H d \vec r = \int \limits_A \rot \vec H d \vec a
 	\item Bei unendlicher Flächenladung bleibt das E-Feld konstant.
 	\item Feldlinien verlaufen lieber in hohem $\varepsilon_r$
 \end{enumerate}
+Spezialfall zylindrischer Leiter: $\phi = - \frac{Q}{2 \pi \epsilon l}ln(\frac{r}{r_0}) + c$\\
 
 	% ------------------------------------------------------------------ 
 	\subsection{Elektrische Energiedichte}
@@ -275,12 +279,14 @@ $\int \limits_{\partial A} \vec H d \vec r = \int \limits_A \rot \vec H d \vec a
 	\\
 	Energiebilanz des El.mag.-Feldes:\\
 	\boxed{\frac{\partial w_{em}}{\partial t} + \div \vec J_{em} = \Pi_{em}}\\
-	mit $w_{em} = w_{el} + e_{mag}$, $\vec J_{em} = \vec E \times \vec H + \vec S_0$, $\Pi_{em} = -\vec j \cdot \vec E$\\	
+	mit $w_{em} = w_{el} + w_{mag}$; $\vec J_{em} = \vec E \times \vec H + \vec S_0$, mit $div \vec S_0 = 0$\\
+	$\Pi_{em} = -\vec j \cdot \vec E$\\
+	
 
 
 	\section{Potentialtheorie}
-	Elektromagnetisches Vektorpotential $\vec A(\vec r, t)$: $\vec B(\vec r,t) = \rot \vec A(\vec r,t)$\\
-	Elektromagnetisches Skalarpotential $\Phi$: $\vec E(\vec r,t) = - \nabla \Phi - \frac{\partial \vec A}{\partial t}(\vec r,t)$\\ 
+	Elektromagnetisches Vektorpotential $\boxed{ \vec A(\vec r, t)$: $\vec B(\vec r,t) = \rot \vec A(\vec r,t) }$\\
+	Elektromagnetisches Skalarpotential $\boxed{ \Phi$: $\vec E(\vec r,t) = - \nabla \Phi - \frac{\partial \vec A}{\partial t}(\vec r,t) }$\\ 
 	\\
 	Umeichen: $\vec A' = \vec A - \nabla \chi$ \qquad $\Phi' = \Phi + \dot \chi$ \\
 	
@@ -302,13 +308,17 @@ $\int \limits_{\partial A} \vec H d \vec r = \int \limits_A \rot \vec H d \vec a
 	\Delta\vec A - \epsilon\mu\frac{\partial^2\vec A}{\partial t^2} = -\mu\left(\vec j - \epsilon\frac{\partial}{\partial t}(\nabla \Phi)\right)
 	\end{array}
 	}
+
+Homogene Wellengleichungen:\\
+$\vec E$-Feld: $\epsilon \mu \frac{\delta}{\delta t^2} \vec E (\vec r, t) - \Delta \vec E (\vec r, t) = \vec 0$\\
+$\vec B$-Feld: $\epsilon \mu \frac{\delta}{\delta t^2} \vec B (\vec r, t) - \Delta \vec B (\vec r, t) = \vec 0$\\
 	Elektromagn. Skalarpot. $\Phi(\vec r,t)$ folgt $\rho(\vec r, t)$ ohne Verzögerung!\\
 	\\
 	NF Anteil: $-\nabla \Phi$ \qquad HF Anteil: $\frac{\partial \vec j}{\partial t}$\\
 	Transversale Stromdichte: $\vec j_t = \vec j - \varepsilon\frac{\partial \nabla \Phi}{\partial t}$\\
 	
 	%Fuck-Tor des Fickeschen Gesetzes:\\ 
-	Gesetz bei dem Bert sabbert:\\
+	Biot-Savart Gesetz für konstanten, homogenen Strom:\\
 	$\vec H(\vec r) = \frac{I}{4 \pi } \int\limits_\gamma \frac{\diff \vec r \times (\vec r - \vec r')}{|\vec r - \vec r'|^3}$\\
 	\\
 	\sectionbox{
@@ -322,6 +332,8 @@ $\int \limits_{\partial A} \vec H d \vec r = \int \limits_A \rot \vec H d \vec a
 	\end{eqnarray*}
 	An Grenzflächen gibt es Flächenladung $\sigma:$ \\
 	$Q = \lim\limits_{h \ra 0} \int_V \rho \diff V = \int_A \sigma \diff \vec a$\\
+	
+	Die Tangentialkomponente des E-Feldes\\ und die Normalkomponente des B-Feldes sind stetig
 	\begin{eqnarray*}
 	\vec D_2 \vec n - \vec D_1 \vec n = \sigma_{\ir int} \\
 			\vec B_2 \vec n - \vec B_1 \vec n = 0 \\
@@ -332,9 +344,11 @@ $\int \limits_{\partial A} \vec H d \vec r = \int \limits_A \rot \vec H d \vec a
 	\begin{eqnarray*}
 		\frac{\tan \alpha_1}{\tan \alpha_2} = \frac{\varepsilon_1}{\varepsilon_2}
 	\end{eqnarray*}
+	Gleiches gilt für $\vec j = 0$ auch für das $\vec B$ bzw. $\vec H$-Feld
 	}
 	
 	\subsection{Randwertprobleme der Potentialtheorie}
+	Homogenes Randwertproblem: Beide Grenzen haben Potential 0
 	Zu lösen ist die \textsc{Poisson}-Gleichung $\div(\varepsilon \nabla \Phi) = -\rho$ auf $\interior \Omega$:\\
 	\begin{tabular*}{\columnwidth}{@{\extracolsep\fill}llll@{}}
 	Nr. & RWP & Randbedingungen auf $\partial \Omega$ & Lösung\\
@@ -484,7 +498,6 @@ $\int \limits_{\partial A} \vec H d \vec r = \int \limits_A \rot \vec H d \vec a
 	Bestimmung von $A_{\textcolor{orange}{2}}$:\\
 	$\int\limits_0^{L}\sin\left(\frac{\textcolor{orange}{2}\pi}{L}x\right)\diff x = A_1\int\limits_0^{L}\sin\left(\frac{1\pi}{L}x\right)\sin\left(\frac{\textcolor{orange}{2}\pi}{L}x\right)\diff x + A_2\int\limits_0^{L}\sin\left(\frac{2\pi}{L}x\right)\sin\left(\frac{\textcolor{orange}{2}\pi}{L}x\right)\diff x + ... = 0 + \frac{L}{2} + 0$\\
 	$\int\limits_0^{L}\sin\left(\frac{n\pi}{L}x\right)\sin\left(\frac{m\pi}{L}x\right)\diff x = \begin{cases}0, &m\neq n\\\frac{L}{2}, &m=n\end{cases}$\\
-	
 	\section{Kompaktmodelle}
 	Modellierung als Netzwerk ohne Wellenausbreitung.\\
 	Vorraussetzungen:\\
@@ -534,8 +547,6 @@ $\int \limits_{\partial A} \vec H d \vec r = \int \limits_A \rot \vec H d \vec a
 		$W_{\text{el}} = \frac{1}{2}\vec U_0\vec Q_0 = \frac{1}{2}\vec V^T\ma C\vec V$ & $W_{\ir mag} = \frac{1}{2} \vec I^\top \ma L \vec I$\\
 		& $\boxed{ W_{\ir mag} = \frac{1}{2} \int\limits_{\R^3} \vec j \cdot \vec A \diff^3 r }	$
 	\end{tabular*}\\
-
-
 
 \section{Komplexe Wechselstromrechnung}
 \textbf{Vorraussetzung:} lineares, eingeschwungenes System mit sinusförmiger Erregung $x(t) = A_m \cdot \cos(\omega t + \varphi)$\\
@@ -598,8 +609,6 @@ Bei der Induktivität kommt der Strom zu spät.\\
 		\item Anpassung an Generatoren und Motoren
 	\end{itemize}
 	$\varphi(t) = \omega t + \varphi_0$ 
-
-
 
 % .:: Elektromagnetische Wellen
 %=======================================================================
@@ -762,6 +771,7 @@ Annahmen: $\rho = 0$ außer bei Antennen, keine thermischer Strom.\\
 	$\mathcal L_2(\Omega) = \iset{f:\Omega \ra \C}{\int_\omega |f(\vec r)|^2 \diff^3 \vec r < \infty }$\\
 	
 	
+\newpage
 	% Komplexe Wechselstromrechnung in der Prüfung!
 	
 	% Riemansche Zahlenkugel
