@@ -28,6 +28,7 @@
 \usepackage{parskip} 			%Verhindert das einrücken am Zeilenanfang
 \usepackage{titlesec}
 \usepackage{latex4ei}
+\usepackage{makecell}
 
 % .:: Seitenlayout und Ränder
 % ======================================================================
@@ -420,6 +421,33 @@ $\int \limits_{\partial A} \vec H d \vec r = \int \limits_A \rot \vec H d \vec a
 	
 	%$\sum\limits_{\alpha = 1}^N \sigma_\alpha R_\alpha^H \vec \j_\alpha \times \vec B
 	
+	\section{Orthogonalreihenentwicklung}
+	Was möchten wir lösen? Poisson ($\Delta\Phi(\vec{r}) = -\frac{\rho (\vec{r})}{\epsilon}$) oder Spezialfall Laplace ($\Delta\Phi(\vec{r}) = 0$).\\
+	\tablebox{\begin{tabular*}{\columnwidth}{lcc}
+	\ctrule
+		&Poisson ($\rho \neq 0$)&Laplace ($\rho = 0$)\\\cmrule
+	\makecell[l]{homogene\\Randwerte}   &
+	\makecell[l]{$\Phi = \iiint\limits_VG(\vec{r},\vec{r}')\rho(\vec{r}')d^3r$\\$\phi$: Greenfunktion lösen für\\ Ergebnis und Orthogonal-\\reihenentwicklung}&
+	$\Phi = 0$
+	\\\cmrule
+	\makecell[l]{inhomogene\\Randwerte} &
+	\makecell[l]{Ansatz: $\Phi = \phi + \psi$\\(Randwertprobleme)\\$\psi$: Dirichlet/Neumann RWB,\\$\phi$: Greenfunktion}&
+	\makecell[l]{Orthogonal-\\reihenentwicklung}
+	\\\cbrule
+	\end{tabular*}}
+	
+	\subsection{$\phi$ bestimmen}
+	Laplaceoperator: lineare Summe von gewichteten Teillösungen ist wieder eine Lösung.\\
+	$\Rightarrow$ Ansatz: $\Phi(\vec{r}) = \sum\limits_{n=1}^{\infty}\alpha_nb_n(\vec{r})$ ($\alpha_n$: Gewichtung, $b_n$: Eigenfunktion von $\Delta$: $f''=bf$)\\
+	$\Delta b_n(\vec{r})=\begin{cases}\lambda_nb_n(\vec{r}), &\text{Poisson}\\0, &\text{Laplace}\end{cases}$\\
+	$\Rightarrow \Delta\Phi(\vec{r}) = \begin{cases}\sum\limits_{n=1}^{\infty}a_n\lambda_nb_n(\vec{r})=-\frac{\rho}{\epsilon}, &\text{Poisson}\\0, &\text{Laplace}\end{cases}$\\
+	\textbf{Seperationsansatz: $\Delta b_n(\vec{r})$ lösen}
+	\begin{enumerate}
+		\item $b_n(\vec{r}) = b_1(x)b_2(x)b_3(x) \hat{=} X(x)Y(y)Z(z)$
+		\item in den Ansatz einsetzen $\rightarrow$ gewöhnliche DGL
+		\item Randwerte einsetzen $\rightarrow$ mit homogenen RW anfangen
+		\item Konstanten zusammenfassen $\rightarrow$ z.B. $A_n\cdot B_n \mapsto \tilde{A}_n$
+	\end{enumerate}
 	
 	\section{Kompaktmodelle}
 	Modellierung als Netzwerk ohne Wellenausbreitung.\\
