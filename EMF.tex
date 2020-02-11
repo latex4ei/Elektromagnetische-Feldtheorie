@@ -381,11 +381,11 @@ $\int \limits_{\partial A} \vec H d \vec r = \int \limits_A \rot \vec H d \vec a
 	\begin{itemize}
 		\item Sperationsansatz für die Eigenfunktionen: \\
 		$b(\vec r) = b_1 (x_1) b_2(x_2) b_3(x_3)$
-		\item $- \frac{\ddot b_1(x_1)}{b_1 (x_1)} - \frac{\ddot b_2(x_2)}{b_2 (x_2)}  - \frac{\ddot b_3(x_3)}{b_3 (x_3)} = \lambda$
+		\item $- \frac{b_1''(x_1)}{b_1 (x_1)} - \frac{b_2''(x_2)}{b_2 (x_2)}  - \frac{b_3''(x_3)}{b_3 (x_3)} = \lambda$
 		\item Aufteilen des Problems: \\
-		$- \frac{\ddot b_1(x_1)}{b_1 (x_1)} = \lambda_1$ \\
-		$- \frac{\ddot b_2(x_2)}{b_2 (x_2)} = \lambda_2$ \\
-		$- \frac{\ddot b_3(x_3)}{b_3 (x_3)} = \lambda_3$
+		$- \frac{b_1''(x_1)}{b_1 (x_1)} = \lambda_1$ \\
+		$- \frac{b_2''(x_2)}{b_2 (x_2)} = \lambda_2$ \\
+		$- \frac{b_3''(x_3)}{b_3 (x_3)} = \lambda_3$
 		\item Lösungsansatz für $b_1, b_2, b_3$: \\
 		$b_j (x_j) = A_j \sin(k_j x_j) + B_j \cos (k_j x_j)$ mit $k_j = \sqrt{\lambda_j}$
 		\item $\Ra B_j = 0$ und $k_j L_j = n_j \pi$
@@ -427,23 +427,23 @@ $\int \limits_{\partial A} \vec H d \vec r = \int \limits_A \rot \vec H d \vec a
 	\ctrule
 		&Poisson ($\rho \neq 0$)&Laplace ($\rho = 0$)\\\cmrule
 	\makecell[l]{homogene\\Randwerte}   &
-	\makecell[l]{$\Phi = \iiint\limits_VG(\vec{r},\vec{r}')\rho(\vec{r}')d^3r$\\$\phi$: Greenfunktion lösen für\\ Ergebnis und Orthogonal-\\reihenentwicklung}&
+	\makecell[l]{$\Phi = \iiint\limits_VG(\vec{r},\vec{r}')\rho(\vec{r}')d^3r$\\$\varphi$: Greenfunktion lösen für\\ Ergebnis und Orthogonal-\\reihenentwicklung}&
 	$\Phi = 0$
 	\\\cmrule
 	\makecell[l]{inhomogene\\Randwerte} &
-	\makecell[l]{Ansatz: $\Phi = \phi + \psi$\\(Randwertprobleme)\\$\psi$: Dirichlet/Neumann RWB,\\$\phi$: Greenfunktion}&
+	\makecell[l]{Ansatz: $\Phi = \varphi + \psi$\\(Randwertprobleme)\\$\psi$: Dirichlet/Neumann RWB,\\$\varphi$: Greenfunktion}&
 	\makecell[l]{Orthogonal-\\reihenentwicklung}
 	\\\cbrule
 	\end{tabular*}}
 	
-	\subsection{$\phi$ bestimmen}
+	\subsection{$\varphi$ bestimmen}
 	Laplaceoperator: lineare Summe von gewichteten Teillösungen ist wieder eine Lösung.\\
 	$\Rightarrow$ Ansatz: $\Phi(\vec{r}) = \sum\limits_{n=1}^{\infty}\alpha_nb_n(\vec{r})$ ($\alpha_n$: Gewichtung, $b_n$: Eigenfunktion von $\Delta$: $f''=bf$)\\
 	$\Delta b_n(\vec{r})=\begin{cases}\lambda_nb_n(\vec{r}), &\text{Poisson}\\0, &\text{Laplace}\end{cases}$\\
 	$\Rightarrow \Delta\Phi(\vec{r}) = \begin{cases}\sum\limits_{n=1}^{\infty}a_n\lambda_nb_n(\vec{r})=-\frac{\rho}{\epsilon}, &\text{Poisson}\\0, &\text{Laplace}\end{cases}$\\
 	\textbf{Seperationsansatz: $\Delta b_n(\vec{r})$ lösen}
 	\begin{enumerate}
-		\item $b_n(\vec{r}) = b_1(x)b_2(x)b_3(x) \hat{=} X(x)Y(y)Z(z)$
+		\item $b_n(\vec{r}) = b_1(x)b_2(y)b_3(z) \hat{=} X(x)Y(y)Z(z)$
 		\item in den Ansatz einsetzen $\rightarrow$ gewöhnliche DGL
 		\item Randwerte einsetzen $\rightarrow$ mit homogenen RW anfangen
 		\item Konstanten zusammenfassen $\rightarrow$ z.B. $A_n\cdot B_n \mapsto \tilde{A}_n$
@@ -502,18 +502,18 @@ $\int \limits_{\partial A} \vec H d \vec r = \int \limits_A \rot \vec H d \vec a
 
 
 \section{Komplexe Wechselstromrechnung}
-\textbf{Vorraussetzung:} lineares, eingeschwungenes System mit sinusförmiger Erregung $x(t) = A_m \cdot \cos(\omega t + \phi)$\\
+\textbf{Vorraussetzung:} lineares, eingeschwungenes System mit sinusförmiger Erregung $x(t) = A_m \cdot \cos(\omega t + \varphi)$\\
 Beim Kondensator eilt der Strom vor.\\
 Bei der Induktivität kommt der Strom zu spät.\\
 \sectionbox{
 \subsection{Komplexe Zeigergrößen}
 \emphbox{
 	\begin{tabular}{ll}
-	\textbf{Zeitfunktion} & $a(t) = A_m \cdot\cos(\omega t+\phi)$\\
-	\textbf{Zeiger} & $A = \alpha + i\beta = A_m \cdot e^{i\phi}$\\
-	&  $=A_m \cdot (\cos \phi+j\sin \phi)$\\
+	\textbf{Zeitfunktion} & $a(t) = A_m \cdot\cos(\omega t+\varphi)$\\
+	\textbf{Zeiger} & $A = \alpha + i\beta = A_m \cdot e^{i\varphi}$\\
+	&  $=A_m \cdot (\cos \varphi+j\sin \varphi)$\\
 	\textbf{Maximum} & $A_m = |A| = \sqrt{\alpha^2+\beta^2} = \sqrt{AA^*}$\\
-	\textbf{Phase} & $\phi = \begin{cases}
+	\textbf{Phase} & $\varphi = \begin{cases}
 	\arctan\frac{\beta}{\alpha}&\alpha>0\\
 	\arctan\frac{\beta}{\alpha}+\pi&\alpha<0
 	\end{cases}$
@@ -522,7 +522,7 @@ Bei der Induktivität kommt der Strom zu spät.\\
 
 	% ---------------------------------------------------------
 	Differentialoperator: $\frac{\diff}{\diff t} = j \omega$\qquad
-	$\frac{d}{dt} e^{j(\omega t + \phi)} = j\omega\cdot e^{j(\omega t + \phi)}$\\
+	$\frac{d}{dt} e^{j(\omega t + \varphi)} = j\omega\cdot e^{j(\omega t + \varphi)}$\\
 	\tablebox{
 	\begin{tabular*}{\columnwidth}{l@{\extracolsep\fill}ccc} \ctrule
 	 & \textbf{Widerstand} & \textbf{Kondensator} & \textbf{Spule}\\ \cmrule
@@ -548,7 +548,7 @@ Bei der Induktivität kommt der Strom zu spät.\\
 	\textbf{Momentanleistung}: $p(t) = u(t)i(t)$\\
 	\textbf{Energie einer Periode}: $E=\int_0^Tu(t)i(t)dt$\\
 	\textbf{Leistungsmittelwert}: $P_w = \frac{1}{T} \int_0^T u(t)i(t)dt$\\
-	\textbf{Komplexe Leistung}: $P = \frac{1}{2}UI^* = \frac{1}{2}U_m\cdot e^{j\varphi_u}\cdot I_m\cdot e^{-j\phi_i} = U_{\text{eff}}\cdot I_{\text{eff}}\cdot e^{j(\varphi_u-\varphi_i)}$\\
+	\textbf{Komplexe Leistung}: $P = \frac{1}{2}UI^* = \frac{1}{2}U_m\cdot e^{j\varphi_u}\cdot I_m\cdot e^{-j\varphi_i} = U_{\text{eff}}\cdot I_{\text{eff}}\cdot e^{j(\varphi_u-\varphi_i)}$\\
 	\textbf{Scheinleistung}: $S = |P|$\\
 	\textbf{Wirkleistung}: $P_w = \text{Re}\{P\} = \frac{1}{2}\hat U\hat I\cos \varphi$\\
 	\textbf{Blindleistung}: $P_B = \text{Im}\{P\} = \frac{1}{2}\hat U\hat I\sin \varphi$
