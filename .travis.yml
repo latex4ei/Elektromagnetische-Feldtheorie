@@ -15,6 +15,7 @@ script:
 - echo "# This branch is for deployment only" >> export/README.md
 - docker cp uselatex:build/. tmp
 - cp tmp/*.pdf export
+- cp tmp/Karteikarten/*.pdf export
 - cp tmp/git.id export
 
 deploy:
