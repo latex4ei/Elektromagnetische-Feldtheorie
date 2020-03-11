@@ -3,7 +3,7 @@
 %		* "THE BEER-WARE LICENSE" (Revision 42/023):
 %		* Ronny Bergmann <mail@rbergmann.info> wrote this file. As long as you retain
 %		* this notice you can do whatever you want with this stuff. If we meet some day,
-%		* and you think  this stuff is worth it, you can buy me a beer or a coffee in return. 
+%		* and you think  this stuff is worth it, you can buy me a beer or a coffee in return.
 %		* ----------------------------------------------------------------------------
 %
 %
@@ -23,7 +23,7 @@
 %
 \maxdeadcycles=1000
 %
-% lokale Variablen und Optionsträger 
+% lokale Variablen und Optionsträger
 %
 %Print Version oder nicht ?
 \newif\ifcard@useprint%
@@ -37,14 +37,14 @@
 % 3 = DIN A8
 % 4 = DIN A9
 \newcount\card@papersize
-%Standard: A6 
+%Standard: A6
 \card@papersize=1%
 
 % Rotation der Rückseite
 % 0 = nicht gedreht
 % 1 = 180° gedreht (überkopf)
 \newcount\card@Rearsiderotation
-%Standard: 0 Degree, nicht überkopf 
+%Standard: 0 Degree, nicht überkopf
 \card@Rearsiderotation=0%
 
 %
@@ -77,27 +77,27 @@
 %A6 Cards
 \DeclareOption{a5paper}{%
 	\card@papersize=0%
-	\PassOptionsToPackage{paper=a5,pagesize}{typearea}% 
+	\PassOptionsToPackage{paper=a5,pagesize}{typearea}%
 }
 %A6 Cards
 \DeclareOption{a6paper}{%
 	\card@papersize=1%
-	\PassOptionsToPackage{paper=a6,pagesize}{typearea}% 
+	\PassOptionsToPackage{paper=a6,pagesize}{typearea}%
 }
 %A7 Cards
 \DeclareOption{a7paper}{%
 	\card@papersize=2%
-	\PassOptionsToPackage{paper=a7,pagesize}{typearea}% 
+	\PassOptionsToPackage{paper=a7,pagesize}{typearea}%
 }%
 %A8 Cards
 \DeclareOption{a8paper}{
 	\card@papersize=3%
-	\PassOptionsToPackage{paper=a8,pagesize}{typearea}% 
-}%	
+	\PassOptionsToPackage{paper=a8,pagesize}{typearea}%
+}%
 %A9 Cards
 \DeclareOption{a9paper}{
 	\card@papersize=4%
-	\PassOptionsToPackage{paper=a9,pagesize}{typearea}% 
+	\PassOptionsToPackage{paper=a9,pagesize}{typearea}%
 }
 % Activate both grids
 \DeclareOption{grid=both}{%
@@ -121,14 +121,14 @@
 }
 %All unknown Options to article
 \DeclareOption*{%
-\PassOptionsToClass{\CurrentOption}{scrartcl}% 
+\PassOptionsToClass{\CurrentOption}{scrartcl}%
 }
 \ProcessOptions\relax
 %
 % Pakete laden
 %
-\PassOptionsToClass{twoside}{scrartcl}% 
-\PassOptionsToClass{cleardoublepage=plain,DIV=calc}{scrartcl}% 
+\PassOptionsToClass{twoside}{scrartcl}%
+\PassOptionsToClass{cleardoublepage=plain,DIV=calc}{scrartcl}%
 \LoadClass{scrartcl}
 \RequirePackage[headsepline]{scrpage2}
 \RequirePackage{xargs}
@@ -317,7 +317,7 @@
 \let\origsection=\section
 %
 % Makro nun neu definieren:
-\def\section{\@ifstar\unnumberedsection\numberedsection} 
+\def\section{\@ifstar\unnumberedsection\numberedsection}
 \def\numberedsection#1{%
 	\refstepcounter{section}%
 	\fach{\thesection.\ #1}%
@@ -335,7 +335,7 @@
 % Zähler nur auf subseciton setzen
 %
 % Makro nun neu definieren:
-\def\subsection{\@ifstar\unnumberedsubsection\numberedsubsection} 
+\def\subsection{\@ifstar\unnumberedsubsection\numberedsubsection}
 \def\numberedsubsection#1{%
 	\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
 	\refstepcounter{subsection}%
@@ -355,7 +355,7 @@
 %
 %	Karteikartenumgebung:
 %	#1 (optional) Kopfzeile vorne Links : Fach
-% 	#2 Titel der Vorderseite  	
+% 	#2 Titel der Vorderseite
 % 	#3 (optional) Kopfzeile vorne rechts : Kommentar
 %
 \newenvironmentx{karte}[3][1=\card@fach,3=\card@kommentar]
@@ -369,7 +369,7 @@
 \refstepcounter{CardID}
 \newpage%
 }% Ende Vor der Umgebung
-{% Nach Umgebung: Warnung im Kaop (bis TODO gelöst) 
+{% Nach Umgebung: Warnung im Kaop (bis TODO gelöst)
  % und neue Karteikarte auf ungerader Seite beginnen lassen
  %
 \cohead{{\bfseries Achtung:} R\"uckseite von \theCardID\ ist zu voll.}%
@@ -400,7 +400,7 @@
 \cohead{\theCardID}
 \lehead{\theCardID}
 \cehead{\dieantwort}%
-\setheadsepline{.4pt}[\color{black}] 
+\setheadsepline{.4pt}[\color{black}]
 
 %
 % Border Definitions
