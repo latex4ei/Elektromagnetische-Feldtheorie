@@ -22,5 +22,3 @@ add_latex_document(
     IMAGE_DIRS ${IMAGE_DIRS}
     DEPENDS writegitid
 )
-
-add_subdirectory(Karteikarten)
