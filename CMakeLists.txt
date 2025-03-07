@@ -18,6 +18,11 @@ set(IMAGE_DIRS
 
 add_latex_document(
     EMF.tex
+    FORCE_PDF
+    IMAGE_DIRS ${IMAGE_DIRS}
+    DEPENDS writegitid
+)
+add_latex_document(
     EMF-Formel-Zusammenfassung.tex
     FORCE_PDF
     IMAGE_DIRS ${IMAGE_DIRS}
