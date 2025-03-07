@@ -36,18 +36,70 @@
 \geometry{a4paper,landscape, left=6mm,right=6mm, top=0mm, bottom=3mm,includeheadfoot}
 
 
-% .:: Kopf- und Fußzeile
-% ======================================================================
-\usepackage{fancyhdr}
-\pagestyle{fancy}
-\fancyhf{}
+% UPDATE WITHOUT CLASS CHANGE
+% ----------------------------------------------------------------------
 
-   \fancyfoot[C]{von Emanuel Regnath und Martin Zellner-- Mail: \emph{info@latex4ei.de}}
-   \renewcommand{\headrulewidth}{0.0pt} %obere Linie ausblenden
-   \renewcommand{\footrulewidth}{0.1pt} %obere Linie ausblenden
+% LastPage
+\usepackage{lastpage}
 
-   \fancyfoot[R]{Stand: \today \ um \thistime \ Uhr \qquad \thepage}
-   \fancyfoot[L]{Homepage: www.latex4ei.de -- Fehler bitte \emph{sofort} melden.}
+% Allow hyperlinks
+	\RequirePackage[pagebackref=true,pdfpagelabels]{hyperref}
+	
+% Colors
+	\RequirePackage{latex4ei/latex4ei_colors}
+	\colorlet{col_link}{tum_blue_dark}
+	\hypersetup{
+	colorlinks=true,
+	linkcolor=col_link,
+	urlcolor=col_link,
+	citecolor=col_link,
+}
+
+% set pdfoptions
+	\AtBeginDocument{
+		\hypersetup{
+			pdftitle={Analysis 1},
+	        pdfauthor={Lukas Kompatscher},
+	        pdfcreator={LaTeX4EI template (www.latex4ei.de)},
+	        pdfkeywords={latex4ei}
+	    }
+	}
+
+% Date with git commit number
+	\newcommand{\themydate}{\today} % Default URL placeholder
+	\newcommand{\mydate}[1]{\renewcommand{\themydate}{#1}}	
+
+% Header and Footer
+	\RequirePackage{fancyhdr}
+
+	\pagestyle{fancy}
+	\fancyhf{}
+
+	\AtBeginDocument{
+	\IfFileExists{git.id}{\input{git.id}}{}
+	\ifdefined\GitNiceDate\mydate{\GitNiceDate\ (git \GitRevision)}\fi
+	\ifdefined\GitIssuesURL
+		\ifdefined\setissueslinkurl
+		\setissueslinkurl{\GitIssuesURL} % Set the actual URL
+		\fi
+	\fi
+	}
+	
+% Define Email
+	\providecommand{\email}[1]{\href{mailto:#1}{\nolinkurl{#1}}}
+	
+%
+	\fancyfoot[C]{von Lukas Kompatscher\ -- Mail: \email{lukas.kompatscher@tum.de}}
+	\fancyfoot[R]{Stand: \themydate \qquad \thepage/\pageref{LastPage}}
+	\fancyfoot[L]{Homepage: \url{www.latex4ei.de} -- Fehler bitte \emph{sofort} \href{\issueslinkurl}{melden}.}
+	
+	\renewcommand{\headrulewidth}{0.0pt} %obere Linie ausblenden
+	\renewcommand{\footrulewidth}{0.1pt} %obere Linie ausblenden
+	
+	\newcommand{\issueslinkurl}{https://github.com/latex4ei/Allgemein/issues} % Default URL placeholder
+	\newcommand{\setissueslinkurl}[1]{\renewcommand{\issueslinkurl}{#1}}
+% ----------------------------------------------------------------------
+
 	
 % Schriftart SANS für bessere Lesbarkeit bei kleiner Schrift
 \renewcommand{\familydefault}{\sfdefault} 
@@ -61,6 +113,7 @@
 %\titleformat{ command }[ shape ]{ format }{ label }{ sep }{ before-code }[ after-code ]
 \titleformat{\section}{\Large \bfseries}{\thesection .}{0.5em}{}[\hrule \hrule ]
 \titleformat{\subsection}{\large \bfseries}{\thesubsection .}{0.3em}{}[ ]
+\titleformat{\subsubsection}{\large \bfseries}{\thesubsubsection .}{0.15em}{}[ ]
 
 %\titlespacing{Überschriftart}{keine Ahnung}{Abstand oberhalb}{Abstand unterhalb}
 \titlespacing{\section}{0em}{1.0em}{0.1em}
@@ -368,7 +421,7 @@ $\vec B$-Feld: $\epsilon \mu \frac{\delta}{\delta t^2} \vec B (\vec r, t) - \Del
 	Mehrelektroden-Kondensator Q-RWP:\\
 	$\div(\varepsilon \nabla \Phi) = 0$ in $\interior \Omega$ und $\int_{\partial \Omega_l} \varepsilon \frac{\partial \Phi}{\partial \vec n} \diff \vec a = Q_l$ und  besitz bis auf eine additive Konstante eine eindeutige Lösung
 	
-	\subsubsection*{Spektralzerlegung}
+	\subsubsection{Spektralzerlegung}
 	Lösungsverfahren:\\
 	\begin{enumerate}
 		\item Ansatz: $\Phi = \Phi^{(0)} + \varphi$\\
@@ -382,7 +435,7 @@ $\vec B$-Feld: $\epsilon \mu \frac{\delta}{\delta t^2} \vec B (\vec r, t) - \Del
 	
 	
 	
-	\subsection{Greenfunktion $G(\vec r, \vec r')$}
+	\subsection{Greenfunktion $G$}
 	Def: Lösung des RWP mit hom. Randbed. und Störung $\rho(\vec r) = \delta(\vec r - \vec r')$ (Einheitspunktladung bei $\vec r'$)\\
 	Poissongleichung $\Delta\varphi = -\frac{\rho}{\varepsilon_0}$ wird durch das Coulomb-Integral gelöst.
 	Allg. Lösung: $\Phi(\vec r) = \varphi(\vec r)+\psi(\vec r) = \int_\Omega G(\vec r, \vec r')\rho(\vec r') \diff^3 \vec r' + \psi(\vec r)$\\
@@ -390,7 +443,7 @@ $\vec B$-Feld: $\epsilon \mu \frac{\delta}{\delta t^2} \vec B (\vec r, t) - \Del
 	\\
 	Beispiel Punktladung: $G_{\text{Vac}}(\vec r, \vec r') = \frac{1}{4 \pi \varepsilon} \frac{1}{\norm{\vec r - \vec r'}}$
 	
-	\subsubsection*{Spektralzerlegung mit Greenfunktion}
+	\subsubsection{Spektralzerlegung mit Greenfunktion}
 	Problem: \boxed{- \lpo \varphi = \tilde{f}}
 
 	\begin{itemize}
@@ -692,7 +745,7 @@ Annahmen: $\rho = 0$ außer bei Antennen, keine thermischer Strom.\\
 		\item $\vec j(\vec k) = \sigma(\omega(\vec k))\vec E(\vec k)$
 	\end{itemize}
 	komplexe Permittivität: $\tilde{\cx \varepsilon}(\omega) = \varepsilon(\omega) + \i \frac{\sigma(\omega)}{\omega}$\\
-	komplexe Dispersionsrelation: $\tilde{k(\omega)}=\frac{1}{\tilde{\varepsilon}(\omega(\vec k))\mu(\omega(\vec k))}\vec k^2$\\
+	komplexe Dispersionsrelation: $\omega(\vec{k})^2=\frac{1}{\tilde{\varepsilon}(\omega(\vec k))\mu(\omega(\vec k))}\vec k^2$\\
 	komplexer Wellenwiderstand: $\tilde{Z}(\omega) = \sqrt{\frac{\mu(\omega)}{\tilde{\varepsilon}(\omega)}} = \frac{\tilde{k}(\omega)}{\omega\tilde{\varepsilon}(\omega)}$\\
 	Fourierkoeffizienten der Feldgrößen:
 	\begin{itemize}
@@ -724,7 +777,7 @@ Annahmen: $\rho = 0$ außer bei Antennen, keine thermischer Strom.\\
 	%TODO Bild Skript S.165
 	Reflexionskoeffizient: $r_{\parallel} = \frac{\hat E_r}{\hat E_h} = \frac{\hat H_r}{\hat H_h} = \frac{Z_2\cos\alpha_D - Z_1\cos\alpha_h}{Z_2\cos\alpha_D + Z_1\cos\alpha_h}$\\
 	Transmissionskoeffizient: $t_{H\parallel} = \frac{\hat H_D}{\hat H_h} = \frac{2Z_1\cos\alpha_h}{Z_2\cos\alpha_D+Z_1\cos\alpha_h}$\\
-	$t_{E\parallel} = \frac{\hat E_D}{\hat E_h} = \frac{Z_1}{Z_2}t_{H\parallel}$\\
+	$t_{E\parallel} = \frac{\hat E_D}{\hat E_h} = \frac{Z_2}{Z_1}t_{H\parallel}$\\
 	\textbf{E-Feld $\perp$ Einfallsebene:} Einfallende Welle nennt sich TE-Welle\\
 	Reflexionskoeffizient: $r_\perp = \frac{\hat E_r}{\hat E_h} = \frac{\hat H_r}{\hat H_h} = \frac{Z_2\cos\alpha_h-Z_1\cos\alpha_D}{Z_2\cos\alpha_h+Z_1\cos\alpha_D}$\\
 	Transmissionskoeffizient: $t_{E\perp} = \frac{\hat E_D}{\hat E_h} = \frac{2Z_2\cos\alpha_h}{Z_2\cos\alpha_h+Z_1\cos\alpha_D}$\\
